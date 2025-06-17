@@ -23,17 +23,18 @@ export function Navbar() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 p-3">
-      <div className="w-full flex h-14 items-center justify-between">
-        {/* Logo on the left */}
-        <Link href="/" className="flex items-center space-x-2">
-          <Mountain className="h-6 w-6" />
-          <span className="font-bold sm:inline-block">{siteConfig.name}</span>
-        </Link>
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
+      <div className="container mx-auto px-4">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo on the left */}
+          <Link href="/" className="flex items-center space-x-2">
+            <Mountain className="h-6 w-6" />
+            <span className="font-bold text-lg">{siteConfig.name}</span>
+          </Link>
 
-        {/* Navigation on the right - desktop */}
-        <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList className="flex">
+          {/* Navigation on the right - desktop */}
+          <NavigationMenu className="hidden md:flex">
+            <NavigationMenuList className="flex space-x-1">
             <NavigationMenuItem className="relative">
               <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink
@@ -128,17 +129,17 @@ export function Navbar() {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+            </NavigationMenuList>
+          </NavigationMenu>
 
-        {/* Mobile menu button */}
-        <Sheet>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle Menu</span>
-            </Button>
-          </SheetTrigger>
+          {/* Mobile menu button */}
+          <Sheet>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle Menu</span>
+              </Button>
+            </SheetTrigger>
           <SheetContent side="right">
             <Link href="/" className="flex items-center mb-6">
               <Mountain className="h-6 w-6" />
@@ -221,6 +222,7 @@ export function Navbar() {
             </div>
           </SheetContent>
         </Sheet>
+        </div>
       </div>
     </header>
   )
@@ -247,4 +249,4 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
     )
   }
 )
-ListItem.displayName = "ListItem" 
+ListItem.displayName = "ListItem"
