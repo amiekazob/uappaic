@@ -37,4 +37,4 @@ export function LeadershipMessage() {
       </div>
     </section>
   )
-} 
+}

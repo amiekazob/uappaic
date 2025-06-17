@@ -131,7 +131,7 @@ export function HeroSection() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-900 px-8 py-3"
+              className="border-white text-black hover:bg-white hover:text-blue-900 px-8 py-3"
             >
               Learn More
             </Button>

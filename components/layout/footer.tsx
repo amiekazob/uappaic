@@ -8,16 +8,16 @@ import { siteConfig } from "@/config/site"
 
 export function Footer() {
   return (
-    <footer className="bg-gray-50 border-t">
+    <footer className="bg-[#222222] border-t border-gray-800 text-gray-300">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <Mountain className="h-6 w-6" />
-              <span className="font-bold text-lg">{siteConfig.name}</span>
+              <Mountain className="h-6 w-6 text-white" />
+              <span className="font-bold text-lg text-white">{siteConfig.name}</span>
             </Link>
-            <p className="text-sm text-gray-600 max-w-xs">
+            <p className="text-sm max-w-xs">
               <span>
                 University of Asia Pacific
               </span><br />
@@ -26,22 +26,19 @@ export function Footer() {
               </span> <br />
               <span>
                 Green Road, Dhaka-1205
-              </span> <br />
-              <span>
-                Email: <span> <a className="hover:underline" href="">headeee@uap-bd.edu</a> </span>
-              </span>
+              </span> <br />  
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-gray-600">
+              <Link href="#" className="text-gray-400 hover:text-white">
                 <Instagram className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-gray-600">
+              <Link href="#" className="text-gray-400 hover:text-white">
                 <Facebook className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-gray-600">
+              <Link href="#" className="text-gray-400 hover:text-white">
                 <Twitter className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-gray-600">
+              <Link href="#" className="text-gray-400 hover:text-white">
                 <Linkedin className="h-5 w-5" />
               </Link>
             </div>
@@ -49,30 +46,30 @@ export function Footer() {
 
           {/* Academic Section */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-gray-900">Academic</h3>
+            <h3 className="font-semibold text-white">Academic</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/bsc-in-eee" className="text-gray-600 hover:text-gray-900">
+                <Link href="/bsc-in-eee" className="hover:text-white">
                   BSc in EEE
                 </Link>
               </li>
               <li>
-                <Link href="/msc-in-eee" className="text-gray-600 hover:text-gray-900">
+                <Link href="/msc-in-eee" className="hover:text-white">
                   MSc in EEE
                 </Link>
               </li>
               <li>
-                <Link href="/faculty" className="text-gray-600 hover:text-gray-900">
+                <Link href="/faculty" className="hover:text-white">
                   Faculty
                 </Link>
               </li>
               <li>
-                <Link href="/publications" className="text-gray-600 hover:text-gray-900">
+                <Link href="/publications" className="hover:text-white">
                   Publications
                 </Link>
               </li>
               <li>
-                <Link href="/research" className="text-gray-600 hover:text-gray-900">
+                <Link href="/research" className="hover:text-white">
                   Research
                 </Link>
               </li>
@@ -81,35 +78,35 @@ export function Footer() {
 
           {/* Campus Section */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-gray-900">Campus</h3>
+            <h3 className="font-semibold text-white">Campus</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="text-gray-600 hover:text-gray-900">
+                <Link href="/about" className="hover:text-white">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/news" className="text-gray-600 hover:text-gray-900">
+                <Link href="/news" className="hover:text-white">
                   News
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="text-gray-600 hover:text-gray-900">
+                <Link href="/events" className="hover:text-white">
                   Events
                 </Link>
               </li>
               <li>
-                <Link href="/clubs" className="text-gray-600 hover:text-gray-900">
+                <Link href="/clubs" className="hover:text-white">
                   Clubs
                 </Link>
               </li>
               <li>
-                <Link href="/alumni" className="text-gray-600 hover:text-gray-900">
+                <Link href="/alumni" className="hover:text-white">
                   Alumni
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-600 hover:text-gray-900">
+                <Link href="/contact" className="hover:text-white">
                   Contact
                 </Link>
               </li>
@@ -118,36 +115,40 @@ export function Footer() {
 
           {/* Newsletter Section */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-gray-900">Newsletter</h3>
-            <div className="space-y-3">
-              <Input
-                type="email"
-                placeholder="Email"
-                className="w-full"
-              />
-              <Button className="w-full bg-black hover:bg-gray-800 text-white">
-                Subscribe
-              </Button>
+            <h3 className="font-semibold text-white">Administrative Office</h3>
+            <div className="text-sm space-y-2">
+              <div>
+                <p className="font-bold text-white">Md. Rahamat Ullah</p>
+                <p>Senior Administrative Officer</p>
+                <p>Phone: 58157091-4, Ext: 555</p>
+                <p>Mobile: 01717558922</p>
+                <p>
+                  Email: <a href="mailto:dao.eee@uap-bd.edu" className="hover:underline hover:text-white">dao.eee@uap-bd.edu</a>
+                </p>
+              </div>
+              <div className="pt-2">
+                <p className="font-bold text-white">Md. Kamruzzaman</p>
+                <p>Assistant Administrative Officer</p>
+                <p>Phone: 58157091-4, Ext: 555</p>
+                <p>Mobile: 01746120504</p>
+                <p>
+                  Email: <a href="mailto:zaman_eee@uap-bd.edu" className="hover:underline hover:text-white">zaman_eee@uap-bd.edu</a>
+                </p>
+              </div>
             </div>
-            <p className="text-xs text-gray-500">
-              By submitting, you agree to our{" "}
-              <Link href="/privacy" className="underline hover:no-underline">
-                Privacy Policy
-              </Link>
-            </p>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
+        <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-400">
               {siteConfig.name} © All rights reserved.
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-400">
               Made with ❤️ by{" "}
-              <Link href="#" className="text-gray-700 hover:text-gray-900">
-                @ <a href="https://github.com/SubodhShil">Subodh</a>
+              <Link href="https://github.com/SubodhShil" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+                Subodh
               </Link>
             </p>
           </div>
