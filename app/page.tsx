@@ -4,7 +4,7 @@ import { NewsEvents } from "@/components/home/news-events"
 
 export default function Homepage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-white">
       <HeroSection />
       <LeadershipMessage />
       <NewsEvents />
