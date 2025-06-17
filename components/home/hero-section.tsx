@@ -31,7 +31,7 @@ const slides: Slide[] = [
   },
   {
     id: 3,
-    image: "https://plus.unsplash.com/premium_photo-1663079426406-1b82fed16a79?q=80&w=1515&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://images.unsplash.com/photo-1547653872-052e3539decc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: "Vibrant Campus Community",
     description: "Join a diverse community of scholars, innovators, and leaders from around the world in our beautiful campus",
     ctaText: "Campus Life"

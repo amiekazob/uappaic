@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button"
 import VideoPlayer from "@/components/video-player"
+import Link from "next/link"
+import { ChevronRight } from "lucide-react"
 
 export function LeadershipMessage() {
   const videoJsOptions = {
@@ -30,7 +32,12 @@ export function LeadershipMessage() {
               <p className="text-gray-600 mb-4 text-justify">
                 The Department of Electrical and Electronic Engineering (EEE) offers undergraduate and Master's programs in EEE with a vision for creating quality electrical engineers. At present we enroll 250 students per year in two semesters. So far more than 1600 students graduated from this department since the inception of the department in 2004.
               </p>
-              <Button className="bg-blue-600 hover:bg-blue-700">Read More</Button>
+              <Button asChild className="bg-indigo-700 hover:bg-indigo-800">
+                <Link href="/message-from-head">
+                  Read More
+                  <ChevronRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
