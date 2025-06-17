@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface Slide {
@@ -49,21 +49,28 @@ export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
-  // Auto-rotate slides every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide()
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [currentSlide])
-
   const nextSlide = () => {
     if (isTransitioning) return
     setIsTransitioning(true)
     setCurrentSlide((prev) => (prev + 1) % slides.length)
     setTimeout(() => setIsTransitioning(false), 500)
   }
+
+  // Use a ref to hold the callback to avoid stale closures in setInterval
+  const savedCallback = useRef(nextSlide);
+  useEffect(() => {
+    savedCallback.current = nextSlide;
+  }, [nextSlide]);
+
+  // Auto-rotate slides every 8 seconds
+  useEffect(() => {
+    const tick = () => {
+      savedCallback.current();
+    }
+    const intervalId = setInterval(tick, 8000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const prevSlide = () => {
     if (isTransitioning) return
