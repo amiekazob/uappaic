@@ -5,14 +5,16 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Mountain, Instagram, Facebook, Twitter, Linkedin } from "lucide-react"
 import { siteConfig } from "@/config/site"
+import { StaggeredGrid, StaggeredItem } from "@/components/ui/staggered-container"
+import { AnimatedSection } from "@/components/ui/animated-section"
 
 export function Footer() {
   return (
     <footer className="bg-[#222222] border-t border-gray-800 text-gray-300">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" scrollOptions={{ margin: "-100px" }}>
           {/* Brand Section */}
-          <div className="space-y-4">
+          <StaggeredItem className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <Mountain className="h-6 w-6 text-white" />
               <span className="font-bold text-lg text-white">{siteConfig.name}</span>
@@ -26,7 +28,7 @@ export function Footer() {
               </span> <br />
               <span>
                 Green Road, Dhaka-1205
-              </span> <br />  
+              </span> <br />
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white">
@@ -42,21 +44,21 @@ export function Footer() {
                 <Linkedin className="h-5 w-5" />
               </Link>
             </div>
-          </div>
+          </StaggeredItem>
 
           {/* Academic Section */}
-          <div className="space-y-4">
+          <StaggeredItem className="space-y-4">
             <h3 className="font-semibold text-white">Academic</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/bsc-in-eee" className="hover:text-white">
+                <a href="https://eee.uap-bd.edu/bsc-in-eee.html" target="_blank" rel="noopener noreferrer" className="hover:text-white">
                   BSc in EEE
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/msc-in-eee" className="hover:text-white">
+                <a href="https://eee.uap-bd.edu/msc-in-eee.html" target="_blank" rel="noopener noreferrer" className="hover:text-white">
                   MSc in EEE
-                </Link>
+                </a>
               </li>
               <li>
                 <Link href="/faculty" className="hover:text-white">
@@ -74,10 +76,10 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </StaggeredItem>
 
           {/* Campus Section */}
-          <div className="space-y-4">
+          <StaggeredItem className="space-y-4">
             <h3 className="font-semibold text-white">Campus</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -111,10 +113,10 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </StaggeredItem>
 
-          {/* Newsletter Section */}
-          <div className="space-y-4">
+          {/* Administrative Office Section */}
+          <StaggeredItem className="space-y-4">
             <h3 className="font-semibold text-white">Administrative Office</h3>
             <div className="text-sm space-y-2">
               <div>
@@ -136,11 +138,11 @@ export function Footer() {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
+          </StaggeredItem>
+        </StaggeredGrid>
 
         {/* Bottom Section */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <AnimatedSection animation="fadeIn" delay={0.5} className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-gray-400">
               {siteConfig.name} © All rights reserved.
@@ -152,7 +154,7 @@ export function Footer() {
               </Link>
             </p>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
     </footer>
   )

@@ -52,10 +52,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ options, onReady }) => {
   }, [])
 
   return (
-    <div data-vjs-player>
-      <div ref={videoRef} />
+    <div data-vjs-player className="h-full">
+      <div ref={videoRef} className="h-full" />
     </div>
   )
 }
 
-export default VideoPlayer 
+export default VideoPlayer

@@ -8,6 +8,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronRight } from "lucide-react"
 import { events, formatDate } from "@/lib/events-data"
+import { AnimatedSection } from "@/components/ui/animated-section"
+import { StaggeredContainer, StaggeredItem } from "@/components/ui/staggered-container"
 
 export function NewsEvents() {
   const [emblaRef] = useEmblaCarousel({
@@ -21,7 +23,7 @@ export function NewsEvents() {
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="mb-12">
+        <AnimatedSection animation="slideUp" className="mb-12">
           <div className="flex flex-col md:flex-row justify-between md:items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">News and Events</h2>
@@ -37,14 +39,14 @@ export function NewsEvents() {
               </Button>
             </Link>
           </div>
-        </div>
+        </AnimatedSection>
 
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex -ml-4">
+        <StaggeredContainer className="overflow-hidden" scrollOptions={{ margin: "-50px" }}>
+          <div className="flex -ml-4" ref={emblaRef}>
             {recentEvents.map((event) => {
               const formattedDate = formatDate(event.date);
               return (
-                <div className="flex-shrink-0 flex-grow-0 basis-full md:basis-1/2 lg:basis-1/3 pl-4" key={event.id}>
+                <StaggeredItem key={event.id} className="flex-shrink-0 flex-grow-0 basis-full md:basis-1/2 lg:basis-1/3 pl-4">
                   <Card className="overflow-hidden h-full flex flex-col group rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                     <div className="relative">
                       <Link href={event.link} className="block">
@@ -75,12 +77,12 @@ export function NewsEvents() {
                       </Button>
                     </CardContent>
                   </Card>
-                </div>
+                </StaggeredItem>
               )
             })}
           </div>
-        </div>
+        </StaggeredContainer>
       </div>
     </section>
   )
-} 
+}
