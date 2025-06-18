@@ -8,12 +8,14 @@ import { useState } from "react"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { GlobalSearch, useGlobalSearch } from "@/components/ui/global-search"
 import { Menu, X, ChevronDown, Search, User } from "lucide-react"
 
 export function Navbar() {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const { isOpen: isSearchOpen, openSearch, closeSearch } = useGlobalSearch()
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -198,7 +200,13 @@ export function Navbar() {
 
             {/* Right side buttons */}
             <div className="hidden lg:flex items-center space-x-3">
-              <Button variant="ghost" size="icon">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={openSearch}
+                className="hover:bg-gray-100"
+                title="Search (Ctrl+K)"
+              >
                 <Search className="h-5 w-5" />
               </Button>
               <Button className="bg-blue-900 hover:bg-blue-800 text-white px-6">
@@ -284,7 +292,15 @@ export function Navbar() {
                   )}
                 </div>
 
-                <div className="pt-4 border-t">
+                <div className="pt-4 border-t space-y-3">
+                  <Button 
+                    variant="outline" 
+                    className="w-full justify-start"
+                    onClick={openSearch}
+                  >
+                    <Search className="w-4 h-4 mr-2" />
+                    Search
+                  </Button>
                   <Button className="w-full bg-blue-900 hover:bg-blue-800 text-white">
                     Apply Online
                   </Button>
@@ -294,6 +310,9 @@ export function Navbar() {
           </div>
         )}
       </header>
+
+      {/* Global Search Modal */}
+      <GlobalSearch isOpen={isSearchOpen} onClose={closeSearch} />
 
       {/* Overlay for closing dropdowns */}
       {openDropdown && (

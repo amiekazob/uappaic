@@ -3,6 +3,7 @@ import { LeadershipMessage } from "@/components/home/leadership-message"
 import { NewsEvents } from "@/components/home/news-events"
 import { FacultyPreview } from "@/components/home/faculty-preview"
 import { AnimatedSection } from "@/components/ui/animated-section"
+import { SocialFollow } from "@/components/home/social-follow"
 
 export default function Homepage() {
   return (
@@ -17,6 +18,7 @@ export default function Homepage() {
       <AnimatedSection animation="slideUp" delay={0.1}>
         <NewsEvents />
       </AnimatedSection>
+      <SocialFollow />
     </div>
   )
 }
