@@ -204,93 +204,94 @@ export function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity"
         onClick={onClose}
+        style={{ opacity: isOpen ? 1 : 0 }}
       />
       
       {/* Modal */}
-      <div className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] px-4">
-        <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+      <div 
+        className={cn(
+          "fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4 transition-all duration-300",
+          isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        )}
+      >
+        <div className="w-full max-w-2xl bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden transform-gpu">
           {/* Search Input */}
-          <div className="flex items-center px-6 py-4 border-b border-gray-100">
-            <Search className="w-5 h-5 text-gray-400 mr-3" />
+          <div className="flex items-center px-5 py-3 border-b border-gray-100">
+            <Search className="w-5 h-5 text-gray-400 mr-4" />
             <input
               ref={inputRef}
               type="text"
               placeholder="Search faculty, publications, events, departments..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 text-lg outline-none placeholder-gray-400"
+              className="flex-1 text-base bg-transparent outline-none placeholder-gray-400"
             />
             <Button
               variant="ghost"
               size="sm"
               onClick={onClose}
-              className="ml-2 p-1 h-8 w-8"
+              className="ml-2 -mr-2 p-1 h-8 w-8 rounded-full"
             >
               <X className="w-4 h-4" />
             </Button>
           </div>
 
           {/* Results */}
-          <div className="max-h-96 overflow-y-auto">
+          <div className="max-h-[60vh] overflow-y-auto">
             {query.trim() === '' ? (
-              <div className="px-6 py-8 text-center text-gray-500">
+              <div className="px-6 py-12 text-center text-gray-500">
                 <Search className="w-12 h-12 mx-auto mb-4 text-gray-300" />
                 <p className="text-lg font-medium mb-2">Search UAP EEE</p>
-                <p className="text-sm">Find faculty, publications, events, and more</p>
-                <div className="mt-4 text-xs text-gray-400">
-                  <kbd className="px-2 py-1 bg-gray-100 rounded text-gray-600">Ctrl</kbd> + 
-                  <kbd className="px-2 py-1 bg-gray-100 rounded text-gray-600 ml-1">K</kbd> to open
-                </div>
+                <p className="text-sm">Find faculty, publications, events, and more.</p>
               </div>
             ) : searchResults.length === 0 ? (
-              <div className="px-6 py-8 text-center text-gray-500">
-                <Search className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-                <p className="text-lg font-medium mb-2">No results found</p>
-                <p className="text-sm">Try searching for faculty names, research topics, or events</p>
+              <div className="px-6 py-12 text-center text-gray-500">
+                <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                <p className="text-lg font-medium mb-2">No results found for "{query}"</p>
+                <p className="text-sm">Try searching for something else.</p>
               </div>
             ) : (
               <div className="py-2">
                 {Object.entries(groupedResults).map(([category, results]) => (
-                  <div key={category} className="mb-4 last:mb-0">
-                    <div className="px-6 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-50">
+                  <div key={category} className="mb-2 last:mb-0">
+                    <div className="px-5 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                       {getCategoryLabel(category)}
                     </div>
-                    {results.map((result, index) => {
-                      const globalIndex = searchResults.indexOf(result)
-                      return (
-                        <button
-                          key={result.id}
-                          onClick={() => handleResultClick(result)}
-                          className={cn(
-                            "w-full px-6 py-3 text-left hover:bg-gray-50 transition-colors",
-                            globalIndex === selectedIndex && "bg-blue-50 border-r-2 border-blue-500"
-                          )}
-                        >
-                          <div className="flex items-start space-x-3">
-                            <div className="flex-shrink-0 mt-1 text-gray-400">
-                              {result.icon}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-gray-900 truncate">
-                                {result.title}
+                    <ul className="px-2">
+                      {results.map((result, index) => {
+                        const globalIndex = searchResults.indexOf(result);
+                        return (
+                          <li key={result.id}>
+                            <button
+                              onClick={() => handleResultClick(result)}
+                              className={cn(
+                                "w-full px-3 py-3 text-left rounded-lg transition-colors flex items-center space-x-4",
+                                globalIndex === selectedIndex ? "bg-blue-50 text-blue-800" : "hover:bg-gray-50"
+                              )}
+                            >
+                              <div className={cn(
+                                "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center",
+                                globalIndex === selectedIndex ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-500"
+                              )}>
+                                {result.icon}
                               </div>
-                              {result.subtitle && (
-                                <div className="text-sm text-gray-500 truncate">
-                                  {result.subtitle}
+                              <div className="flex-1 min-w-0">
+                                <div className="font-medium text-gray-800 truncate">
+                                  {result.title}
                                 </div>
-                              )}
-                              {result.description && (
-                                <div className="text-xs text-gray-400 mt-1 line-clamp-2">
-                                  {result.description}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </button>
-                      )
-                    })}
+                                {result.subtitle && (
+                                  <div className="text-sm text-gray-500 truncate">
+                                    {result.subtitle}
+                                  </div>
+                                )}
+                              </div>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </div>
                 ))}
               </div>
@@ -298,23 +299,26 @@ export function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
           </div>
 
           {/* Footer */}
-          {searchResults.length > 0 && (
-            <div className="px-6 py-3 border-t border-gray-100 bg-gray-50 text-xs text-gray-500 flex items-center justify-between">
+          {query.trim().length > 0 && searchResults.length > 0 && (
+            <div className="px-5 py-2 border-t border-gray-100 bg-gray-50/80 text-xs text-gray-600 flex items-center justify-between">
+              <div>
+                {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'}
+              </div>
               <div className="flex items-center space-x-4">
                 <span className="flex items-center">
-                  <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-gray-600">↑</kbd>
-                  <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-gray-600 ml-1">↓</kbd>
-                  <span className="ml-2">to navigate</span>
+                  <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-gray-600 text-[10px]">↑</kbd>
+                  <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-gray-600 ml-1 text-[10px]">↓</kbd>
+                  <span className="ml-2">Navigate</span>
                 </span>
                 <span className="flex items-center">
-                  <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-gray-600">Enter</kbd>
-                  <span className="ml-2">to select</span>
+                  <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-gray-600 font-sans text-[10px]">Enter</kbd>
+                  <span className="ml-2">Select</span>
+                </span>
+                <span className="flex items-center">
+                  <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-gray-600 font-sans text-[10px]">Esc</kbd>
+                  <span className="ml-2">Close</span>
                 </span>
               </div>
-              <span className="flex items-center">
-                <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-gray-600">Esc</kbd>
-                <span className="ml-2">to close</span>
-              </span>
             </div>
           )}
         </div>

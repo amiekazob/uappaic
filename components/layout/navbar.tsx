@@ -62,12 +62,12 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1">
+            <nav className="hidden lg:flex items-center space-x-1 flex-1 justify-center">
               {/* Home */}
               <Link
                 href="/"
                 className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-md transition-colors",
+                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   "hover:bg-orange-50 hover:text-orange-600",
                   pathname === '/' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
@@ -79,7 +79,7 @@ export function Navbar() {
               <div className="relative group">
                 <button
                   className={cn(
-                    "px-4 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
                     "hover:bg-orange-50 hover:text-orange-600",
                     openDropdown === 'admission' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                   )}
@@ -102,7 +102,7 @@ export function Navbar() {
               <Link
                 href="/faculty"
                 className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-md transition-colors",
+                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   "hover:bg-orange-50 hover:text-orange-600",
                   pathname === '/faculty' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
@@ -114,7 +114,7 @@ export function Navbar() {
               <Link
                 href="/publications"
                 className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-md transition-colors",
+                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   "hover:bg-orange-50 hover:text-orange-600",
                   pathname === '/publications' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
@@ -126,19 +126,19 @@ export function Navbar() {
               <Link
                 href="/news"
                 className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-md transition-colors",
+                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   "hover:bg-orange-50 hover:text-orange-600",
                   pathname === '/news' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
               >
-                News and Events
+                News & Events
               </Link>
 
               {/* Campus Life */}
               <div className="relative group">
                 <button
                   className={cn(
-                    "px-4 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
                     "hover:bg-orange-50 hover:text-orange-600",
                     openDropdown === 'campus-life' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                   )}
@@ -161,7 +161,7 @@ export function Navbar() {
               <Link
                 href="/alumni"
                 className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-md transition-colors",
+                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   "hover:bg-orange-50 hover:text-orange-600",
                   pathname === '/alumni' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
@@ -173,7 +173,7 @@ export function Navbar() {
               <div className="relative group">
                 <button
                   className={cn(
-                    "px-4 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
                     "hover:bg-orange-50 hover:text-orange-600",
                     openDropdown === 'more' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                   )}
@@ -199,17 +199,33 @@ export function Navbar() {
             </nav>
 
             {/* Right side buttons */}
-            <div className="hidden lg:flex items-center space-x-3">
-              <Button 
-                variant="ghost" 
-                size="icon"
+            <div className="flex items-center space-x-2 flex-shrink-0">
+              {/* Desktop Search Button */}
+              <Button
+                variant="outline"
+                className="hidden lg:flex items-center justify-start text-sm text-muted-foreground w-48 h-10"
                 onClick={openSearch}
-                className="hover:bg-gray-100"
-                title="Search (Ctrl+K)"
+              >
+                <Search className="h-4 w-4 mr-2" />
+                Search...
+                <kbd className="pointer-events-none ml-auto h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100">
+                  ⌘K
+                </kbd>
+              </Button>
+
+              {/* Mobile Search Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden hover:bg-gray-100"
+                onClick={openSearch}
+                title="Search"
               >
                 <Search className="h-5 w-5" />
               </Button>
-              <Button className="bg-blue-900 hover:bg-blue-800 text-white px-6">
+
+              {/* Apply Button */}
+              <Button className="hidden xl:inline-flex bg-blue-900 hover:bg-blue-800 text-white px-4">
                 Apply Online
               </Button>
             </div>
@@ -231,6 +247,18 @@ export function Navbar() {
           <div className="lg:hidden bg-white border-t">
             <div className="container mx-auto px-4 py-4">
               <div className="space-y-4">
+                <Button
+                  variant="outline"
+                  className="flex items-center justify-start text-sm text-muted-foreground w-full h-10 mb-4"
+                  onClick={() => {
+                    openSearch();
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  <Search className="h-4 w-4 mr-2" />
+                  Search...
+                </Button>
+
                 <Link href="/" className="block py-2 font-medium">Home</Link>
                 
                 <div>
@@ -293,14 +321,6 @@ export function Navbar() {
                 </div>
 
                 <div className="pt-4 border-t space-y-3">
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start"
-                    onClick={openSearch}
-                  >
-                    <Search className="w-4 h-4 mr-2" />
-                    Search
-                  </Button>
                   <Button className="w-full bg-blue-900 hover:bg-blue-800 text-white">
                     Apply Online
                   </Button>
