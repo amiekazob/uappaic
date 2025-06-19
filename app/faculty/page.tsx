@@ -37,39 +37,39 @@ const FacultyCard = ({ member }: { member: FacultyMember }) => (
 );
 
 const HodCard = ({ member }: { member: FacultyMember }) => (
-    <div className="bg-gray-50 rounded-2xl shadow-lg overflow-hidden">
-        <div className="md:grid md:grid-cols-3">
-            <div className="md:col-span-1">
-                 <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={400}
-                    height={400}
-                    className="w-full h-full object-cover object-top"
-                />
-            </div>
-            <div className="md:col-span-2 p-8 md:p-12 flex flex-col justify-center">
-                <Badge className="mb-3 bg-indigo-100 text-indigo-800 text-sm w-fit">Head of Department</Badge>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{member.name}</h2>
-                <p className="text-lg text-indigo-700 font-semibold mt-1">{member.title.replace('Head of the Department & ', '')}</p>
-                <p className="mt-4 text-gray-600 max-w-2xl">{member.bio}</p>
-                <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500">
-                    <a href={`mailto:${member.email}`} className="flex items-center hover:text-indigo-700">
-                        <Mail className="w-4 h-4 mr-2"/> {member.email}
-                    </a>
-                    <span className="flex items-center">
-                        <Phone className="w-4 h-4 mr-2"/> {member.phone}
-                    </span>
-                </div>
-                <Button asChild className="mt-6 bg-indigo-700 hover:bg-indigo-800 w-fit">
-                    <Link href={`/faculty/${member.id}`}>
-                        Read Full Profile & Message
-                        <ChevronRight className="w-4 h-4 ml-2" />
-                    </Link>
-                </Button>
-            </div>
+  <div className="bg-gray-50 rounded-2xl shadow-lg overflow-hidden">
+    <div className="md:grid md:grid-cols-3">
+      <div className="md:col-span-1">
+        <Image
+          src={member.image}
+          alt={member.name}
+          width={400}
+          height={400}
+          className="w-full h-full object-cover object-top"
+        />
+      </div>
+      <div className="md:col-span-2 p-8 md:p-12 flex flex-col justify-center">
+        <Badge className="mb-3 bg-indigo-100 text-indigo-800 text-sm w-fit">Head of Department</Badge>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{member.name}</h2>
+        <p className="text-lg text-indigo-700 font-semibold mt-1">{member.title.replace('Head of the Department & ', '')}</p>
+        <p className="mt-4 text-gray-600 max-w-2xl">{member.bio}</p>
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500">
+          <a href={`mailto:${member.email}`} className="flex items-center hover:text-indigo-700">
+            <Mail className="w-4 h-4 mr-2" /> {member.email}
+          </a>
+          <span className="flex items-center">
+            <Phone className="w-4 h-4 mr-2" /> {member.phone}
+          </span>
         </div>
+        <Button asChild className="mt-6 bg-indigo-700 hover:bg-indigo-800 w-fit">
+          <Link href={`/faculty/${member.id}`}>
+            Read Full Profile & Message
+            <ChevronRight className="w-4 h-4 ml-2" />
+          </Link>
+        </Button>
+      </div>
     </div>
+  </div>
 )
 
 export default function FacultyPage() {
@@ -87,11 +87,11 @@ export default function FacultyPage() {
         </div>
 
         {hod && (
-            <div className="mb-16">
-                <HodCard member={hod} />
-            </div>
+          <div className="mb-16">
+            <HodCard member={hod} />
+          </div>
         )}
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {otherFaculty.map(member => (
             <FacultyCard key={member.id} member={member} />

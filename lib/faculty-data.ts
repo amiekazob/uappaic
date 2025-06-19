@@ -41,7 +41,7 @@ export const facultyMembers: FacultyMember[] = [
     name: 'Dr. Jane Doe',
     title: 'Associate Professor',
     role: 'Associate Professor',
-    image: 'https://images.unsplash.com/photo-1580894732444-84cf70d61f84?q=80&w=870&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1605711285791-0219e80e43a3?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     bio: 'Dr. Doe specializes in electronics and VLSI design. She is known for her innovative teaching methods and mentorship.',
     email: 'jane.doe@uap-bd.edu',
     phone: '+880-19-XXXX-XXXX',
