@@ -213,17 +213,6 @@ export function Navbar() {
                 </kbd>
               </Button>
 
-              {/* Mobile Search Button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden hover:bg-gray-100"
-                onClick={openSearch}
-                title="Search"
-              >
-                <Search className="h-5 w-5" />
-              </Button>
-
               {/* Apply Button */}
               <Button className="hidden xl:inline-flex bg-blue-900 hover:bg-blue-800 text-white px-4">
                 Apply Online
