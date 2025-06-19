@@ -6,6 +6,8 @@ export const events = [
       date: new Date('2022-11-08'),
       image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       link: "/news/icpc-world-finals-2021",
+      category: "Academic",
+      type: "event"
     },
     {
       id: 2,
@@ -14,6 +16,8 @@ export const events = [
       date: new Date('2023-10-09'),
       image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       link: "/news/convocation-11th",
+      category: "University",
+      type: "news"
     },
     {
       id: 3,
@@ -22,6 +26,8 @@ export const events = [
       date: new Date('2024-04-20'),
       image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       link: "/news/eee-tech-fest-2024",
+      category: "Department",
+      type: "event"
     },
     {
       id: 4,
@@ -30,6 +36,8 @@ export const events = [
       date: new Date('2024-06-05'),
       image: "https://images.unsplash.com/photo-1620712943543-95fc6962c3a3?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       link: "/news/robotics-workshop-2024",
+      category: "Research",
+      type: "event"
     },
     {
       id: 5,
@@ -38,6 +46,8 @@ export const events = [
       date: new Date('2024-12-10'), 
       image: "https://images.unsplash.com/photo-1582653291997-0639916b5b3d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       link: "/news/international-conference-2024",
+      category: "Research",
+      type: "event"
     },
   ];
   
@@ -49,4 +59,4 @@ export const events = [
       month: date.toLocaleDateString('en-US', { month: 'short' }),
       year: date.toLocaleDateString('en-US', { year: 'numeric' }),
     };
-  }; 
+  };

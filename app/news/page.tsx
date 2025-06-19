@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, Calendar, Clock } from 'lucide-react'
+import { ChevronRight, Calendar, ChevronDown, Search } from 'lucide-react'
 import { events as allEvents, formatDate, Event } from '@/lib/events-data'
 import { cn } from '@/lib/utils'
 import { AnimatedSection } from "@/components/ui/animated-section"
@@ -53,19 +53,43 @@ function EventCard({ event }: { event: Event }) {
 }
 
 export default function NewsPage() {
-  const [filter, setFilter] = useState<'upcoming' | 'past'>('upcoming');
+  const [selectedCategory, setSelectedCategory] = useState<string>('- Any -');
+  const [selectedYear, setSelectedYear] = useState<string>('- Year -');
+  const [selectedType, setSelectedType] = useState<string>('All');
+
+  // Get unique categories and years from events
+  const categories = useMemo(() => {
+    const uniqueCategories = Array.from(new Set(allEvents.map(event => event.category)));
+    return ['- Any -', ...uniqueCategories];
+  }, []);
+
+  const years = useMemo(() => {
+    const uniqueYears = Array.from(new Set(allEvents.map(event => event.date.getFullYear().toString())));
+    return ['- Year -', ...uniqueYears.sort((a, b) => parseInt(b) - parseInt(a))];
+  }, []);
+
+  const types = ['All', 'News', 'Events'];
 
   const filteredEvents = useMemo(() => {
-    const now = new Date();
-    const upcoming = allEvents
-      .filter(event => event.date >= now)
-      .sort((a, b) => a.date.getTime() - b.date.getTime());
-    const past = allEvents
-      .filter(event => event.date < now)
-      .sort((a, b) => b.date.getTime() - a.date.getTime());
-    
-    return filter === 'upcoming' ? upcoming : past;
-  }, [filter]);
+    return allEvents.filter(event => {
+      const categoryMatch = selectedCategory === '- Any -' || event.category === selectedCategory;
+      const yearMatch = selectedYear === '- Year -' || event.date.getFullYear().toString() === selectedYear;
+      const typeMatch = selectedType === 'All' || 
+        (selectedType === 'News' && event.type === 'news') ||
+        (selectedType === 'Events' && event.type === 'event');
+      
+      return categoryMatch && yearMatch && typeMatch;
+    }).sort((a, b) => b.date.getTime() - a.date.getTime());
+  }, [selectedCategory, selectedYear, selectedType]);
+
+  const handleSearchArchive = () => {
+    // This could trigger additional filtering or search functionality
+    console.log('Search archive clicked with filters:', {
+      category: selectedCategory,
+      year: selectedYear,
+      type: selectedType
+    });
+  };
 
   return (
     <div className="bg-gray-50">
@@ -77,30 +101,66 @@ export default function NewsPage() {
           </p>
         </AnimatedSection>
 
-        <AnimatedSection animation="slideUp" delay={0.2} className="flex justify-center mb-12">
-          <div className="flex rounded-full bg-white p-1 shadow-md">
-            <Button
-              onClick={() => setFilter('upcoming')}
-              variant="ghost"
-              className={cn(
-                "rounded-full px-6 py-2 transition-colors duration-300",
-                filter === 'upcoming' ? 'bg-indigo-700 text-white hover:bg-indigo-800 hover:text-white' : 'hover:bg-gray-100'
-              )}
-            >
-              <Clock className="w-4 h-4 mr-2" />
-              Upcoming
-            </Button>
-            <Button
-              onClick={() => setFilter('past')}
-              variant="ghost"
-              className={cn(
-                "rounded-full px-6 py-2 transition-colors duration-300",
-                filter === 'past' ? 'bg-indigo-700 text-white hover:bg-indigo-800 hover:text-white' : 'hover:bg-gray-100'
-              )}
-            >
-              <Calendar className="w-4 h-4 mr-2" />
-              Past
-            </Button>
+        <AnimatedSection animation="slideUp" delay={0.2} className="mb-12">
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex flex-col lg:flex-row gap-4 items-center justify-center">
+              {/* Category Filter */}
+              <div className="relative">
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 min-w-[140px]"
+                >
+                  {categories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
+
+              {/* Year Filter */}
+              <div className="relative">
+                <select
+                  value={selectedYear}
+                  onChange={(e) => setSelectedYear(e.target.value)}
+                  className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 min-w-[120px]"
+                >
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
+
+              {/* Type Filter */}
+              <div className="relative">
+                <select
+                  value={selectedType}
+                  onChange={(e) => setSelectedType(e.target.value)}
+                  className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 min-w-[120px]"
+                >
+                  {types.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
+
+              {/* Search Archive Button */}
+              <Button
+                onClick={handleSearchArchive}
+                className="bg-indigo-700 hover:bg-indigo-800 text-white px-6 py-2 flex items-center gap-2"
+              >
+                <Search className="w-4 h-4" />
+                Search Archive
+              </Button>
+            </div>
           </div>
         </AnimatedSection>
 
