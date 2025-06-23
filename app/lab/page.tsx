@@ -14,93 +14,71 @@ const LabCard = ({ lab }: { lab: Lab }) => {
   const getCategoryColor = (category: Lab['category']) => {
     switch (category) {
       case 'Electronics':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'bg-blue-600 text-white';
       case 'Power':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-green-600 text-white';
       case 'Communications':
-        return 'bg-purple-100 text-purple-800 border-purple-200';
+        return 'bg-purple-600 text-white';
       case 'Control':
-        return 'bg-orange-100 text-orange-800 border-orange-200';
+        return 'bg-orange-600 text-white';
       case 'Computer':
-        return 'bg-indigo-100 text-indigo-800 border-indigo-200';
+        return 'bg-indigo-600 text-white';
       case 'Research':
-        return 'bg-pink-100 text-pink-800 border-pink-200';
+        return 'bg-pink-600 text-white';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'bg-gray-600 text-white';
     }
   };
 
   return (
-    <Card className="group h-full overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-md">
-      <div className="relative overflow-hidden">
-        <Image
-          src={lab.image}
-          alt={lab.name}
-          width={400}
-          height={240}
-          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <Badge 
-          className={`absolute top-3 left-3 ${getCategoryColor(lab.category)} font-medium`}
-        >
-          {lab.category}
-        </Badge>
-        <div className="absolute bottom-3 right-3">
-          <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
-            <Users className="w-4 h-4 text-gray-700" />
-            <span className="text-xs font-medium text-gray-700 ml-1">{lab.capacity}</span>
-          </div>
-        </div>
-      </div>
-      
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
-          {lab.name}
-        </CardTitle>
-      </CardHeader>
-      
-      <CardContent className="pt-0 flex-1 flex flex-col">
-        <p className="text-sm text-gray-600 mb-4 line-clamp-3 flex-1">
-          {lab.description}
-        </p>
-        
-        <div className="space-y-3">
-          <div className="flex items-center text-sm text-gray-500">
-            <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
-            <span className="truncate">{lab.location}</span>
+    <Link href={`/lab/${lab.id}`} className="group block">
+      <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg rounded-xl">
+        <div className="relative overflow-hidden h-80">
+          <Image
+            src={lab.image}
+            alt={lab.name}
+            width={400}
+            height={256}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          
+          {/* Category Badge */}
+          <div className="absolute top-4 left-4">
+            <Badge className={`${getCategoryColor(lab.category)} font-medium text-xs px-3 py-1 rounded-full`}>
+              {lab.category.toUpperCase()}
+            </Badge>
           </div>
           
-          <div className="flex items-start text-sm text-gray-500">
-            <Wrench className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5" />
-            <div className="flex-1">
-              <span className="font-medium">Key Equipment:</span>
-              <div className="mt-1">
-                {lab.equipment.slice(0, 3).map((item, index) => (
-                  <Badge key={index} variant="outline" className="mr-1 mb-1 text-xs">
-                    {item}
-                  </Badge>
-                ))}
-                {lab.equipment.length > 3 && (
-                  <Badge variant="outline" className="text-xs">
-                    +{lab.equipment.length - 3} more
-                  </Badge>
-                )}
+          {/* Date Badge - Using a mock date for demonstration */}
+          <div className="absolute top-4 right-4">
+            <div className="bg-black/60 backdrop-blur-sm rounded-lg px-3 py-1">
+              <span className="text-white text-xs font-medium">Est. 2020</span>
+            </div>
+          </div>
+          
+          {/* Bottom Content */}
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <h3 className="text-white text-lg font-bold mb-1 leading-tight">
+              {lab.name}
+            </h3>
+            <p className="text-gray-200 text-xs line-clamp-1 mb-2">
+              {lab.description}
+            </p>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center text-gray-300 text-xs">
+                <MapPin className="w-3 h-3 mr-1" />
+                <span>{lab.location}</span>
+              </div>
+              <div className="flex items-center text-gray-300 text-xs">
+                <Users className="w-3 h-3 mr-1" />
+                <span>{lab.capacity}</span>
               </div>
             </div>
           </div>
         </div>
-        
-        <div className="mt-6 pt-4 border-t border-gray-100">
-          <Button asChild className="w-full group/btn">
-            <Link href={`/lab/${lab.id}`}>
-              View Details
-              <ChevronRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-            </Link>
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+      </Card>
+    </Link>
   );
 };
 
@@ -212,7 +190,7 @@ export default function LabPage() {
         </AnimatedSection>
 
         <AnimatedSection animation="slideUp" delay={0.3}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredLabs.map((lab, index) => (
               <div key={lab.id} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <LabCard lab={lab} />

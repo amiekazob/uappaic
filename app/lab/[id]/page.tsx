@@ -148,6 +148,42 @@ export default async function LabDetailPage({ params }: PageProps) {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 gap-8">
+          {/* Equipment Section */}
+          <AnimatedSection animation="slideUp" delay={0.1}>
+            <Card className="h-full">
+              <CardHeader>
+                <CardTitle className="flex items-center text-xl font-bold text-gray-900">
+                  <Wrench className="h-6 mr-3 text-blue-600" />
+                  Description
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 gap-3">
+                  <p className='text-justify'>
+                    Welcome to the Electrical Circuits & Measurements Laboratory , a foundational hub in the Department of Electrical and Electronic Engineering (EEE) at the University of Asia Pacific (UAP). This lab serves as a gateway for first-year EEE students to transition from theoretical knowledge to practical application.
+
+                    Designed to support the UAP EEE curriculum, this lab introduces students to:
+                    <br />
+
+                  <ul className="list-disc pl-6">
+                    <li>The principles of electric circuits (DC and AC)</li>
+                    <li>Measurement techniques using analog and digital instruments</li>
+                    <li>Practical applications of circuit analysis and measurements</li>
+                    <li>Hands-on experience with laboratory equipment and instruments</li>
+                  </ul>
+      
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </AnimatedSection>
+        </div>
+      </div>
+
+
+      {/* Main Content */}
+      <div className="container mx-auto px-4 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Equipment Section */}
           <AnimatedSection animation="slideUp" delay={0.1}>
@@ -213,7 +249,7 @@ export default async function LabDetailPage({ params }: PageProps) {
                 Laboratory Information
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className=''>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="text-center p-4 bg-gray-50 rounded-lg">
                   <div className="text-2xl font-bold text-blue-600 mb-2">{lab.capacity}</div>
