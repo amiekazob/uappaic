@@ -157,16 +157,16 @@ export function Navbar() {
                 )}
               </div>
 
-              {/* Alumni */}
+              {/* laboratory */}
               <Link
-                href="/alumni"
+                href="/lab"
                 className={cn(
                   "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   "hover:bg-orange-50 hover:text-orange-600",
                   pathname === '/alumni' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
               >
-                Alumni
+                Laboratory
               </Link>
 
               {/* More */}
