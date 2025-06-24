@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <footer className="bg-[#222222] border-t border-gray-800 text-gray-300">
       <div className="container mx-auto px-4 py-12">
-        <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" scrollOptions={{ margin: "-100px" }}>
+        <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8" scrollOptions={{ margin: "-100px" }}>
           {/* Brand Section */}
           <StaggeredItem className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
@@ -45,7 +45,7 @@ export function Footer() {
               </Link>
             </div>
           </StaggeredItem>
-
+    
           {/* Academic Section */}
           <StaggeredItem className="space-y-4">
             <h3 className="font-semibold text-white">Academic</h3>
@@ -137,6 +137,34 @@ export function Footer() {
                   Email: <a href="mailto:zaman_eee@uap-bd.edu" className="hover:underline hover:text-white">zaman_eee@uap-bd.edu</a>
                 </p>
               </div>
+            </div>
+          </StaggeredItem>
+
+          {/* Location Map Section */}
+          <StaggeredItem className="space-y-4">
+            <h3 className="font-semibold text-white">Find Us</h3>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-400">University Location</p>
+              <div className="w-full h-48 rounded-lg overflow-hidden border border-gray-700">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.906!2d90.3938!3d23.7516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087a0a6ad%3A0xc642213c20e4c478!2s74%2FA%20Green%20Rd%2C%20Dhaka%201205!5e0!3m2!1sen!2sbd!4v1703000000000!5m2!1sen!2sbd"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="University of Asia Pacific Location"
+                ></iframe>
+              </div>
+              <a 
+                href="https://www.google.com/maps?gs_lcrp=EgZjaHJvbWUyDQgAEEUYFhgeGDkYyQMyDQgBEAAYkgMYgAQYigUyCAgCEAAYFhgeMggIAxAAGBYYHjIICAQQABgWGB4yCAgFEAAYFhgeMggIBhAAGBYYHjIICAcQABgWGB4yCAgIEAAYFhgeMggICRAAGBYYHtIBCDI3MDNqMGoxqAIAsAIA&um=1&ie=UTF-8&fb=1&gl=bd&sa=X&geocode=KTuvjqmwuFU3MXjE_CQhQ5LG&daddr=74/A+Green+Rd,+Dhaka+1205"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-sm text-blue-400 hover:text-blue-300 hover:underline"
+              >
+                Get Directions →
+              </a>
             </div>
           </StaggeredItem>
         </StaggeredGrid>
