@@ -7,12 +7,14 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AnimatedSection } from '@/components/ui/animated-section';
+import { CardCarousel } from '@/components/ui/card-carousel';
 
 export async function generateStaticParams() {
   return labs.map(lab => ({
     id: lab.id,
   }));
 }
+
 
 const getCategoryColor = (category: Lab['category']) => {
   switch (category) {
@@ -65,6 +67,29 @@ export default async function LabDetailPage({ params }: PageProps) {
   if (!lab) {
     notFound();
   }
+
+  const slideData = [
+    {
+      title: "Digital Signal Processing Lab",
+      button: "Explore Lab",
+      src: "https://plus.unsplash.com/premium_photo-1716209115376-fb43139dd84e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      title: "Power Electronics Lab",
+      button: "Explore Lab",
+      src: "https://plus.unsplash.com/premium_photo-1663011406193-7beb9d225d31?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      title: "Microprocessor Lab",
+      button: "Explore Lab",
+      src: "https://plus.unsplash.com/premium_photo-1726664912946-7bacadb20f3f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      title: "Communication Systems Lab",
+      button: "Explore Lab",
+      src: "https://images.unsplash.com/photo-1673357260733-67bec06265a2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  ];
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -162,18 +187,16 @@ export default async function LabDetailPage({ params }: PageProps) {
                 <div className="grid grid-cols-1 gap-3">
                   <p className='text-justify'>
                     Welcome to the Electrical Circuits & Measurements Laboratory , a foundational hub in the Department of Electrical and Electronic Engineering (EEE) at the University of Asia Pacific (UAP). This lab serves as a gateway for first-year EEE students to transition from theoretical knowledge to practical application.
-
+                  </p>
+                  <p className='text-justify'>
                     Designed to support the UAP EEE curriculum, this lab introduces students to:
-                    <br />
-
+                  </p>
                   <ul className="list-disc pl-6">
                     <li>The principles of electric circuits (DC and AC)</li>
                     <li>Measurement techniques using analog and digital instruments</li>
                     <li>Practical applications of circuit analysis and measurements</li>
                     <li>Hands-on experience with laboratory equipment and instruments</li>
                   </ul>
-      
-                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -266,6 +289,19 @@ export default async function LabDetailPage({ params }: PageProps) {
               </div>
             </CardContent>
           </Card>
+        </AnimatedSection>
+
+        {/* Related Labs Carousel */}
+        <AnimatedSection animation="slideUp" delay={0.4}>
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Lab Gallery</h2>
+            <div className="relative overflow-hidden w-full h-full py-20">
+              <CardCarousel 
+                className="w-full max-w-5xl mx-auto"
+                slides={slideData}
+              />
+            </div>
+          </div>
         </AnimatedSection>
       </div>
     </div>

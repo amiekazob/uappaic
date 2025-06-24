@@ -163,7 +163,7 @@ export function Navbar() {
                 className={cn(
                   "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   "hover:bg-orange-50 hover:text-orange-600",
-                  pathname === '/alumni' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+                  pathname === '/lab' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
               >
                 Laboratory
@@ -286,7 +286,7 @@ export function Navbar() {
                   )}
                 </div>
 
-                <Link href="/alumni" className="block py-2 font-medium">Alumni</Link>
+                <Link href="/lab" className="block py-2 font-medium">Laboratory</Link>
 
                 <div>
                   <button
