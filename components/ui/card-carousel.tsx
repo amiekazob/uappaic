@@ -80,7 +80,14 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
           filter: current !== index ? "blur(1px)" : "none",
         }}
       >
-        <article className="relative w-full h-full rounded-2xl overflow-hidden cursor-pointer">
+        <article 
+          className="relative w-full h-full rounded-2xl overflow-hidden cursor-pointer transition-transform duration-150 ease-out"
+          style={{
+            transform: current === index 
+              ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)" 
+              : "none"
+          }}
+        >
           <img
             className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000 ease-in-out"
             src={src}
