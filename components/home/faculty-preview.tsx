@@ -18,7 +18,7 @@ export function FacultyPreview() {
   const previewFaculty = hod ? [hod, ...otherFaculty] : otherFaculty.slice(0, 3);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-purple-50 via-violet-50 to-indigo-50 relative overflow-hidden">
+    <section className="mb-10 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -40,7 +40,7 @@ export function FacultyPreview() {
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
             Our department is proud to have a team of highly qualified and dedicated educators, researchers, and innovators shaping the future of engineering.
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-violet-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-purple-600 mx-auto rounded-full" />
         </AnimatedSection>
 
         <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
@@ -64,7 +64,7 @@ export function FacultyPreview() {
                   {/* Role Badge */}
                   {member.role === 'HOD' && (
                     <div className="absolute top-4 left-4">
-                      <Badge className="bg-gradient-to-r from-purple-500 to-violet-500 text-white border-0 shadow-lg">
+                      <Badge className="bg-purple-500 text-white border-0 shadow-lg">
                         <Award className="w-3 h-3 mr-1" />
                         Head of Department
                       </Badge>
@@ -117,7 +117,7 @@ export function FacultyPreview() {
                     {member.bio}
                   </p>
                   
-                  <Button asChild className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl group/btn">
+                  <Button asChild className="w-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl group/btn">
                     <Link href={`/faculty/${member.id}`}>
                       <span className="flex items-center justify-center">
                         View Full Profile
@@ -133,14 +133,14 @@ export function FacultyPreview() {
         
         {/* Call to Action */}
         <AnimatedSection animation="fadeIn" delay={0.4} className="text-center">
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 mb-5 pt-5 shadow-lg border border-white/20">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Discover Our Complete Faculty Team
             </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
               Explore detailed profiles, research interests, publications, and contact information for all our distinguished faculty members.
             </p>
-            <Button asChild size="lg" className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl px-8 py-3">
+            <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl px-8 py-3">
               <Link href="/faculty">
                 <Users className="w-5 h-5 mr-2" />
                 View All Faculty Members

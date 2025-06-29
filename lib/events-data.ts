@@ -41,14 +41,44 @@ export const events = [
   },
   {
     id: 5,
-    title: "Upcoming International Conference on EEE",
-    description: "Join us for the international conference that brings together researchers and practitioners to discuss the latest trends in EEE.",
+    title: "Programming and AI Club presents Codex 1.0",
+    description: "On 23rd April 2025, the Department of Electrical and Electronic Engineering (EEE) at the University of Asia Pacific (UAP) organized an exciting event titled CoDEX 1.0, organized by the Programming and AI Club.",
     date: new Date('2024-12-10'),
     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     link: "/news/international-conference-2024",
     category: "Research",
     type: "event"
   },
+  {
+    id: 6,
+    title: "Smart Grid Technology Symposium 2024",
+    description: "A comprehensive symposium exploring the latest advancements in smart grid technology, renewable energy integration, and sustainable power systems.",
+    date: new Date('2024-11-15'),
+    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    link: "/news/smart-grid-symposium-2024",
+    category: "Research",
+    type: "event"
+  },
+  {
+    id: 7,
+    title: "AI and Machine Learning in Engineering Workshop",
+    description: "An intensive workshop focusing on the application of artificial intelligence and machine learning techniques in electrical and electronic engineering.",
+    date: new Date('2024-12-05'),
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    link: "/news/ai-ml-engineering-workshop-2024",
+    category: "Academic",
+    type: "event"
+  },
+  {
+    id: 8,
+    title: "EEE Department Research Excellence Awards 2024",
+    description: "Annual recognition ceremony celebrating outstanding research achievements and innovations by faculty and students in the Department of Electrical and Electronic Engineering.",
+    date: new Date('2024-10-25'),
+    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1426&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    link: "/news/research-excellence-awards-2024",
+    category: "Department",
+    type: "news"
+  }
 ];
 
 export type Event = typeof events[0];

@@ -23,7 +23,7 @@ export function LeadershipMessage() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -35,14 +35,14 @@ export function LeadershipMessage() {
 
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection animation="fadeIn" className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full">
             <Quote className="w-8 h-8 text-indigo-600" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
             Message from the
             <span className="block text-indigo-700">Head of Department</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-blue-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-indigo-600 mx-auto rounded-full" />
         </AnimatedSection>
 
         <div className="max-w-7xl mx-auto">
@@ -87,14 +87,12 @@ export function LeadershipMessage() {
                 <div className="relative mb-8">
                   <Quote className="absolute -top-2 -left-2 w-8 h-8 text-indigo-200" />
                   <blockquote className="text-gray-700 text-md leading-relaxed italic pl-6 border-l-4 border-indigo-200">
-                    "Our Department of Electrical and Electronic Engineering is dedicated to fostering top-tier engineers through our dynamic undergraduate and Master’s programs. We are proud of our graduates and committed to advancing innovation in the field."
+                    "Our Department of Electrical and Electronic Engineering is dedicated to fostering top-tier engineers through our dynamic undergraduate and Master's programs. We are proud of our graduates and committed to advancing innovation in the field."
                   </blockquote>
                 </div>
 
-
-
                 {/* CTA Button */}
-                <Button asChild className="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl py-6 px-8 text-lg font-semibold">
+                <Button asChild className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl py-6 px-8 text-lg font-semibold">
                   <Link href="/message-from-head">
                     Read Full Message
                     <ChevronRight className="w-5 h-5 ml-2" />
