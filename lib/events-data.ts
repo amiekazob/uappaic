@@ -43,7 +43,7 @@ export const events = [
     id: 5,
     title: "Programming and AI Club presents Codex 1.0",
     description: "On 23rd April 2025, the Department of Electrical and Electronic Engineering (EEE) at the University of Asia Pacific (UAP) organized an exciting event titled CoDEX 1.0, organized by the Programming and AI Club.",
-    date: new Date('2024-12-10'),
+    date: new Date('2024-04-23'),
     image: "https://i.ibb.co/7JgvP6DR/image.png",
     link: "/news/international-conference-2024",
     category: "Research",

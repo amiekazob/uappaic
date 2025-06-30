@@ -142,16 +142,17 @@ const extendedContent = {
   }
 }
 
-export default async function NewsPage({ params }: { params: { slug: string } }) {
-  const event = events.find(e => e.link === `/news/${params.slug}`)
+export default async function NewsPage({ params }: NewsPageProps) {
+  const { slug } = await params
+  const event = events.find(e => e.link === `/news/${slug}`)
 
   if (!event) {
     notFound()
   }
 
   const formattedDate = formatDate(event.date)
-  const images = galleryImages[params.slug as keyof typeof galleryImages] || []
-  const content = extendedContent[params.slug as keyof typeof extendedContent]
+  const images = galleryImages[slug as keyof typeof galleryImages] || []
+  const content = extendedContent[slug as keyof typeof extendedContent]
 
   return <NewsClientPage event={event} formattedDate={formattedDate} images={images} content={content} />
 }
