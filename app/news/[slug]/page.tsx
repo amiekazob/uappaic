@@ -1,16 +1,6 @@
-'use client'
-
-import React from 'react'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import Link from 'next/link'
-import { ChevronLeft, Calendar, MapPin, Users, Clock } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { events, formatDate } from '@/lib/events-data'
-import { AnimatedSection } from '@/components/ui/animated-section'
-import { StaggeredGrid, StaggeredItem } from '@/components/ui/staggered-container'
+import NewsClientPage from './client-page'
 
 interface NewsPageProps {
   params: Promise<{
@@ -37,7 +27,12 @@ const galleryImages = {
     'https://plus.unsplash.com/premium_photo-1723291289063-d78b337be6d5?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   ],
   'international-conference-2024': [
-      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://i.ibb.co/zW5hTRz4/image.png',
+    'https://i.ibb.co/RGP2r74c/image.png',
+    'https://i.ibb.co/s9MC88gJ/image.png',
+    'https://i.ibb.co/7JgvP6DR/image.png',
+    'https://i.ibb.co/8nr0Bbnt/image.png',
+    'https://i.ibb.co/Swr0Wfbm/image.png',
   ],
   'smart-grid-symposium-2024': [
     'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3',
@@ -104,16 +99,7 @@ const extendedContent = {
     ]
   },
   'international-conference-2024': {
-    fullDescription: `The Programming and AI Club at UAP successfully organized Codex 1.0, an event that brought together students passionate about coding and artificial intelligence. Held on April 23rd, 2025, the event featured coding competitions, AI workshops, and talks by industry experts. It was a fantastic opportunity for students to hone their programming skills, learn about the latest advancements in AI, and network with like-minded peers. The event underscored the club's commitment to promoting a vibrant coding culture on campus.
-    
-    \n\n Intra-Department Programming Contest
-
-The event kicked off with an intra-department programming contest, where enthusiastic students from various semesters showcased their coding skills, problem-solving abilities, and teamwork. It provided a competitive yet collaborative platform for young programmers to sharpen their logic and gain real-world experience.
-
-\n\n Seminar on Student Research and Publication
-
-Following the contest, a seminar on "Empowering Students’ Research and Publications" was conducted by Dr. Md Shafiul Alam, Associate Professor, Dept. of EEE. Dr. Alam, listed among the world’s top 2% scientists by Elsevier and Stanford University, shared his insights on academic research, paper publishing, and project funding. He emphasized the importance of building a research mindset early in academic life. His session inspired students with real data from his experience, including 1600+ citations, 23 H-index journals, and over 10 funded projects.
-    `,
+    fullDescription: `Intra-Department Programming Contest\n\nThe event kicked off with an intra-department programming contest, where enthusiastic students from various semesters showcased their coding skills, problem-solving abilities, and teamwork. It provided a competitive yet collaborative platform for young programmers to sharpen their logic and gain real-world experience.\n\nSeminar on Student Research and Publication\n\nFollowing the contest, a seminar on "Empowering Students’ Research and Publications" was conducted by Dr. Md Shafiul Alam, Associate Professor, Dept. of EEE. Dr. Alam, listed among the world’s top 2% scientists by Elsevier and Stanford University, shared his insights on academic research, paper publishing, and project funding. He emphasized the importance of building a research mindset early in academic life. His session inspired students with real data from his experience, including 1600+ citations, 23 H-index journals, and over 10 funded projects.\n\nThe event concluded with a prize-giving ceremony, graced by the Honorable Head of the Department and Dean of the Faculty of Engineering. Winners of the programming contest were awarded certificates and prizes, recognizing their excellence and encouraging continuous participation in such intellectual activities.`,
     highlights: [
       'Organized by the Programming and AI Club',
       'Coding competitions with exciting prizes',
@@ -156,158 +142,16 @@ Following the contest, a seminar on "Empowering Students’ Research and Publica
   }
 }
 
-export default async function NewsPage({ params }: NewsPageProps) {
-  const { slug } = await params
-  const event = events.find(e => e.link === `/news/${slug}`)
-  
+export default async function NewsPage({ params }: { params: { slug: string } }) {
+  const event = events.find(e => e.link === `/news/${params.slug}`)
+
   if (!event) {
     notFound()
   }
 
   const formattedDate = formatDate(event.date)
-  const images = galleryImages[slug as keyof typeof galleryImages] || []
-  const content = extendedContent[slug as keyof typeof extendedContent]
+  const images = galleryImages[params.slug as keyof typeof galleryImages] || []
+  const content = extendedContent[params.slug as keyof typeof extendedContent]
 
-  return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Hero Section */}
-      <AnimatedSection className="relative bg-white">
-        <div className="container mx-auto px-4 py-8">
-          <div className="mb-6">
-            <Button asChild variant="ghost" className="text-slate-600 hover:text-slate-900">
-              <Link href="/news" className="flex items-center gap-2">
-                <ChevronLeft className="w-4 h-4" />
-                Back to News & Events
-              </Link> 
-            </Button>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <Badge variant="secondary" className="bg-slate-100 text-slate-700">
-                  {event.category}
-                </Badge>
-                <Badge variant={event.type === 'event' ? 'default' : 'outline'}>
-                  {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-                </Badge>
-              </div>
-              
-              <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-                {event.title}
-              </h1>
-              
-              <div className="flex items-center gap-6 text-slate-600 mb-6">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5" />
-                  <span>{formattedDate.month} {formattedDate.day}, {formattedDate.year}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5" />
-                  <span>UAP Campus</span>
-                </div>
-              </div>
-              
-              <p className="text-lg text-slate-700 leading-relaxed">
-                {event.description}
-              </p>
-            </div>
-            
-            <div className="relative">
-              <Image
-                src={event.image}
-                alt={event.title}
-                width={600}
-                height={400}
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* Content Section */}
-      {content && (
-        <AnimatedSection className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Card className="bg-white shadow-sm border-0">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-6">About This Event</h2>
-                  <div className="prose prose-slate max-w-none">
-                    {content.fullDescription.split('\n\n').map((paragraph, index) => (
-                      <p key={index} className="text-slate-700 leading-relaxed mb-4">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                  
-                  <div className="mt-8">
-                    <h3 className="text-xl font-semibold text-slate-900 mb-4">Event Highlights</h3>
-                    <ul className="grid md:grid-cols-2 gap-3">
-                      {content.highlights.map((highlight, index) => (
-                        <li key={index} className="flex items-start gap-3 text-slate-700">
-                          <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0" />
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </AnimatedSection>
-      )}
-
-      {/* Gallery Section */}
-      {images.length > 0 && (
-        <AnimatedSection className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">Photo Gallery</h2>
-              <p className="text-slate-600 max-w-2xl mx-auto">
-                Explore moments captured from this event and get a glimpse of the engaging activities and interactions.
-              </p>
-            </div>
-            
-            <StaggeredGrid className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {images.map((image, index) => (
-                <StaggeredItem key={index}>
-                  <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
-                    <div className="relative aspect-video">
-                      <Image
-                        src={image}
-                        alt={`${event.title} - Image ${index + 1}`}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </Card>
-                </StaggeredItem>
-              ))}
-            </StaggeredGrid>
-          </div>
-        </AnimatedSection>
-      )}
-
-      {/* Related Events Section */}
-      <AnimatedSection className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Related Events</h2>
-            <p className="text-slate-600">Discover more upcoming events and news from our department</p>
-          </div>
-          
-          <div className="text-center">
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
-              <Link href="/news">
-                View All News & Events
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </AnimatedSection>
-    </div>
-  )
+  return <NewsClientPage event={event} formattedDate={formattedDate} images={images} content={content} />
 }
