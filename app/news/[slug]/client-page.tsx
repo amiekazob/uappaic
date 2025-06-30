@@ -57,22 +57,36 @@ export default function NewsClientPage({ event, formattedDate, images, content }
                 <AnimatedSection>
                   <div className="prose prose-slate max-w-none lg:prose-lg">
                     {isTitle ? (
-                      <h3 className="font-bold underline">{paragraph}</h3>
+                      <h3 className="font-bold text-xl text-white bg-blue-500 rounded-md w-fit p-1">{paragraph}</h3>
                     ) : (
                       <p>{paragraph}</p>
                     )}
                   </div>
                 </AnimatedSection>
 
-                {images[index] && (
+                {/* Display two images side by side if available */}
+                {(images[index * 2] || images[index * 2 + 1]) && (
                   <AnimatedSection className="my-12">
-                    <Image
-                      src={images[index]}
-                      alt={`${event.title} - Image ${index + 1}`}
-                      width={800}
-                      height={500}
-                      className="w-full h-auto object-cover rounded-lg shadow-lg"
-                    />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {images[index * 2] && (
+                        <Image
+                          src={images[index * 2]}
+                          alt={`${event.title} - Image ${index * 2 + 1}`}
+                          width={400}
+                          height={300}
+                          className="w-full h-auto object-cover rounded-lg shadow-lg"
+                        />
+                      )}
+                      {images[index * 2 + 1] && (
+                        <Image
+                          src={images[index * 2 + 1]}
+                          alt={`${event.title} - Image ${index * 2 + 2}`}
+                          width={400}
+                          height={300}
+                          className="w-full h-auto object-cover rounded-lg shadow-lg"
+                        />
+                      )}
+                    </div>
                   </AnimatedSection>
                 )}
               </React.Fragment>
