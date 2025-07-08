@@ -41,7 +41,6 @@ export function Navbar() {
           <div className="flex items-center space-x-4">
             <Link href="#" className="hover:text-blue-200">Student Portal</Link>
             <Link href="#" className="hover:text-blue-200">Faculty Portal</Link>
-            <Link href="#" className="hover:text-blue-200">Alumni</Link>
           </div>
         </div>
       </div>
@@ -119,7 +118,7 @@ export function Navbar() {
                   pathname === '/publications' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
               >
-                Publications
+                News & Publications
               </Link>
 
               {/* News and Events */}
@@ -131,7 +130,7 @@ export function Navbar() {
                   pathname === '/news' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
               >
-                News & Events
+                News and events
               </Link>
 
               {/* Campus Life */}

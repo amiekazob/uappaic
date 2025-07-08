@@ -176,10 +176,9 @@ export function Footer() {
               {siteConfig.name} © All rights reserved.
             </p>
             <p className="text-sm text-gray-400">
-              Made with ❤️ by{" "}
-              <Link href="https://github.com/SubodhShil" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
-                Subodh
-              </Link>
+            
+                Paboya AI
+              
             </p>
           </div>
         </AnimatedSection>

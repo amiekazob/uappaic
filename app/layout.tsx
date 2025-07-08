@@ -4,7 +4,7 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
-  title: 'UAP EEE Department',
+  title: 'Department of EEE,UAP',
   description: 'Created with v0',
 }
 

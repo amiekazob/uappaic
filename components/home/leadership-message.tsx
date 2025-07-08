@@ -16,7 +16,7 @@ export function LeadershipMessage() {
     fluid: true,
     sources: [
       {
-        src: "https://youtu.be/TUp9fzT_71c",
+        src: "https://youtu.be/x3W_aZg8tsA",
         type: "video/youtube",
       },
     ],
