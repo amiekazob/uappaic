@@ -11,7 +11,7 @@ const stats = [
     suffix: "+",
   },
   {
-    value: 1600,
+    value: 1650,
     label: "Alumni",
     suffix: "+",
   },

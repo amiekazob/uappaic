@@ -51,7 +51,7 @@ export function NewsEvents() {
                     <div className="relative">
                       <Link href={event.link} className="block">
                         <Image
-                          src={event.image}
+                          src={event.images[0]}
                           alt={event.title}
                           width={400}
                           height={250}

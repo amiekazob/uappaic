@@ -1,92 +1,86 @@
-export const events = [
+export const NewsEvents = [
   {
     id: 1,
-    title: "UAP Hosted ICPC World Finals 2021",
-    description: "UAP had the honor of hosting the prestigious ICPC World Finals, bringing together the brightest minds in competitive programming.",
-    date: new Date('2022-11-08'),
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/news/icpc-world-finals-2021",
+    title: "UAP Hosted TechTron 2025",
+    shortDescription: "TechTron 2025 celebrated innovation and engineering excellence at UAP.",
+    date: "2025-04-25T00:00:00Z",
+    images: [
+      "https://i.ibb.co/spXhW9tj/image.png"
+    ],
+    contentSections: [
+      {
+        sectionTitle: "Opening Remarks",
+        sectionDescription: "TechTron 2025, the University of Asia Pacific (UAP)'s most anticipated flagship technology event, commenced on Friday, 25 April, with a vibrant celebration of innovation, engineering excellence and academic-industry collaboration. The national-level festival has been jointly organised by the UAP EEE Project Club and the IEEE UAP Student Branch, under the Department of Electrical and Electronic Engineering (EEE), UAP. The grand opening ceremony took place at the UAP Plaza, with Prof. Dr. Qumrul Ahsan, Vice Chancellor of UAP, as chief guest."
+      }
+    ],
+    highlights: [
+      "Opening by UAP Vice Chancellor",
+      "Student project showcase",
+      "Academic and industry collaboration"
+    ],
     category: "Academic",
-    type: "event"
+    type: "event",
+    link: "/news/tectron-2025"
   },
   {
     id: 2,
-    title: "11th Convocation of UAP",
-    description: "The 11th Convocation of the University of Asia Pacific was held with grandeur, celebrating the achievements of our graduates.",
-    date: new Date('2023-10-09'),
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/news/convocation-11th",
-    category: "University",
-    type: "news"
+    title: "EEE team at KUET Bitfest 2.0",
+    shortDescription: "Team EEE Amplifier from UAP took part in the Inter University Programming Contest at KUET BitFest 2025.",
+    date: "2025-01-05T00:00:00Z",
+    images: [
+      "https://i.ibb.co/Rp15h80q/Whats-App-Image-2025-06-29-at-00-49-16-d7720f7f.jpg"
+    ],
+    contentSections: [
+      {
+        sectionTitle: "Inter University Programming Contest",
+        sectionDescription: "On January 5th, 2025, Team EEE Amplifier from the Department of Electrical and Electronic Engineering (EEE), University of Asia Pacific (UAP) proudly participated in the Inter University Programming Contest segment of KUET BitFest 2025, held at Khulna University of Engineering & Technology (KUET). KUET BitFest is one of the country's most prestigious annual technology festivals, bringing together top student talents from leading universities across Bangladesh. The Inter University Programming Contest was a key highlight of the event, designed to challenge participants with algorithmic problem-solving and real-time coding tasks under pressure. Team EEE Amplifier showcased their programming skills, teamwork, and critical thinking in a highly competitive environment, gaining valuable experience and insights from one of the most dynamic platforms in the tech community. Their participation reflects the growing passion for competitive programming within UAP's EEE Department and highlights the dedication of its students to engage in national-level contests and elevate their technical capabilities."
+      }
+    ],
+    highlights: [
+      "Inter University Programming Contest",
+      "Student Programming Skills",
+      "Academic and industry collaboration"
+    ],
+    category: "Academic",
+    type: "event",
+    link: "/news/eee-participate-bitfest-2025"
   },
   {
     id: 3,
-    title: "Annual EEE Tech Fest 2024",
-    description: "The annual tech fest showcased innovative projects and research from our talented EEE students and faculty.",
-    date: new Date('2024-04-20'),
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/news/eee-tech-fest-2024",
-    category: "Department",
-    type: "event"
-  },
-  {
-    id: 4,
-    title: "Workshop on Modern Robotics",
-    description: "A hands-on workshop covering the latest trends and technologies in the field of robotics and automation.",
-    date: new Date('2024-07-05'),
-    image: "https://plus.unsplash.com/premium_photo-1723291289063-d78b337be6d5?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/news/robotics-workshop-2024",
-    category: "Research",
-    type: "event"
-  },
-  {
-    id: 5,
-    title: "Programming and AI Club presents Codex 1.0",
-    description: "On 23rd April 2025, the Department of Electrical and Electronic Engineering (EEE) at the University of Asia Pacific (UAP) organized an exciting event titled CoDEX 1.0, organized by the Programming and AI Club.",
-    date: new Date('2024-04-23'),
-    image: "https://i.ibb.co/7JgvP6DR/image.png",
-    link: "/news/international-conference-2024",
-    category: "Research",
-    type: "event"
-  },
-  {
-    id: 6,
-    title: "Smart Grid Technology Symposium 2024",
-    description: "A comprehensive symposium exploring the latest advancements in smart grid technology, renewable energy integration, and sustainable power systems.",
-    date: new Date('2024-11-15'),
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/news/smart-grid-symposium-2024",
-    category: "Research",
-    type: "event"
-  },
-  {
-    id: 7,
-    title: "AI and Machine Learning in Engineering Workshop",
-    description: "An intensive workshop focusing on the application of artificial intelligence and machine learning techniques in electrical and electronic engineering.",
-    date: new Date('2024-12-05'),
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/news/ai-ml-engineering-workshop-2024",
+    title: "UAP EEE Team Became Champion",
+    shortDescription: "Team Supersonic emerged as winners at the WIE BD Summit 2024 Project Idea Competition.",
+    date: "2024-11-15T00:00:00Z",
+    images: [
+      "https://i.ibb.co/ymTtMzsW/IMG-20250711-WA0005.jpg"
+    ],
+    contentSections: [
+      {
+        sectionTitle: "Winner Announcement",
+        sectionDescription: "Winner Announcement – IEEE WIE BD Summit 2024. We are thrilled to share that our team Supersonic emerged as winners at the WIE BD Summit 2024 Project Idea Competition, held during the prestigious RAAICON 2024 at BUET! Organized by IEEE Bangladesh Section and IEEE Women in Engineering Bangladesh Section, and co-hosted by IEEE BUET Student Branch, this summit brought together the brightest minds in robotics, automation, AI, and IoT. A heartfelt thanks to the organizers, mentors, and everyone who supported us. Onward and upward!"
+      }
+    ],
+    highlights: [
+      "IEEE WIE BD Summit 2024 winners",
+      "Project Idea Competition",
+      "RAAICON 2024 at BUET"
+    ],
     category: "Academic",
-    type: "event"
-  },
-  {
-    id: 8,
-    title: "EEE Department Research Excellence Awards 2024",
-    description: "Annual recognition ceremony celebrating outstanding research achievements and innovations by faculty and students in the Department of Electrical and Electronic Engineering.",
-    date: new Date('2024-10-25'),
-    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1426&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/news/research-excellence-awards-2024",
-    category: "Department",
-    type: "news"
+    type: "event",
+    link: "/news/IEEE-WIE-2024"
   }
+  
+    
+       
 ];
 
-export type Event = typeof events[0];
+export const events = NewsEvents;
+export type Event = typeof NewsEvents[0];
 
-export const formatDate = (date: Date) => {
+export const formatDate = (date: string | Date): { day: string; month: string; year: string } => {
+  const d = typeof date === 'string' ? new Date(date) : date;
   return {
-    day: date.toLocaleDateString('en-US', { day: '2-digit' }),
-    month: date.toLocaleDateString('en-US', { month: 'short' }),
-    year: date.toLocaleDateString('en-US', { year: 'numeric' }),
+    day: d.toLocaleDateString('en-US', { day: '2-digit' }),
+    month: d.toLocaleDateString('en-US', { month: 'short' }),
+    year: d.toLocaleDateString('en-US', { year: 'numeric' }),
   };
 };

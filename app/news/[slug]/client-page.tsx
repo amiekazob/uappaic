@@ -11,12 +11,17 @@ import { AnimatedSection } from '@/components/ui/animated-section'
 interface Event {
   id: number
   title: string
-  description: string
+  shortDescription: string
   date: string
-  image: string
-  link: string
+  images: string[]
+  contentSections: {
+    sectionTitle: string
+    sectionDescription: string
+  }[]
+  highlights: string[]
   category: string
   type: string
+  link: string
 }
 
 interface FormattedDate {
@@ -25,16 +30,13 @@ interface FormattedDate {
   year: string
 }
 
-interface Content {
-  fullDescription: string
-  highlights: string[]
-}
-
 interface NewsClientPageProps {
   event: Event
   formattedDate: FormattedDate
   images: string[]
-  content: Content | null
+  content: {
+    highlights: string[]
+  } | null
 }
 
 export default function NewsClientPage({ event, formattedDate, images, content }: NewsClientPageProps) {
@@ -72,55 +74,50 @@ export default function NewsClientPage({ event, formattedDate, images, content }
 
           <AnimatedSection>
             <p className="text-xl text-slate-700 leading-relaxed mb-12">
-              {event.description}
+              {event.shortDescription}
             </p>
           </AnimatedSection>
 
-          {content && content.fullDescription.split('\n\n').map((paragraph, index) => {
-            const isTitle =
-              paragraph === 'Intra-Department Programming Contest' ||
-              paragraph === 'Seminar on Student Research and Publication'
+          {event.contentSections?.map((section, index) => (
+            <AnimatedSection key={index} className="mb-12">
+              <h3 className="font-bold text-xl text-white bg-blue-500 rounded-md w-fit p-3 mb-6">
+                {section.sectionTitle}
+              </h3>
+              {images?.[index] && (
+                <div className="mb-6">
+                  <Image
+                    src={images[index]}
+                    alt={`${event.title} - ${section.sectionTitle}`}
+                    width={800}
+                    height={400}
+                    className="w-full h-auto object-cover rounded-lg shadow-lg"
+                  />
+                </div>
+              )}
+              <div className="prose prose-slate max-w-none lg:prose-lg">
+                <p className="text-slate-700 leading-relaxed">
+                  {section.sectionDescription}
+                </p>
+              </div>
+            </AnimatedSection>
+          ))}
 
-            return (
-              <React.Fragment key={index}>
-                <AnimatedSection>
-                  <div className="prose prose-slate max-w-none lg:prose-lg">
-                    {isTitle ? (
-                      <h3 className="font-bold text-xl text-white bg-blue-500 rounded-md w-fit p-1">{paragraph}</h3>
-                    ) : (
-                      <p>{paragraph}</p>
-                    )}
-                  </div>
-                </AnimatedSection>
-
-                {/* Display two images side by side if available */}
-                {(images[index * 2] || images[index * 2 + 1]) && (
-                  <AnimatedSection className="my-12">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {images[index * 2] && (
-                        <Image
-                          src={images[index * 2]}
-                          alt={`${event.title} - Image ${index * 2 + 1}`}
-                          width={400}
-                          height={300}
-                          className="w-full h-auto object-cover rounded-lg shadow-lg"
-                        />
-                      )}
-                      {images[index * 2 + 1] && (
-                        <Image
-                          src={images[index * 2 + 1]}
-                          alt={`${event.title} - Image ${index * 2 + 2}`}
-                          width={400}
-                          height={300}
-                          className="w-full h-auto object-cover rounded-lg shadow-lg"
-                        />
-                      )}
-                    </div>
-                  </AnimatedSection>
-                )}
-              </React.Fragment>
-            )
-          })}
+          {images && images.slice(event.contentSections?.length || 0).length > 0 && (
+            <AnimatedSection className="mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {images && images.slice(event.contentSections?.length || 0).map((img, idx) => (
+                  <Image
+                    key={idx}
+                    src={img}
+                    alt={`${event.title} - Additional Image ${idx + 1}`}
+                    width={400}
+                    height={300}
+                    className="w-full h-auto object-cover rounded-lg shadow-lg"
+                  />
+                ))}
+              </div>
+            </AnimatedSection>
+          )}
 
           {content && content.highlights.length > 0 && (
             <AnimatedSection className="mt-12">

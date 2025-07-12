@@ -1,14 +1,14 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { labs, Lab } from '@/lib/lab-data';
+import { Lab } from '@/lib/lab-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Users, MapPin, Wrench, ChevronRight } from 'lucide-react';
-import { AnimatedSection } from '@/components/ui/animated-section';
+import { Users, MapPin, Wrench, ChevronRight, Loader2 } from 'lucide-react';
+import { OptimizedAnimatedSection } from '@/components/ui/optimized-animated-section';
+import { useLazyLabsData } from '@/components/ui/lazy-data-loader';
 
 const LabCard = ({ lab }: { lab: Lab }) => {
   const getCategoryColor = (category: Lab['category']) => {
@@ -31,54 +31,52 @@ const LabCard = ({ lab }: { lab: Lab }) => {
   };
 
   return (
-    <Link href={`/lab/${lab.id}`} className="group block">
-      <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg rounded-xl">
-        <div className="relative overflow-hidden h-80">
-          <Image
-            src={lab.image}
-            alt={lab.name}
-            width={400}
-            height={256}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-          
-          {/* Category Badge */}
-          <div className="absolute top-4 left-4">
-            <Badge className={`${getCategoryColor(lab.category)} font-medium text-xs px-3 py-1 rounded-full`}>
-              {lab.category.toUpperCase()}
-            </Badge>
+    <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg rounded-xl group">
+      <div className="relative overflow-hidden h-80">
+        <Image
+          src={lab.image}
+          alt={lab.name}
+          width={400}
+          height={256}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        
+        {/* Category Badge */}
+        <div className="absolute top-4 left-4">
+          <Badge className={`${getCategoryColor(lab.category)} font-medium text-xs px-3 py-1 rounded-full`}>
+            {lab.category.toUpperCase()}
+          </Badge>
+        </div>
+        
+        {/* Date Badge - Using a mock date for demonstration */}
+        <div className="absolute top-4 right-4">
+          <div className="bg-black/60 backdrop-blur-sm rounded-lg px-3 py-1">
+            <span className="text-white text-xs font-medium">Est. 2020</span>
           </div>
-          
-          {/* Date Badge - Using a mock date for demonstration */}
-          <div className="absolute top-4 right-4">
-            <div className="bg-black/60 backdrop-blur-sm rounded-lg px-3 py-1">
-              <span className="text-white text-xs font-medium">Est. 2020</span>
+        </div>
+        
+        {/* Bottom Content */}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <h3 className="text-white text-lg font-bold mb-1 leading-tight">
+            {lab.name}
+          </h3>
+          <p className="text-gray-200 text-xs line-clamp-1 mb-2">
+            {lab.description}
+          </p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center text-gray-300 text-xs">
+              <MapPin className="w-3 h-3 mr-1" />
+              <span>{lab.location}</span>
             </div>
-          </div>
-          
-          {/* Bottom Content */}
-          <div className="absolute bottom-0 left-0 right-0 p-4">
-            <h3 className="text-white text-lg font-bold mb-1 leading-tight">
-              {lab.name}
-            </h3>
-            <p className="text-gray-200 text-xs line-clamp-1 mb-2">
-              {lab.description}
-            </p>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center text-gray-300 text-xs">
-                <MapPin className="w-3 h-3 mr-1" />
-                <span>{lab.location}</span>
-              </div>
-              <div className="flex items-center text-gray-300 text-xs">
-                <Users className="w-3 h-3 mr-1" />
-                <span>{lab.capacity}</span>
-              </div>
+            <div className="flex items-center text-gray-300 text-xs">
+              <Users className="w-3 h-3 mr-1" />
+              <span>{lab.capacity}</span>
             </div>
           </div>
         </div>
-      </Card>
-    </Link>
+      </div>
+    </Card>
   );
 };
 
@@ -139,6 +137,40 @@ const CategoryFilter = ({ categories, selectedCategory, onCategoryChange }: {
 
 export default function LabPage() {
   const [selectedCategory, setSelectedCategory] = React.useState<string>('All');
+  const { data: labs, loading, error } = useLazyLabsData();
+  
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
+          <p className="text-gray-600">Loading laboratories...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">Error loading laboratories</p>
+          <Button onClick={() => window.location.reload()}>Retry</Button>
+        </div>
+      </div>
+    )
+  }
+
+  // Fallback for empty data
+  if (!labs || labs.length === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center">
+        <p className="text-gray-600">No laboratories found</p>
+      </div>
+    )
+  }
   
   const categories = Array.from(new Set(labs.map(lab => lab.category)));
   
@@ -154,7 +186,7 @@ export default function LabPage() {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
         
         <div className="container mx-auto px-4 relative z-10">
-          <AnimatedSection animation="fadeIn" className="text-center">
+          <OptimizedAnimatedSection animation="fadeIn" className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
               Our Laboratories
             </h1>
@@ -175,21 +207,21 @@ export default function LabPage() {
                 <span className="ml-2">Student Capacity</span>
               </div>
             </div>
-          </AnimatedSection>
+          </OptimizedAnimatedSection>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
-        <AnimatedSection animation="slideUp" delay={0.2}>
+        <OptimizedAnimatedSection animation="slideUp" delay={0.2}>
           <CategoryFilter 
             categories={categories}
             selectedCategory={selectedCategory}
             onCategoryChange={setSelectedCategory}
           />
-        </AnimatedSection>
+        </OptimizedAnimatedSection>
 
-        <AnimatedSection animation="slideUp" delay={0.3}>
+        <OptimizedAnimatedSection animation="slideUp" delay={0.3}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredLabs.map((lab, index) => (
               <div key={lab.id} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
@@ -197,7 +229,7 @@ export default function LabPage() {
               </div>
             ))}
           </div>
-        </AnimatedSection>
+        </OptimizedAnimatedSection>
 
         {filteredLabs.length === 0 && (
           <div className="text-center py-16">

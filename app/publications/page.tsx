@@ -1,70 +1,132 @@
-import Link from 'next/link';
-import { publications, Publication } from '@/lib/publications-data';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Book, Users, Calendar, ExternalLink } from 'lucide-react';
-
-const PublicationCard = ({ publication }: { publication: Publication }) => {
-    const publicationDate = new Date(publication.publicationDate);
-    const formattedDate = publicationDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
-
-  return (
-    <Card className="flex flex-col h-full rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300">
-      <CardHeader>
-        <CardTitle className="text-xl font-bold leading-snug text-gray-900">
-            <Link href={publication.link} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-700 transition-colors">
-                {publication.title}
-            </Link>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex-grow flex flex-col p-6 pt-0">
-        <div className="space-y-3 text-sm text-gray-500 mb-4">
-            <p className="flex items-center">
-                <Users className="w-4 h-4 mr-2 text-indigo-500" /> 
-                {publication.authors.join(', ')}
-            </p>
-            <p className="flex items-center">
-                <Book className="w-4 h-4 mr-2 text-indigo-500" /> 
-                <em>{publication.journal}</em>
-            </p>
-            <p className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2 text-indigo-500" /> 
-                {formattedDate}
-            </p>
-        </div>
-        <p className="text-gray-600 text-sm flex-grow mb-4">{publication.abstract}</p>
-        <div className="mt-auto flex justify-between items-center">
-            <Link href={publication.link} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-800 hover:underline text-sm font-semibold flex items-center">
-                View Publication <ExternalLink className="w-4 h-4 ml-1.5" />
-            </Link>
-            <Badge variant="secondary">{publication.doi}</Badge>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+'use client'
 
 export default function PublicationsPage() {
+  // Sample publication data for demo
+  const publications = [
+    {
+      id: 1,
+      title: "Smart Grid Implementation in Bangladesh: Challenges and Opportunities",
+      authors: "Dr. Mohammad Rahman, Dr. Sarah Ahmed",
+      journal: "IEEE Transactions on Smart Grid",
+      year: 2024,
+      type: "Journal Article"
+    },
+    {
+      id: 2,
+      title: "5G Network Optimization Using Machine Learning Algorithms",
+      authors: "Prof. Ahmed Hassan, Dr. Fatima Khan",
+      journal: "International Conference on Telecommunications",
+      year: 2024,
+      type: "Conference Paper"
+    },
+    {
+      id: 3,
+      title: "Renewable Energy Integration in Power Systems",
+      authors: "Dr. Rashid Ali, Dr. Nadia Islam",
+      journal: "Journal of Renewable Energy",
+      year: 2023,
+      type: "Journal Article"
+    },
+    {
+      id: 4,
+      title: "IoT-Based Smart Home Energy Management System",
+      authors: "Dr. Karim Uddin, Prof. Salma Begum",
+      journal: "IEEE Internet of Things Journal",
+      year: 2023,
+      type: "Journal Article"
+    },
+    {
+      id: 5,
+      title: "Advanced Control Systems for Industrial Automation",
+      authors: "Dr. Tariq Rahman, Dr. Amina Khatun",
+      journal: "International Conference on Control Systems",
+      year: 2023,
+      type: "Conference Paper"
+    },
+    {
+      id: 6,
+      title: "Signal Processing Techniques for Wireless Communications",
+      authors: "Prof. Mahmud Hasan, Dr. Ruma Akter",
+      journal: "IEEE Signal Processing Magazine",
+      year: 2022,
+      type: "Journal Article"
+    },
+    {
+      id: 7,
+      title: "Artificial Intelligence in Electrical Engineering Applications",
+      authors: "Dr. Nasir Ahmed, Dr. Shireen Rahman",
+      journal: "AI in Engineering Conference",
+      year: 2022,
+      type: "Conference Paper"
+    },
+    {
+      id: 8,
+      title: "Power Quality Analysis in Distribution Networks",
+      authors: "Dr. Habib Khan, Prof. Yasmin Ali",
+      journal: "Electric Power Systems Research",
+      year: 2022,
+      type: "Journal Article"
+    }
+  ]
+
   return (
-    <div className="bg-gray-50">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Publications</h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Explore the cutting-edge research and scholarly articles published by our esteemed faculty and students.
+    <div className="min-h-screen bg-white">
+      {/* Simple Header */}
+      <div className="bg-blue-600 text-white py-12">
+        <div className="container mx-auto px-4">
+          <h1 className="text-3xl font-bold text-center">Publications</h1>
+          <p className="text-center mt-4 text-blue-100">
+            Research publications from the Department of Electrical and Electronic Engineering
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {publications.map(pub => (
-            <PublicationCard key={pub.id} publication={pub} />
-          ))}
+      </div>
+
+      {/* Publications List */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Recent Publications</h2>
+          
+          <div className="space-y-6">
+            {publications.map((pub) => (
+              <div key={pub.id} className="border-l-4 border-blue-500 pl-4 py-3">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  {pub.title}
+                </h3>
+                <p className="text-gray-600 mb-1">
+                  <strong>Authors:</strong> {pub.authors}
+                </p>
+                <p className="text-gray-600 mb-1">
+                  <strong>Published in:</strong> {pub.journal}
+                </p>
+                <div className="flex items-center gap-4 mt-2">
+                  <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    {pub.type}
+                  </span>
+                  <span className="text-sm text-gray-500">
+                    {pub.year}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Statistics */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center p-6 bg-gray-50 rounded">
+              <div className="text-2xl font-bold text-blue-600">150+</div>
+              <div className="text-gray-600">Total Publications</div>
+            </div>
+            <div className="text-center p-6 bg-gray-50 rounded">
+              <div className="text-2xl font-bold text-green-600">85+</div>
+              <div className="text-gray-600">Journal Articles</div>
+            </div>
+            <div className="text-center p-6 bg-gray-50 rounded">
+              <div className="text-2xl font-bold text-purple-600">65+</div>
+              <div className="text-gray-600">Conference Papers</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  );
-} 
+  )
+}

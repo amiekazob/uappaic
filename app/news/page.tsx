@@ -5,11 +5,32 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, Calendar, ChevronDown, Search } from 'lucide-react'
-import { events as allEvents, formatDate, Event } from '@/lib/events-data'
+import { ChevronRight, Calendar, ChevronDown, Search, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { StaggeredGrid, StaggeredItem } from "@/components/ui/staggered-container"
+import { useLazyEventsData } from '@/components/ui/lazy-data-loader'
+
+type Event = {
+  id: string
+  title: string
+  date: string
+  shortDescription?: string
+  images: string[]
+  category: string
+  type: string
+  link: string
+}
+
+// Format date utility
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return {
+    day: date.getDate().toString(),
+    month: date.toLocaleDateString('en-US', { month: 'short' }),
+    year: date.getFullYear().toString()
+  }
+}
 
 function EventCard({ event }: { event: Event }) {
   const formattedDate = formatDate(event.date);
@@ -19,7 +40,7 @@ function EventCard({ event }: { event: Event }) {
         <div className="relative">
           <Link href={event.link} className="block">
             <Image
-              src={event.image}
+              src={event.images[0] || '/placeholder.jpg'}
               alt={event.title}
               width={400}
               height={250}
@@ -35,7 +56,7 @@ function EventCard({ event }: { event: Event }) {
           <h3 className="font-bold text-xl mb-2">
             <Link href={event.link} className="hover:text-blue-700 transition-colors duration-300">{event.title}</Link>
           </h3>
-          <p className="text-gray-600 text-sm mb-4 flex-grow">{event.description}</p>
+          <p className="text-gray-600 text-sm mb-4 flex-grow">{event.shortDescription}</p>
           <div className="text-sm text-gray-500 flex items-center mb-4">
             <Calendar className="w-4 h-4 mr-2" />
             <span>{formattedDate.month} {formattedDate.day}, {formattedDate.year}</span>
@@ -56,31 +77,58 @@ export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('- Any -');
   const [selectedYear, setSelectedYear] = useState<string>('- Year -');
   const [selectedType, setSelectedType] = useState<string>('All');
+  
+  const { data: allEvents, loading, error } = useLazyEventsData()
 
-  // Get unique categories and years from events
+  // Get unique categories and years from events - moved before conditional returns
   const categories = useMemo(() => {
+    if (!allEvents) return ['- Any -'];
     const uniqueCategories = Array.from(new Set(allEvents.map(event => event.category)));
     return ['- Any -', ...uniqueCategories];
-  }, []);
+  }, [allEvents]);
 
   const years = useMemo(() => {
-    const uniqueYears = Array.from(new Set(allEvents.map(event => event.date.getFullYear().toString())));
+    if (!allEvents) return ['- Year -'];
+    const uniqueYears = Array.from(new Set(allEvents.map(event => new Date(event.date).getFullYear().toString())));
     return ['- Year -', ...uniqueYears.sort((a, b) => parseInt(b) - parseInt(a))];
-  }, []);
+  }, [allEvents]);
 
   const types = ['All', 'News', 'Events'];
 
   const filteredEvents = useMemo(() => {
+    if (!allEvents) return [];
     return allEvents.filter(event => {
       const categoryMatch = selectedCategory === '- Any -' || event.category === selectedCategory;
-      const yearMatch = selectedYear === '- Year -' || event.date.getFullYear().toString() === selectedYear;
+      const yearMatch = selectedYear === '- Year -' || new Date(event.date).getFullYear().toString() === selectedYear;
       const typeMatch = selectedType === 'All' || 
         (selectedType === 'News' && event.type === 'news') ||
         (selectedType === 'Events' && event.type === 'event');
       
       return categoryMatch && yearMatch && typeMatch;
-    }).sort((a, b) => b.date.getTime() - a.date.getTime());
-  }, [selectedCategory, selectedYear, selectedType]);
+    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }, [allEvents, selectedCategory, selectedYear, selectedType]);
+
+  if (loading) {
+    return (
+      <div className="bg-gray-50 min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-indigo-600" />
+          <p className="text-gray-600">Loading news and events...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !allEvents) {
+    return (
+      <div className="bg-gray-50 min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">Failed to load events data</p>
+          <Button onClick={() => window.location.reload()}>Try Again</Button>
+        </div>
+      </div>
+    )
+  }
 
   const handleSearchArchive = () => {
     // This could trigger additional filtering or search functionality
@@ -172,8 +220,8 @@ export default function NewsPage() {
           </StaggeredGrid>
         ) : (
           <AnimatedSection animation="fadeIn" className="text-center py-16">
-            <h3 className="text-2xl font-semibold text-gray-700 mb-2">No {filter} events</h3>
-            <p className="text-gray-500">Please check back later or view our {filter === 'upcoming' ? 'past' : 'upcoming'} events.</p>
+            <h3 className="text-2xl font-semibold text-gray-700 mb-2">No events found</h3>
+            <p className="text-gray-500">Please try adjusting your filters or check back later for new events.</p>
           </AnimatedSection>
         )}
       </div>

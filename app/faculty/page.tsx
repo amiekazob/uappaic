@@ -1,10 +1,26 @@
+'use client'
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { facultyMembers, FacultyMember } from '@/lib/faculty-data';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Mail, Phone, ChevronRight } from 'lucide-react';
+import { Mail, Phone, ChevronRight, Loader2 } from 'lucide-react';
+import { useLazyFacultyData } from '@/components/ui/lazy-data-loader';
+
+type FacultyMember = {
+  id: string
+  name: string
+  title: string
+  role: string
+  bio: string
+  image: string
+  email: string
+  phone: string
+  researchInterests: string[]
+}
+
+
 
 const FacultyCard = ({ member }: { member: FacultyMember }) => (
   <Card className="flex flex-col h-full overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 group">
@@ -73,8 +89,55 @@ const HodCard = ({ member }: { member: FacultyMember }) => (
 )
 
 export default function FacultyPage() {
+  const { data: facultyMembers, loading, error } = useLazyFacultyData()
+
+  if (loading) {
+    return (
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-indigo-600" />
+          <p className="text-gray-600">Loading faculty members...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !facultyMembers) {
+    return (
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">Failed to load faculty data</p>
+          <Button onClick={() => window.location.reload()}>Try Again</Button>
+        </div>
+      </div>
+    )
+  }
+
   const hod = facultyMembers.find(m => m.role === 'HOD');
-  const otherFaculty = facultyMembers.filter(m => m.role !== 'HOD');
+  const professors = facultyMembers.filter(m => m.role === 'Professor');
+  const associateProfessors = facultyMembers.filter(m => m.role === 'Associate Professor');
+  const assistantProfessors = facultyMembers.filter(m => m.role === 'Assistant Professor');
+  const lecturers = facultyMembers.filter(m => m.role === 'Lecturer');
+
+  const FacultySection = ({ title, members, bgColor = "bg-gray-50" }: { title: string; members: FacultyMember[]; bgColor?: string }) => {
+    if (members.length === 0) return null;
+    
+    return (
+      <div className={`${bgColor} py-12 rounded-2xl mb-12`}>
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-8">
+            {title}
+            <span className="block text-lg font-normal text-gray-600 mt-2">({members.length} member{members.length > 1 ? 's' : ''})</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {members.map(member => (
+              <FacultyCard key={member.id} member={member} />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="bg-white">
@@ -92,12 +155,11 @@ export default function FacultyPage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {otherFaculty.map(member => (
-            <FacultyCard key={member.id} member={member} />
-          ))}
-        </div>
+        <FacultySection title="Professors" members={professors} bgColor="bg-blue-50" />
+        <FacultySection title="Associate Professors" members={associateProfessors} bgColor="bg-indigo-50" />
+        <FacultySection title="Assistant Professors" members={assistantProfessors} bgColor="bg-purple-50" />
+        <FacultySection title="Lecturers" members={lecturers} bgColor="bg-gray-50" />
       </div>
     </div>
   );
-} 
+}

@@ -12,10 +12,9 @@ import { AnimatedSection } from "@/components/ui/animated-section"
 import { StaggeredGrid, StaggeredItem } from "@/components/ui/staggered-container"
 
 export function FacultyPreview() {
-  // Show HOD and 2 other faculty members
-  const hod = facultyMembers.find(m => m.role === 'HOD');
-  const otherFaculty = facultyMembers.filter(m => m.role !== 'HOD').slice(0, 2);
-  const previewFaculty = hod ? [hod, ...otherFaculty] : otherFaculty.slice(0, 3);
+  // Show first 3 professors
+  const professors = facultyMembers.filter(m => m.role === 'Professor').slice(0, 3);
+  const previewFaculty = professors;
 
   return (
     <section className="mb-10 relative overflow-hidden">
@@ -62,14 +61,12 @@ export function FacultyPreview() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
                   
                   {/* Role Badge */}
-                  {member.role === 'HOD' && (
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-purple-500 text-white border-0 shadow-lg">
-                        <Award className="w-3 h-3 mr-1" />
-                        Head of Department
-                      </Badge>
-                    </div>
-                  )}
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-purple-500 text-white border-0 shadow-lg">
+                      <Award className="w-3 h-3 mr-1" />
+                      Professor
+                    </Badge>
+                  </div>
                   
                   {/* Faculty Info Overlay */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">

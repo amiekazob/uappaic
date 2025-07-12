@@ -78,6 +78,153 @@ export function generateOrganizationSchema() {
       '@type': 'ContactPoint',
       telephone: '+880-2-9664091',
       contactType: 'customer service'
+    },
+    sameAs: [
+      'https://www.facebook.com/uapeee',
+      'https://www.linkedin.com/school/university-of-asia-pacific',
+      'https://twitter.com/uapeee'
+    ],
+    foundingDate: '1996',
+    numberOfEmployees: '50-100',
+    areaServed: 'Bangladesh',
+    knowsAbout: [
+      'Electrical Engineering',
+      'Electronic Engineering',
+      'Power Systems',
+      'Telecommunications',
+      'Control Systems',
+      'Signal Processing'
+    ]
+  }
+}
+
+interface ArticleSchemaProps {
+  title: string
+  description: string
+  author: string
+  datePublished: string
+  dateModified?: string
+  image?: string
+  url: string
+}
+
+export function generateArticleSchema({
+  title,
+  description,
+  author,
+  datePublished,
+  dateModified,
+  image,
+  url
+}: ArticleSchemaProps) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    author: {
+      '@type': 'Person',
+      name: author
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'UAP EEE Department',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://uap-eee.edu.bd/logo.png'
+      }
+    },
+    datePublished,
+    dateModified: dateModified || datePublished,
+    image: image ? {
+      '@type': 'ImageObject',
+      url: image
+    } : undefined,
+    url,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url
+    }
+  }
+}
+
+interface PersonSchemaProps {
+  name: string
+  jobTitle: string
+  description: string
+  email: string
+  image?: string
+  url: string
+  affiliation: string
+}
+
+export function generatePersonSchema({
+  name,
+  jobTitle,
+  description,
+  email,
+  image,
+  url,
+  affiliation
+}: PersonSchemaProps) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name,
+    jobTitle,
+    description,
+    email,
+    image,
+    url,
+    affiliation: {
+      '@type': 'Organization',
+      name: affiliation
+    },
+    worksFor: {
+      '@type': 'Organization',
+      name: 'University of Asia Pacific',
+      department: 'Department of Electrical and Electronic Engineering'
+    }
+  }
+}
+
+interface FAQSchemaProps {
+  questions: Array<{
+    question: string
+    answer: string
+  }>
+}
+
+export function generateFAQSchema({ questions }: FAQSchemaProps) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: questions.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer
+      }
+    }))
+  }
+}
+
+export function generateWebsiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'UAP EEE Department',
+    url: 'https://uap-eee.edu.bd',
+    description: 'Department of Electrical and Electronic Engineering at University of Asia Pacific',
+    publisher: {
+      '@type': 'Organization',
+      name: 'University of Asia Pacific'
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://uap-eee.edu.bd/search?q={search_term_string}',
+      'query-input': 'required name=search_term_string'
     }
   }
 }

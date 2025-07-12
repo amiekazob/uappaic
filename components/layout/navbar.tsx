@@ -8,14 +8,13 @@ import { useState } from "react"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { GlobalSearch, useGlobalSearch } from "@/components/ui/global-search"
-import { Menu, X, ChevronDown, Search, User } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 
 export function Navbar() {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const { isOpen: isSearchOpen, openSearch, closeSearch } = useGlobalSearch()
+
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -61,7 +60,7 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1 flex-1 justify-center">
+            <nav className="hidden lg:flex items-center space-x-8">
               {/* Home */}
               <Link
                 href="/"
@@ -73,6 +72,34 @@ export function Navbar() {
               >
                 Home
               </Link>
+
+              {/* About Us */}
+              <div className="relative group">
+                <button
+                  className={cn(
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
+                    "hover:bg-orange-50 hover:text-orange-600",
+                    openDropdown === 'about-us' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+                  )}
+                  onClick={() => toggleDropdown('about-us')}
+                >
+                  <span>About Us</span>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+
+                {openDropdown === 'about-us' && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
+                    <div className="py-2">
+                      <Link href="/about-us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                        About Us
+                      </Link>
+                      <Link href="/mission-vision" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                        Mission & Vision
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               {/* Admission */}
               <div className="relative group">
@@ -90,8 +117,8 @@ export function Navbar() {
                 {openDropdown === 'admission' && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
                     <div className="py-2">
-                      <a href="https://eee.uap-bd.edu/bsc-in-eee.html" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">BSc in EEE</a>
-                      <a href="https://eee.uap-bd.edu/msc-in-eee.html" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">MSc in EEE</a>
+                      <Link href="/programs/bsc-eee" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">BSc in EEE</Link>
+                      <Link href="/programs/msc-eee" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">MSc in EEE</Link>
                     </div>
                   </div>
                 )}
@@ -109,17 +136,28 @@ export function Navbar() {
                 Faculty
               </Link>
 
-              {/* Publications */}
-              <Link
-                href="/publications"
-                className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  "hover:bg-orange-50 hover:text-orange-600",
-                  pathname === '/publications' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+              {/* Research and Publications */}
+              <div className="relative group">
+                <button
+                  className={cn(
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
+                    "hover:bg-orange-50 hover:text-orange-600",
+                    openDropdown === 'research-publications' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+                  )}
+                  onClick={() => toggleDropdown('research-publications')}
+                >
+                  <span>Research and Publications</span>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                {openDropdown === 'research-publications' && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
+                    <div className="py-2">
+                      <Link href="/research" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Research</Link>
+                      <Link href="/publications" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Publications</Link>
+                    </div>
+                  </div>
                 )}
-              >
-                News & Publications
-              </Link>
+              </div>
 
               {/* News and Events */}
               <Link
@@ -133,28 +171,40 @@ export function Navbar() {
                 News and events
               </Link>
 
+              
               {/* Campus Life */}
-              <div className="relative group">
-                <button
-                  className={cn(
-                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
-                    "hover:bg-orange-50 hover:text-orange-600",
-                    openDropdown === 'campus-life' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
-                  )}
-                  onClick={() => toggleDropdown('campus-life')}
-                >
-                  <span>Campus Life</span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-                {openDropdown === 'campus-life' && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
-                    <div className="py-2">
-                      <Link href="/clubs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Clubs</Link>
-                      <Link href="/organizations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Organizations</Link>
-                    </div>
-                  </div>
-                )}
-              </div>
+<div className="relative group">
+  <button
+    className={cn(
+      "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
+      "hover:bg-orange-50 hover:text-orange-600",
+      openDropdown === 'campus-life' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+    )}
+    onClick={() => toggleDropdown('campus-life')}
+  >
+    <span>Campus Life</span>
+    <ChevronDown className="w-4 h-4" />
+  </button>
+
+  {openDropdown === 'campus-life' && (
+    <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border z-50">
+      <div className="py-2">
+        <Link href="/campus-life/clubs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+          Clubs
+        </Link>
+        <Link href="/campus-life/organizations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+          Organizations
+        </Link>
+        <Link href="/campus-life/conferences" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+          Conferences & Talks
+        </Link>
+        <Link href="/campus-life/trips" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+          Trips & Tours
+        </Link>
+      </div>
+    </div>
+  )}
+</div>
 
               {/* laboratory */}
               <Link
@@ -168,55 +218,20 @@ export function Navbar() {
                 Laboratory
               </Link>
 
-              {/* More */}
-              <div className="relative group">
-                <button
-                  className={cn(
-                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
-                    "hover:bg-orange-50 hover:text-orange-600",
-                    openDropdown === 'more' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
-                  )}
-                  onClick={() => toggleDropdown('more')}
-                >
-                  <span>More</span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-                {openDropdown === 'more' && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
-                    <div className="py-2">
-                      <Link href="/about-us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">About Us</Link>
-                      <Link href="/mission-vision" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Mission and Vision</Link>
-                      <Link href="/laboratories" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Laboratories</Link>
-                      <Link href="/photo-gallery" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Photo Gallery</Link>
-                      <Link href="/ucam" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">UCAM</Link>
-                      <Link href="/academic-calendar" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Academic Calendar</Link>
-                      <Link href="/contact-us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Contact Us</Link>
-                    </div>
-                  </div>
+              {/* Contact Us */}
+              <Link
+                href="/contact-us"
+                className={cn(
+                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                  "hover:bg-orange-50 hover:text-orange-600",
+                  pathname === '/contact-us' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
-              </div>
+              >
+                Contact Us
+              </Link>
             </nav>
 
-            {/* Right side buttons */}
-            <div className="flex items-center space-x-2 flex-shrink-0">
-              {/* Desktop Search Button */}
-              <Button
-                variant="outline"
-                className="hidden lg:flex items-center justify-start text-sm text-muted-foreground w-48 h-10"
-                onClick={openSearch}
-              >
-                <Search className="h-4 w-4 mr-2" />
-                Search...
-                <kbd className="pointer-events-none ml-auto h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100">
-                  ⌘K
-                </kbd>
-              </Button>
 
-              {/* Apply Button */}
-              <Button className="hidden xl:inline-flex bg-blue-900 hover:bg-blue-800 text-white px-4">
-                Apply Online
-              </Button>
-            </div>
 
             {/* Mobile menu button */}
             <Button
@@ -235,20 +250,26 @@ export function Navbar() {
           <div className="lg:hidden bg-white border-t">
             <div className="container mx-auto px-4 py-4">
               <div className="space-y-4">
-                <Button
-                  variant="outline"
-                  className="flex items-center justify-start text-sm text-muted-foreground w-full h-10 mb-4"
-                  onClick={() => {
-                    openSearch();
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  <Search className="h-4 w-4 mr-2" />
-                  Search...
-                </Button>
+
 
                 <Link href="/" className="block py-2 font-medium">Home</Link>
                 
+                <div>
+                  <button
+                    className="flex items-center justify-between w-full py-2 text-left font-medium"
+                    onClick={() => toggleDropdown('mobile-about-us')}
+                  >
+                    <span>About Us</span>
+                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-about-us' && 'rotate-180')} />
+                  </button>
+                  {openDropdown === 'mobile-about-us' && (
+                    <div className="pl-4 mt-2 space-y-2">
+                      <Link href="/about-us" className="block py-1 text-sm text-gray-600">About Us</Link>
+                      <Link href="/mission-vision" className="block py-1 text-sm text-gray-600">Mission & Vision</Link>
+                    </div>
+                  )}
+                </div>
+
                 <div>
                   <button
                     className="flex items-center justify-between w-full py-2 text-left font-medium"
@@ -259,14 +280,30 @@ export function Navbar() {
                   </button>
                   {openDropdown === 'mobile-admission' && (
                     <div className="pl-4 mt-2 space-y-2">
-                      <a href="https://eee.uap-bd.edu/bsc-in-eee.html" target="_blank" rel="noopener noreferrer" className="block py-1 text-sm text-gray-600">BSc in EEE</a>
-                      <a href="https://eee.uap-bd.edu/msc-in-eee.html" target="_blank" rel="noopener noreferrer" className="block py-1 text-sm text-gray-600">MSc in EEE</a>
+                      <Link href="/programs/bsc-eee" className="block py-1 text-sm text-gray-600">BSc in EEE</Link>
+                      <Link href="/programs/msc-eee" className="block py-1 text-sm text-gray-600">MSc in EEE</Link>
                     </div>
                   )}
                 </div>
 
                 <Link href="/faculty" className="block py-2 font-medium">Faculty</Link>
-                <Link href="/publications" className="block py-2 font-medium">Publications</Link>
+                
+                <div>
+                  <button
+                    className="flex items-center justify-between w-full py-2 text-left font-medium"
+                    onClick={() => toggleDropdown('mobile-research-publications')}
+                  >
+                    <span>Research and Publications</span>
+                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-research-publications' && 'rotate-180')} />
+                  </button>
+                  {openDropdown === 'mobile-research-publications' && (
+                    <div className="pl-4 mt-2 space-y-2">
+                      <Link href="/research" className="block py-1 text-sm text-gray-600">Research</Link>
+                      <Link href="/publications" className="block py-1 text-sm text-gray-600">Publications</Link>
+                    </div>
+                  )}
+                </div>
+                
                 <Link href="/news" className="block py-2 font-medium">News and Events</Link>
 
                 <div>
@@ -279,48 +316,25 @@ export function Navbar() {
                   </button>
                   {openDropdown === 'mobile-campus-life' && (
                     <div className="pl-4 mt-2 space-y-2">
-                      <Link href="/clubs" className="block py-1 text-sm text-gray-600">Clubs</Link>
-                      <Link href="/organizations" className="block py-1 text-sm text-gray-600">Organizations</Link>
+                      <Link href="/campus-life/clubs" className="block py-1 text-sm text-gray-600">Clubs</Link>
+                      <Link href="/campus-life/organizations" className="block py-1 text-sm text-gray-600">Organizations</Link>
+                      <Link href="/campus-life/conferences" className="block py-1 text-sm text-gray-600">Conferences & Talks</Link>
+                      <Link href="/campus-life/trips" className="block py-1 text-sm text-gray-600">Trips & Tours</Link>
                     </div>
                   )}
                 </div>
 
                 <Link href="/lab" className="block py-2 font-medium">Laboratory</Link>
+                <Link href="/contact-us" className="block py-2 font-medium">Contact Us</Link>
 
-                <div>
-                  <button
-                    className="flex items-center justify-between w-full py-2 text-left font-medium"
-                    onClick={() => toggleDropdown('mobile-more')}
-                  >
-                    <span>More</span>
-                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-more' && 'rotate-180')} />
-                  </button>
-                  {openDropdown === 'mobile-more' && (
-                    <div className="pl-4 mt-2 space-y-2">
-                      <Link href="/about-us" className="block py-1 text-sm text-gray-600">About Us</Link>
-                      <Link href="/mission-vision" className="block py-1 text-sm text-gray-600">Mission and Vision</Link>
-                      <Link href="/laboratories" className="block py-1 text-sm text-gray-600">Laboratories</Link>
-                      <Link href="/photo-gallery" className="block py-1 text-sm text-gray-600">Photo Gallery</Link>
-                      <Link href="/ucam" className="block py-1 text-sm text-gray-600">UCAM</Link>
-                      <Link href="/academic-calendar" className="block py-1 text-sm text-gray-600">Academic Calendar</Link>
-                      <Link href="/contact-us" className="block py-1 text-sm text-gray-600">Contact Us</Link>
-                    </div>
-                  )}
-                </div>
 
-                <div className="pt-4 border-t space-y-3">
-                  <Button className="w-full bg-blue-900 hover:bg-blue-800 text-white">
-                    Apply Online
-                  </Button>
-                </div>
               </div>
             </div>
           </div>
         )}
       </header>
 
-      {/* Global Search Modal */}
-      <GlobalSearch isOpen={isSearchOpen} onClose={closeSearch} />
+
 
       {/* Overlay for closing dropdowns */}
       {openDropdown && (
