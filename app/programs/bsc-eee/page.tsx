@@ -77,52 +77,43 @@ interface ScholarshipOption {
 }
 
 const courseCategories: CourseCategory[] = [
-  {
+ {
     id: '1',
     title: 'Core Engineering Courses',
     description: 'Fundamental electrical and electronic engineering subjects',
     credits: 84,
     courses: [
-      'Circuit Analysis I & II',
-      'Electronics I & II',
-      'Digital Logic Design',
-      'Electromagnetic Fields',
-      'Power Systems',
+      'Electrical Circuits I',
+      'Electrical Circuits I Laboratory',
+      'Electrical Circuits II',
+      'Electrical Circuits II Laboratory',
+      'Electronic Circuits I',
+      'Electronic Circuits I Laboratory',
+      'Electrical Machines I',
+      'Electrical Machines I Laboratory',
+      'Electronic Circuits II',
+      'Electronic Circuits II Laboratory',
+      'Electrical Machines II',
+      'Electrical Machines II Laboratory',
+      'Digital Electronics',
+      'Power System Analysis I Laboratory',
+      'Signals and Systems',
+      'Electromagnetic Fields and Waves',
+      'Electrical Engineering Materials',
+      'Fundamentals of Communication Engineering',
+      'Fundamentals of Communication Engineering Laboratory',
+      'Digital Signal Processing',
+      'Digital Signal Processing Laboratory',
       'Control Systems',
-      'Signal Processing',
-      'Communication Systems'
+      'Control Systems Laboratory',
+      'Numerical Technique Laboratory',
+      'Electrical Design and Drafting Laboratory',
+      'Power Electronics',
+      'Power Electronics Laboratory',
+      'Microprocessor and Embedded System',
+      'Microprocessor and Embedded System Laboratory'
     ],
     color: 'bg-blue-100 text-blue-800'
-  },
-  {
-    id: '2',
-    title: 'Mathematics & Sciences',
-    description: 'Mathematical foundation and scientific principles',
-    credits: 36,
-    courses: [
-      'Calculus I, II & III',
-      'Differential Equations',
-      'Linear Algebra',
-      'Physics I & II',
-      'Chemistry',
-      'Statistics & Probability'
-    ],
-    color: 'bg-green-100 text-green-800'
-  },
-  {
-    id: '3',
-    title: 'Computer Programming',
-    description: 'Programming languages and software development',
-    credits: 18,
-    courses: [
-      'Programming in C',
-      'Object Oriented Programming',
-      'Data Structures',
-      'Microprocessor & Assembly',
-      'MATLAB/Simulink',
-      'VLSI Design'
-    ],
-    color: 'bg-purple-100 text-purple-800'
   },
   {
     id: '4',
@@ -130,31 +121,29 @@ const courseCategories: CourseCategory[] = [
     description: 'Liberal arts and communication skills',
     credits: 24,
     courses: [
-      'English Composition',
-      'Technical Writing',
-      'Economics',
-      'Ethics in Engineering',
+      'Accounting',
+      'Chemistry',
+      'Chemistry Laboratory',
+      'Fundamentals of Economics',
+      'Engineering Ethics',
+      'English',
+      'English Skills Laboratory',
+      'Sociology',
       'Bangladesh Studies',
-      'Environmental Science'
+      'Business Communication',
+      'Industrial Management',
+      'Calculus',
+      'Ordinary and Partial Differential Equation',
+      'Complex Variable, Harmonics and Transformations',
+      'Linear Algebra',
+      'Probability and Statistics',
+      'Thermal Physics, Waves and Oscillations, Structure of Matter, and Optics',
+      'Physics Laboratory',
+      'Electricity and Magnetism, Mechanics, and Modern Physics'
     ],
     color: 'bg-orange-100 text-orange-800'
-  },
-  {
-    id: '5',
-    title: 'Specialization Tracks',
-    description: 'Choose your area of expertise',
-    credits: 18,
-    courses: [
-      'Power & Energy Systems',
-      'Telecommunications',
-      'Electronics & VLSI',
-      'Control & Automation',
-      'Biomedical Engineering',
-      'Renewable Energy'
-    ],
-    color: 'bg-red-100 text-red-800'
   }
-]
+];
 
 const careerPaths: CareerPath[] = [
   {
@@ -705,7 +694,7 @@ export default function BSCEEEPage() {
         <AnimatedSection animation="slideUp" delay={0.5} className="mb-16">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Facilities</span>
+              First-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Facilities</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our state-of-the-art laboratories and facilities provide hands-on learning experiences that prepare you for real-world engineering challenges.

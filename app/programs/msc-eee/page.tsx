@@ -85,89 +85,325 @@ interface ScholarshipOption {
 const courseCategories: CourseCategory[] = [
   {
     id: '1',
-    name: 'Core Courses',
+    name: 'Interdisciplinary Courses',
     courses: [
       {
         id: '1',
-        code: 'EEE 601',
-        name: 'Advanced Circuit Analysis',
+        code: 'EEE 6101',
+        name: 'Engineering Analysis',
         credits: 3,
-        description: 'Advanced techniques in circuit analysis and design'
+        description: 'Advanced mathematical methods for engineering analysis'
       },
       {
         id: '2',
-        code: 'EEE 602',
-        name: 'Advanced Digital Signal Processing',
+        code: 'EEE 6102',
+        name: 'Selected Topics in Electrical and Electronic Engineering',
         credits: 3,
-        description: 'Digital signal processing algorithms and applications'
+        description: 'Current topics and emerging trends in EEE'
       },
       {
         id: '3',
-        code: 'EEE 603',
-        name: 'Advanced Control Systems',
+        code: 'EEE 6103',
+        name: 'Nonlinear System Analysis',
         credits: 3,
-        description: 'Modern control theory and system design'
+        description: 'Analysis and design of nonlinear systems'
       },
       {
         id: '4',
-        code: 'EEE 604',
-        name: 'Advanced Power Electronics',
+        code: 'EEE 6104',
+        name: 'Artificial Neural Systems',
         credits: 3,
-        description: 'Power electronic devices and converter circuits'
+        description: 'Neural networks and artificial intelligence applications'
+      },
+      {
+        id: '5',
+        code: 'EEE 6105',
+        name: 'Power Semiconductor Circuits',
+        credits: 3,
+        description: 'Advanced power semiconductor devices and circuits'
+      },
+      {
+        id: '6',
+        code: 'EEE 6106',
+        name: 'Design of Power Semiconductor Circuits and Drives',
+        credits: 3,
+        description: 'Design methodologies for power electronic systems'
+      },
+      {
+        id: '7',
+        code: 'EEE 6107',
+        name: 'Electric and Magnetic Properties of Materials',
+        credits: 3,
+        description: 'Material properties for electrical applications'
+      },
+      {
+        id: '8',
+        code: 'EEE 6108',
+        name: 'Research Methodology',
+        credits: 3,
+        description: 'Research methods and academic writing for engineers'
       }
     ]
   },
   {
     id: '2',
-    name: 'Specialization Tracks',
+    name: 'Communication Group',
     courses: [
       {
-        id: '5',
-        code: 'EEE 611',
-        name: 'Power System Analysis & Design',
+        id: '9',
+        code: 'EEE 6201',
+        name: 'Information and Coding Theory',
         credits: 3,
-        description: 'Advanced power system modeling and analysis'
+        description: 'Information theory and error correction coding'
       },
       {
-        id: '6',
-        code: 'EEE 612',
-        name: 'Communication System Design',
+        id: '10',
+        code: 'EEE 6202',
+        name: 'Advanced Telecommunication Engineering',
         credits: 3,
-        description: 'Design of modern communication systems'
+        description: 'Modern telecommunication systems and networks'
       },
       {
-        id: '7',
-        code: 'EEE 613',
-        name: 'VLSI Design & Technology',
+        id: '11',
+        code: 'EEE 6203',
+        name: 'Advanced Digital Signal Processing',
         credits: 3,
-        description: 'Very large scale integration design principles'
+        description: 'Advanced DSP algorithms and applications'
       },
       {
-        id: '8',
-        code: 'EEE 614',
-        name: 'Renewable Energy Systems',
+        id: '12',
+        code: 'EEE 6204',
+        name: 'Biomedical Signal Processing',
         credits: 3,
-        description: 'Solar, wind, and other renewable energy technologies'
+        description: 'Signal processing for biomedical applications'
+      },
+      {
+        id: '13',
+        code: 'EEE 6205',
+        name: 'Optical Communications and Networks',
+        credits: 3,
+        description: 'Fiber optic communication systems'
+      },
+      {
+        id: '14',
+        code: 'EEE 6206',
+        name: 'Advanced Multimedia Communications',
+        credits: 3,
+        description: 'Multimedia signal processing and transmission'
+      },
+      {
+        id: '15',
+        code: 'EEE 6207',
+        name: 'Digital Communication',
+        credits: 3,
+        description: 'Digital modulation and communication techniques'
+      },
+      {
+        id: '16',
+        code: 'EEE 6208',
+        name: 'Digital Satellite Communication',
+        credits: 3,
+        description: 'Satellite communication systems and protocols'
+      },
+      {
+        id: '17',
+        code: 'EEE 6209',
+        name: 'Speech and Image Processing',
+        credits: 3,
+        description: 'Processing techniques for speech and image signals'
+      },
+      {
+        id: '18',
+        code: 'EEE 6210',
+        name: 'Antennas and Propagation',
+        credits: 3,
+        description: 'Antenna design and electromagnetic wave propagation'
+      },
+      {
+        id: '19',
+        code: 'EEE 6211',
+        name: 'Wireless Communications and Networks',
+        credits: 3,
+        description: 'Wireless communication systems and network protocols'
       }
     ]
   },
   {
     id: '3',
-    name: 'Research & Thesis',
+    name: 'Electronics Group',
     courses: [
       {
-        id: '9',
-        code: 'EEE 691',
-        name: 'Research Methodology',
+        id: '20',
+        code: 'EEE 6301',
+        name: 'MOS Devices',
         credits: 3,
-        description: 'Research methods and academic writing'
+        description: 'Metal-oxide-semiconductor device physics and modeling'
       },
       {
-        id: '10',
-        code: 'EEE 699',
-        name: 'Thesis',
+        id: '21',
+        code: 'EEE 6302',
+        name: 'Compound Semiconductor Devices',
+        credits: 3,
+        description: 'III-V and II-VI semiconductor devices'
+      },
+      {
+        id: '22',
+        code: 'EEE 6303',
+        name: 'VLSI Technology and Device Modeling',
+        credits: 3,
+        description: 'VLSI fabrication technology and device modeling'
+      },
+      {
+        id: '23',
+        code: 'EEE 6304',
+        name: 'Advanced VLSI Design',
+        credits: 3,
+        description: 'Advanced techniques in VLSI circuit design'
+      },
+      {
+        id: '24',
+        code: 'EEE 6305',
+        name: 'Carbon Nanotechnology',
+        credits: 3,
+        description: 'Carbon nanotubes and graphene for electronics'
+      },
+      {
+        id: '25',
+        code: 'EEE 6306',
+        name: 'Nano Systems',
+        credits: 3,
+        description: 'Nanotechnology applications in electronic systems'
+      },
+      {
+        id: '26',
+        code: 'EEE 6307',
+        name: 'Thin film Growth and Deposition',
+        credits: 3,
+        description: 'Thin film fabrication techniques and applications'
+      },
+      {
+        id: '27',
+        code: 'EEE 6308',
+        name: 'Semiconductor Characterization Technology',
+        credits: 3,
+        description: 'Techniques for semiconductor material characterization'
+      },
+      {
+        id: '28',
+        code: 'EEE 6309',
+        name: 'Electronics of Solids',
+        credits: 3,
+        description: 'Solid state physics for electronic applications'
+      },
+      {
+        id: '29',
+        code: 'EEE 6310',
+        name: 'Semiconductor Materials and Heterostructures',
+        credits: 3,
+        description: 'Advanced semiconductor materials and structures'
+      }
+    ]
+  },
+  {
+    id: '4',
+    name: 'Power Group',
+    courses: [
+      {
+        id: '30',
+        code: 'EEE 6401',
+        name: 'Optimization of Power System Operation',
+        credits: 3,
+        description: 'Optimization techniques for power system operation'
+      },
+      {
+        id: '31',
+        code: 'EEE 6402',
+        name: 'Computer Methods in Power System Analysis',
+        credits: 3,
+        description: 'Computational methods for power system analysis'
+      },
+      {
+        id: '32',
+        code: 'EEE 6403',
+        name: 'Advanced Power System Protection',
+        credits: 3,
+        description: 'Modern protection schemes for power systems'
+      },
+      {
+        id: '33',
+        code: 'EEE 6404',
+        name: 'Power System Stability',
+        credits: 3,
+        description: 'Analysis and enhancement of power system stability'
+      },
+      {
+        id: '34',
+        code: 'EEE 6405',
+        name: 'Transients in Power Systems',
+        credits: 3,
+        description: 'Transient analysis in electrical power systems'
+      },
+      {
+        id: '35',
+        code: 'EEE 6406',
+        name: 'Reliability of Modern Power System',
+        credits: 3,
+        description: 'Reliability assessment and improvement techniques'
+      },
+      {
+        id: '36',
+        code: 'EEE 6407',
+        name: 'Power System Planning',
+        credits: 3,
+        description: 'Strategic planning for power system expansion'
+      },
+      {
+        id: '37',
+        code: 'EEE 6408',
+        name: 'Advanced Power System Control',
+        credits: 3,
+        description: 'Modern control techniques for power systems'
+      },
+      {
+        id: '38',
+        code: 'EEE 6409',
+        name: 'Energy Conversion and Storage',
+        credits: 3,
+        description: 'Energy conversion technologies and storage systems'
+      },
+      {
+        id: '39',
+        code: 'EEE 6410',
+        name: 'Modern Power System Modeling',
+        credits: 3,
+        description: 'Advanced modeling techniques for power systems'
+      },
+      {
+        id: '40',
+        code: 'EEE 6411',
+        name: 'Smart Grid Operation',
+        credits: 3,
+        description: 'Smart grid technologies and operation strategies'
+      }
+    ]
+  },
+  {
+    id: '5',
+    name: 'Thesis/Project',
+    courses: [
+      {
+        id: '41',
+        code: 'EEE 6000',
+        name: 'Thesis (for M.Sc. in EEE)',
+        credits: 18,
+        description: 'Independent research project culminating in a thesis'
+      },
+      {
+        id: '42',
+        code: 'EEE 6001',
+        name: 'Project (for M. Engg. in EEE)',
         credits: 6,
-        description: 'Independent research project and thesis writing'
+        description: 'Applied engineering project for professional degree'
       }
     ]
   }
@@ -254,38 +490,24 @@ const facilities: Facility[] = [
 const feeStructure: FeeStructure[] = [
   {
     id: '1',
-    category: 'Tuition Fee',
-    amount: '৳95,000',
-    description: 'Per semester tuition fee for graduate courses',
-    frequency: 'Per Semester'
-  },
-  {
-    id: '2',
-    category: 'Admission Fee',
-    amount: '৳21,500',
-    description: 'One-time admission and registration fee',
+    category: 'Application Fee',
+    amount: 'Tk. 1,200/-',
+    description: 'Non-refundable',
     frequency: 'One Time'
   },
   {
+    id: '2',
+    category: 'Tuition Fee',
+    amount: 'Tk. 4,500/-',
+    description: 'Per credit hour',
+    frequency: 'Per Credit'
+  },
+  {
     id: '3',
-    category: 'Research Fee',
-    amount: '৳20,000',
-    description: 'Research facilities and thesis supervision fee',
-    frequency: 'Per Semester'
-  },
-  {
-    id: '4',
-    category: 'Library Fee',
-    amount: '৳5,000',
-    description: 'Access to digital libraries and research databases',
-    frequency: 'Per Semester'
-  },
-  {
-    id: '5',
-    category: 'Laboratory Fee',
-    amount: '৳15,000',
-    description: 'Advanced laboratory equipment and maintenance',
-    frequency: 'Per Semester'
+    category: 'Admission Fee',
+    amount: 'Tk. 15,000/-',
+    description: 'One-time admission processing fee',
+    frequency: 'One Time'
   }
 ]
 
@@ -330,12 +552,11 @@ const programHighlights = [
 ]
 
 const admissionRequirements = [
-  'Bachelor degree in EEE/CSE or equivalent',
+  'Bachelor degree in EEE/ECE/ETE/CSE or equivalent',
   'Minimum CGPA of 2.5 on 4.0 scale',
   'No third class in any public examination',
   'Prerequisite courses as suggested by BPGS',
-  'English proficiency (if applicable)',
-  'Research proposal (for thesis track)'
+  'Must clear all prerequisite courses as suggested by BPGS.'
 ]
 
 export default function MScEEEPage() {
@@ -425,8 +646,8 @@ export default function MScEEEPage() {
             <Card className="p-8 text-center hover:shadow-lg transition-shadow duration-300">
               <Users className="w-12 h-12 text-purple-600 mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Class Size</h3>
-              <p className="text-gray-600 mb-2">15-20 Students</p>
-              <p className="text-sm text-gray-500">Small Cohorts</p>
+              <p className="text-gray-600 mb-2">50-70 Students</p>
+              <p className="text-sm text-gray-500">Medium Cohorts</p>
             </Card>
           </div>
         </AnimatedSection>
@@ -456,8 +677,60 @@ export default function MScEEEPage() {
           </div>
         </AnimatedSection>
 
-        {/* Curriculum */}
+        {/* Degree Requirements */}
         <AnimatedSection animation="slideUp" delay={0.4} className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Degree <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Requirements</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Complete requirements for Master of Science in Electrical & Electronic Engineering degree.
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <Card className="p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <GraduationCap className="w-6 h-6 mr-3 text-green-600" />
+                M.Sc. in EEE Degree Requirements
+              </h3>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-green-600 font-bold text-sm">1</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Credit Hour Completion</h4>
+                    <p className="text-gray-700">Completion of minimum 36 (thirty-six) credit hours including 18 (eighteen) credit hours thesis work.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-green-600 font-bold text-sm">2</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Course Selection</h4>
+                    <p className="text-gray-700">Completion of at least 3 (three) courses from his/her group of interest and at least 1 (one) course from interdisciplinary courses.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-green-600 font-bold text-sm">3</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Academic Performance</h4>
+                    <p className="text-gray-700">Obtaining a minimum CGPA of 2.75 out of 4.0.</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </AnimatedSection>
+
+        {/* Curriculum */}
+        <AnimatedSection animation="slideUp" delay={0.5} className="mb-16">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Advanced <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600">Curriculum</span>
@@ -488,41 +761,7 @@ export default function MScEEEPage() {
           </div>
         </AnimatedSection>
 
-        {/* Career Opportunities */}
-        <AnimatedSection animation="slideUp" delay={0.5} className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Career <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">Opportunities</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our graduates lead innovation in research institutions, technology companies, and academic organizations worldwide.
-            </p>
-          </div>
-          
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {careerPaths.map((career) => (
-              <StaggeredItem key={career.id}>
-                <Card className="p-6 hover:shadow-lg transition-shadow duration-300 h-full">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <div className="text-blue-600">{career.icon}</div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{career.title}</h3>
-                  <p className="text-gray-600 mb-4">{career.description}</p>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-500">Average Salary:</span>
-                      <span className="font-semibold text-green-600">{career.averageSalary}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-500">Growth Rate:</span>
-                      <span className="font-semibold text-blue-600">{career.growthRate}</span>
-                    </div>
-                  </div>
-                </Card>
-              </StaggeredItem>
-            ))}
-          </StaggeredGrid>
-        </AnimatedSection>
+
 
         {/* Tuition Fees */}
         <AnimatedSection animation="slideUp" delay={0.6} className="mb-16">
@@ -555,18 +794,19 @@ export default function MScEEEPage() {
                     </div>
                   </div>
                 ))}
+
               </div>
+               
+                
               
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-900">Total Per Semester:</span>
-                  <span className="text-2xl font-bold text-blue-600">৳1,35,000</span>
+              <div className="mt-6 space-y-4">
+                <div className="p-4 bg-green-50 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-gray-900">Total Program Cost (36 Credits):</span>
+                    <span className="text-2xl font-bold text-green-600">Tk. 1,77,000/-</span>
+                  </div>
+                  <p className="text-sm text-gray-600 mt-2">36 Credits × Tk. 4,500/- + Admission Fee</p>
                 </div>
-                <div className="flex items-center justify-between mt-2">
-                  <span className="font-semibold text-gray-900">Total Program Cost:</span>
-                  <span className="text-2xl font-bold text-blue-600">৳4,21,500</span>
-                </div>
-                <p className="text-sm text-gray-600 mt-2">*Excluding admission fee. Fees may be subject to annual revision.</p>
               </div>
             </Card>
 

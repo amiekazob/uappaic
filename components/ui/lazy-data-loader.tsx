@@ -55,7 +55,3 @@ export function useLazyFacultyData() {
 export function useLazyEventsData() {
   return useLazyData(() => import('@/lib/events-data').then(m => m.events))
 }
-
-export function useLazyLabsData() {
-  return useLazyData(() => import('@/lib/lab-data').then(m => m.labs))
-}
