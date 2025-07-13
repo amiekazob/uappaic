@@ -317,7 +317,7 @@ export function Navbar() {
                   {openDropdown === 'mobile-campus-life' && (
                     <div className="pl-4 mt-2 space-y-2">
                       <Link href="/campus-life/clubs" className="block py-1 text-sm text-gray-600">Clubs</Link>
-                      <Link href="/campus-life/organizations" className="block py-1 text-sm text-gray-600">Organizations</Link>
+                      <Link href="/campus-life/student-organizations" className="block py-1 text-sm text-gray-600">Organizations</Link>
                       <Link href="/campus-life/conferences" className="block py-1 text-sm text-gray-600">Conferences & Talks</Link>
                       <Link href="/campus-life/trips" className="block py-1 text-sm text-gray-600">Trips & Tours</Link>
                     </div>

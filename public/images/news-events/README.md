@@ -30,7 +30,7 @@ import Image from 'next/image'
 
 ## Folder Structure
 
-You can organize images into subfolders:
+You can organize images into subfolders by category or individual news items:
 
 ```
 news-events/
@@ -39,8 +39,20 @@ news-events/
 ├── seminars/
 ├── achievements/
 ├── announcements/
-└── general-news/
+├── general-news/
+├── tectron-2025/              # Individual news: UAP Hosted TechTron 2025
+├── eee-participate-bitfest-2025/  # Individual news: EEE team at KUET Bitfest 2.0
+└── IEEE-WIE-2024/             # Individual news: UAP EEE Team Became Champion
 ```
+
+### Individual News Folders
+
+Each news item has its own dedicated folder for storing related images:
+- **tectron-2025/**: Images for "UAP Hosted TechTron 2025" event
+- **eee-participate-bitfest-2025/**: Images for "EEE team at KUET Bitfest 2.0" event
+- **IEEE-WIE-2024/**: Images for "UAP EEE Team Became Champion" event
+
+Each folder contains a README.md with specific guidelines and event details.
 
 ## Examples
 

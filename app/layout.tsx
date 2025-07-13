@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
-import { generateOrganizationSchema } from '@/lib/seo'
 import { PerformanceMonitor } from '@/components/ui/performance-monitor'
+import Script from 'next/script'
+import { generateOrganizationSchema } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: {
@@ -67,15 +68,15 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <script
+      <body>
+        <Script
+          id="organization-schema"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema)
           }}
         />
-      </head>
-      <body>
         <Navbar />
         <main className="min-h-screen">
           {children}

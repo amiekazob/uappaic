@@ -6,6 +6,8 @@ This directory contains all images used throughout the EEE UAP website, organize
 
 ```
 images/
+├── hero/                   # Hero section images
+│   └── README.md          # Hero images documentation
 ├── lab/                    # Laboratory and equipment images
 │   └── README.md          # Lab images documentation
 └── news-events/           # News, events, and announcements
@@ -15,7 +17,10 @@ images/
     ├── seminars/          # Seminar images
     ├── achievements/      # Awards and achievements
     ├── announcements/     # General announcements
-    └── general-news/      # General news images
+    ├── general-news/      # General news images
+    ├── tectron-2025/      # Individual news: UAP Hosted TechTron 2025
+    ├── eee-participate-bitfest-2025/  # Individual news: EEE team at KUET Bitfest 2.0
+    └── IEEE-WIE-2024/     # Individual news: UAP EEE Team Became Champion
 ```
 
 ## Usage Guidelines

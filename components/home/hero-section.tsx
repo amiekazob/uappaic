@@ -17,28 +17,28 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/images/hero/5.jpg",
     title: "Excellence in Higher Education",
     description: "Empowering minds, shaping futures, and building tomorrow's leaders through innovative education and research",
     ctaText: "Apply Now"
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1486&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/images/hero/2.jpeg",
     title: "World-Class Research Facilities",
     description: "Discover cutting-edge laboratories and research opportunities that drive innovation and scientific breakthroughs",
     ctaText: "Explore Research"
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/images/hero/3.jpeg",
     title: "Vibrant Campus Community",
     description: "Join a diverse community of scholars, innovators, and leaders from around the world in our beautiful campus",
     ctaText: "Campus Life"
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/images/hero/4.jpeg",
     title: "Shape Your Future",
     description: "Transform your passion into expertise with our comprehensive programs and dedicated faculty mentorship",
     ctaText: "View Programs"
