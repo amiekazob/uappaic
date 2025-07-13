@@ -13,7 +13,7 @@ export const metadata: Metadata = generateSEOMetadata({
   description: 'Welcome to the Department of Electrical and Electronic Engineering at University of Asia Pacific. Discover our cutting-edge programs, world-class faculty, and innovative research in electrical and electronic engineering.',
   keywords: 'UAP EEE, electrical engineering home, electronic engineering Bangladesh, engineering education, UAP department, electrical engineering programs',
   url: 'https://uap-eee.edu.bd',
-  image: '/og-image.jpg'
+  image: '/og-image.svg'
 })
 
 export default function Homepage() {

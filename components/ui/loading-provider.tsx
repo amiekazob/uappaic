@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, Suspense } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
 
@@ -19,7 +19,7 @@ export function useLoading() {
   return context
 }
 
-export function LoadingProvider({ children }: { children: React.ReactNode }) {
+function LoadingProviderInner({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(false)
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -87,6 +87,14 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
         </div>
       )}
     </LoadingContext.Provider>
+  )
+}
+
+export function LoadingProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={null}>
+      <LoadingProviderInner>{children}</LoadingProviderInner>
+    </Suspense>
   )
 }
 

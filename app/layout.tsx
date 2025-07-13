@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: 'Leading department in electrical and electronic engineering education and research at University of Asia Pacific.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.svg',
         width: 1200,
         height: 630,
         alt: 'UAP EEE Department'
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Department of Electrical and Electronic Engineering - University of Asia Pacific',
     description: 'Leading department in electrical and electronic engineering education and research at University of Asia Pacific.',
-    images: ['/og-image.jpg']
+    images: ['/og-image.svg']
   },
   robots: {
     index: true,
