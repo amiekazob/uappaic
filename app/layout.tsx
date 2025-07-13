@@ -3,6 +3,8 @@ import './globals.css'
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { PerformanceMonitor } from '@/components/ui/performance-monitor'
+import { LoadingProvider } from '@/components/ui/loading-provider'
+import { NavigationWrapper } from '@/components/ui/navigation-wrapper'
 import Script from 'next/script'
 import { generateOrganizationSchema } from '@/lib/seo'
 
@@ -77,12 +79,16 @@ export default function RootLayout({
             __html: JSON.stringify(organizationSchema)
           }}
         />
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
-        <PerformanceMonitor />
+        <LoadingProvider>
+          <NavigationWrapper>
+            <Navbar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+          </NavigationWrapper>
+          <PerformanceMonitor />
+        </LoadingProvider>
       </body>
     </html>
   )
