@@ -2,6 +2,12 @@ import { HeroSection } from "@/components/home/hero-section"
 import { LeadershipMessage } from "@/components/home/leadership-message"
 import { NewsEvents } from "@/components/home/news-events"
 import { FacultyPreview } from "@/components/home/faculty-preview"
+import { NotableAchievements } from "@/components/home/notable-achievements"
+import { EntrepreneurshipHighlights } from "@/components/home/entrepreneurship-highlights"
+import StudentLifeHighlights from "@/components/home/student-life-highlights"
+import { AlumniPortal } from "@/components/home/alumni-portal"
+import FAQSection from "@/components/home/faq-section"
+import AlumniPortalNotification from "@/components/home/alumni-portal-notification"
 import { OptimizedAnimatedSection } from "@/components/ui/optimized-animated-section"
 import { SocialFollow } from "@/components/home/social-follow"
 import { StatsSection } from "@/components/home/stats-section"
@@ -19,6 +25,7 @@ export const metadata: Metadata = generateSEOMetadata({
 export default function Homepage() {
   return (
     <div className="bg-white">
+      <AlumniPortalNotification />
       <HeroSection />
       <StatsSection />
       <OptimizedAnimatedSection animation="fadeIn" delay={0.1}>
@@ -28,7 +35,22 @@ export default function Homepage() {
         <FacultyPreview />
       </OptimizedAnimatedSection>
       <OptimizedAnimatedSection animation="fadeIn" delay={0.05}>
+        <NotableAchievements />
+      </OptimizedAnimatedSection>
+      <OptimizedAnimatedSection animation="fadeIn" delay={0.05}>
+        <EntrepreneurshipHighlights />
+      </OptimizedAnimatedSection>
+      <OptimizedAnimatedSection animation="fadeIn" delay={0.05}>
+        <StudentLifeHighlights />
+      </OptimizedAnimatedSection>
+      <OptimizedAnimatedSection animation="fadeIn" delay={0.05}>
         <NewsEvents />
+      </OptimizedAnimatedSection>
+      <OptimizedAnimatedSection animation="fadeIn" delay={0.05}>
+        <AlumniPortal />
+      </OptimizedAnimatedSection>
+      <OptimizedAnimatedSection animation="fadeIn" delay={0.05}>
+        <FAQSection />
       </OptimizedAnimatedSection>
       <SocialFollow />
     </div>

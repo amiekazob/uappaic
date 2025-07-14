@@ -30,7 +30,7 @@ const clubs: Club[] = [
     description: 'Building innovative solutions and fostering entrepreneurial mindset among students.',
     icon: <Wrench className="w-5 h-5" />,
     category: 'Technical',
-    image: 'https://i.ibb.co/b5h8T981/image.png'
+    image: '/images/campus%20life/clubs/project-club.jpg'
   },
   {
     id: 'programming-ai-club',
@@ -38,7 +38,7 @@ const clubs: Club[] = [
     description: 'Exploring the frontiers of artificial intelligence and competitive programming.',
     icon: <Code className="w-5 h-5" />,
     category: 'Technical',
-    image: 'https://i.ibb.co/b5h8T981/image.png'
+    image: '/images/campus%20life/clubs/programming-ai-club.jpg'
   },
   {
     id: 'math-club',
@@ -46,7 +46,7 @@ const clubs: Club[] = [
     description: 'Celebrating the beauty of mathematics through problem-solving and research.',
     icon: <Calculator className="w-5 h-5" />,
     category: 'Academic',
-    image: 'https://i.ibb.co/b5h8T981/image.png'
+    image: '/images/campus%20life/clubs/math-club.jpg'
   },
   {
     id: 'debate-club',
@@ -54,7 +54,7 @@ const clubs: Club[] = [
     description: 'Developing critical thinking and public speaking skills through structured debates.',
     icon: <MessageSquare className="w-5 h-5" />,
     category: 'Literary',
-    image: 'https://i.ibb.co/b5h8T981/image.png'
+    image: '/images/campus%20life/clubs/debate-club.jpg'
   },
   {
     id: 'sports-club',
@@ -62,7 +62,7 @@ const clubs: Club[] = [
     description: 'Promoting physical fitness and sportsmanship through various athletic activities.',
     icon: <Trophy className="w-5 h-5" />,
     category: 'Sports',
-    image: 'https://i.ibb.co/b5h8T981/image.png'
+    image: '/images/campus%20life/clubs/sports-club.jpg'
   },
   {
     id: 'photography-club',
@@ -70,7 +70,7 @@ const clubs: Club[] = [
     description: 'Capturing moments and expressing creativity through the art of photography.',
     icon: <Camera className="w-5 h-5" />,
     category: 'Creative',
-    image: 'https://i.ibb.co/b5h8T981/image.png'
+    image: '/images/campus%20life/clubs/photography-club.jpg'
   },
   {
     id: 'cultural-club',
@@ -78,7 +78,7 @@ const clubs: Club[] = [
     description: 'Celebrating diversity and promoting cultural exchange through arts and performances.',
     icon: <Music className="w-5 h-5" />,
     category: 'Cultural',
-    image: 'https://i.ibb.co/b5h8T981/image.png'
+    image: '/images/campus%20life/clubs/cultural-club.jpg'
   }
 ]
 

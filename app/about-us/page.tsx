@@ -39,59 +39,59 @@ interface Achievement {
 
 const milestones: Milestone[] = [
   {
-    year: '1996',
+    year: '2004',
     title: 'Department Establishment',
-    description: 'The Department of Electrical and Electronic Engineering was established as one of the founding departments of University of Asia Pacific.',
+    description: 'Founded in 2004, the Department of Electrical and Electronic Engineering at the University of Asia Pacific is committed to delivering high-quality education and fostering research in electrical and electronic technologies.',
     type: 'establishment'
   },
   {
-    year: '1998',
+    year: '2008',
     title: 'First Graduation Batch',
     description: 'The first batch of EEE students graduated, marking the beginning of our alumni network that now spans across the globe.',
     type: 'achievement'
   },
   {
-    year: '2002',
+    year: '2016',
     title: 'Research Lab Expansion',
     description: 'Established state-of-the-art laboratories for Power Systems, Electronics, and Communications research.',
     type: 'expansion'
   },
   {
-    year: '2005',
+    year: '2012',
     title: 'Industry Partnerships',
     description: 'Formed strategic partnerships with leading technology companies and power sector organizations in Bangladesh.',
     type: 'achievement'
   },
   {
-    year: '2008',
+    year: '2015',
     title: 'MSc Program Launch',
     description: 'Introduced the Master of Science in EEE program to advance higher education and research capabilities.',
     type: 'expansion'
   },
   {
-    year: '2012',
-    title: 'International Accreditation',
+    year: '2018',
+    title: 'IEB Accreditation',
     description: 'Received recognition from international engineering bodies, enhancing the global value of our degrees.',
     type: 'recognition'
   },
   {
-    year: '2015',
-    title: 'Smart Grid Research Center',
-    description: 'Established the Smart Grid Research Center, becoming a pioneer in renewable energy research in Bangladesh.',
+    year: '2025',
+    title: 'Research lab',
+    description: 'Established the Research lab, becoming a pioneer in renewable energy research in Bangladesh.',
     type: 'expansion'
-  },
-  {
-    year: '2018',
-    title: '1000+ Alumni Milestone',
-    description: 'Celebrated the graduation of our 1000th student, with alumni working in top companies worldwide.',
-    type: 'achievement'
   },
   {
     year: '2020',
-    title: 'Digital Transformation',
-    description: 'Successfully transitioned to hybrid learning models and enhanced digital infrastructure during the pandemic.',
-    type: 'expansion'
+    title: '1500+ Alumni Milestone',
+    description: 'Celebrated the graduation of our 1000th student, with alumni working in top companies worldwide.',
+    type: 'achievement'
   },
+ {
+  year: '2020',
+  title: 'Switch Gear Lab',
+  description: 'Established to provide hands-on training on power system protection, circuit breakers, relays, and industrial control systems, supporting both academic and practical learning.',
+  type: 'expansion'
+},
   {
     year: '2023',
     title: 'Research Excellence Award',

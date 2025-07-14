@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { Mail, Phone, Star, ArrowLeft, Award, Users, FileText, Calendar, MapPin, Trophy, GraduationCap, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { AcademicProfileIcons } from '@/components/ui/academic-profile-icons';
 import { generateMetadata as generateSEOMetadata, generatePersonSchema } from '@/lib/seo';
 import { Metadata } from 'next';
 
@@ -114,6 +115,14 @@ export default async function FacultyProfilePage({ params }: PageProps) {
                       </span>
                     </div>
                   </div>
+
+                  {/* Academic Profiles Section */}
+                  {member.academicProfiles && member.academicProfiles.length > 0 && (
+                    <div className="mt-6">
+                      <h3 className="text-lg font-semibold text-gray-800 mb-3">Academic Profiles</h3>
+                      <AcademicProfileIcons profiles={member.academicProfiles} />
+                    </div>
+                  )}
 
                   <div className="mt-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-3">Major Research Areas</h3>

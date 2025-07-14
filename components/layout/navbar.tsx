@@ -190,10 +190,19 @@ export function Navbar() {
   {openDropdown === 'campus-life' && (
     <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border z-50">
       <div className="py-2">
+        <LoadingLink href="/campus-life/our-achievements" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+          Our Achievements
+        </LoadingLink>
+        <LoadingLink href="/campus-life/our-alumni-and-student-in-entrepreneurship" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+          Our Alumni & Students in Entrepreneurship
+        </LoadingLink>
+        <LoadingLink href="/campus-life/student-life-in-eee" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+          Student Life in EEE
+        </LoadingLink>
         <LoadingLink href="/campus-life/clubs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
           Clubs
         </LoadingLink>
-        <LoadingLink href="/campus-life/organizations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+        <LoadingLink href="/campus-life/student-organizations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
           Organizations
         </LoadingLink>
         <LoadingLink href="/campus-life/conferences" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
@@ -317,6 +326,9 @@ export function Navbar() {
                   </button>
                   {openDropdown === 'mobile-campus-life' && (
                     <div className="pl-4 mt-2 space-y-2">
+                      <LoadingLink href="/campus-life/our-achievements" className="block py-1 text-sm text-gray-600">Our Achievements</LoadingLink>
+                      <LoadingLink href="/campus-life/our-alumni-and-student-in-entrepreneurship" className="block py-1 text-sm text-gray-600">Our Alumni & Students in Entrepreneurship</LoadingLink>
+                      <LoadingLink href="/campus-life/student-life-in-eee" className="block py-1 text-sm text-gray-600">Student Life in EEE</LoadingLink>
                       <LoadingLink href="/campus-life/clubs" className="block py-1 text-sm text-gray-600">Clubs</LoadingLink>
                       <LoadingLink href="/campus-life/student-organizations" className="block py-1 text-sm text-gray-600">Organizations</LoadingLink>
                       <LoadingLink href="/campus-life/conferences" className="block py-1 text-sm text-gray-600">Conferences & Talks</LoadingLink>
