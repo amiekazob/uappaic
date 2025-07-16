@@ -24,7 +24,7 @@ function EntrepreneurshipCard({ venture }: { venture: EntrepreneurshipType }) {
     <StaggeredItem>
       <Card className="overflow-hidden h-full flex flex-col group rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
         <div className="relative">
-          <Link href={`/campus-life/entrepreneurship/${venture.id}`} className="block">
+          <Link href={`/campus-life/our-alumni-and-student-in-entrepreneurship/${venture.id}`} className="block">
             <Image
               src={venture.images[0] || '/placeholder.jpg'}
               alt={venture.title}
@@ -49,10 +49,10 @@ function EntrepreneurshipCard({ venture }: { venture: EntrepreneurshipType }) {
               {venture.category}
             </span>
           </div>
-          <h3 className="font-bold text-xl mb-2">
-            <Link href={`/campus-life/entrepreneurship/${venture.id}`} className="hover:text-blue-700 transition-colors duration-300">{venture.title}</Link>
+          <h3 className="font-bold text-xl mb-2 line-clamp-2">
+            <Link href={`/campus-life/our-alumni-and-student-in-entrepreneurship/${venture.id}`} className="hover:text-blue-700 transition-colors duration-300">{venture.title}</Link>
           </h3>
-          <p className="text-gray-600 text-sm mb-4 flex-grow">{venture.shortDescription}</p>
+          <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-2">{venture.shortDescription}</p>
           
           <div className="space-y-1 text-sm text-gray-700 mb-4">
             <div>Founder: {venture.founder}</div>
@@ -67,7 +67,7 @@ function EntrepreneurshipCard({ venture }: { venture: EntrepreneurshipType }) {
           </div>
           
           <Button asChild className="bg-indigo-700 hover:bg-indigo-800 mt-auto w-fit">
-            <Link href={`/campus-life/entrepreneurship/${venture.id}`}>
+            <Link href={`/campus-life/our-alumni-and-student-in-entrepreneurship/${venture.id}`}>
               Read More
               <ChevronRight className="w-4 h-4 ml-1" />
             </Link>
@@ -102,10 +102,13 @@ export default function EntrepreneurshipPage() {
     return allVentures.filter(venture => {
       const categoryMatch = selectedCategory === '- Any -' || venture.category === selectedCategory;
       const yearMatch = selectedYear === '- Year -' || new Date(venture.date).getFullYear().toString() === selectedYear;
-      const typeMatch = selectedType === 'All' || venture.type.toLowerCase().replace('-', ' ') === selectedType.toLowerCase();
+      
+      // Normalize both venture type and selected type for comparison
+      const normalizeType = (type: string) => type.toLowerCase().replace(/[-_]/g, ' ');
+      const typeMatch = selectedType === 'All' || normalizeType(venture.type) === normalizeType(selectedType);
       
       return categoryMatch && yearMatch && typeMatch;
-    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }).sort((a, b) => a.order - b.order);
   }, [allVentures, selectedCategory, selectedYear, selectedType]);
 
   const handleSearch = () => {

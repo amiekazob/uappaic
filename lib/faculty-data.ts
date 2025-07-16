@@ -19,7 +19,7 @@ export type FacultyMember = {
   bio: string;
   email: string;
   phone: string;
-  room: number;
+  room?: string | number;
   education: {
     degree: string;
     institution: string;

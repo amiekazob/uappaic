@@ -12,36 +12,36 @@ import { studentLifeData, type StudentLifeType } from '@/lib/student-life-data'
 function JourneyStageCard({ activity, index }: { activity: StudentLifeType; index: number }) {
   const getJourneyIcon = (type: string) => {
     switch (type) {
-      case 'transition':
-        return <ArrowRight className="w-6 h-6 text-emerald-600" />
-      case 'orientation':
-        return <Star className="w-6 h-6 text-blue-600" />
-      case 'academic-journey':
-        return <BookOpen className="w-6 h-6 text-purple-600" />
-      case 'personal-growth':
-        return <Users className="w-6 h-6 text-orange-600" />
-      case 'career-preparation':
-        return <Trophy className="w-6 h-6 text-red-600" />
-      case 'graduation':
+      case 'academic':
+        return <BookOpen className="w-6 h-6 text-blue-600" />
+      case 'extracurricular':
+        return <Users className="w-6 h-6 text-green-600" />
+      case 'research':
+        return <Star className="w-6 h-6 text-purple-600" />
+      case 'leadership':
+        return <Trophy className="w-6 h-6 text-orange-600" />
+      case 'community':
+        return <Heart className="w-6 h-6 text-red-600" />
+      case 'career':
         return <GraduationCap className="w-6 h-6 text-indigo-600" />
       default:
-        return <Heart className="w-6 h-6 text-gray-600" />
+        return <ArrowRight className="w-6 h-6 text-gray-600" />
     }
   }
 
   const getJourneyColor = (type: string) => {
     switch (type) {
-      case 'transition':
-        return 'from-emerald-50 to-emerald-100 border-emerald-300'
-      case 'orientation':
+      case 'academic':
         return 'from-blue-50 to-blue-100 border-blue-300'
-      case 'academic-journey':
+      case 'extracurricular':
+        return 'from-green-50 to-green-100 border-green-300'
+      case 'research':
         return 'from-purple-50 to-purple-100 border-purple-300'
-      case 'personal-growth':
+      case 'leadership':
         return 'from-orange-50 to-orange-100 border-orange-300'
-      case 'career-preparation':
+      case 'community':
         return 'from-red-50 to-red-100 border-red-300'
-      case 'graduation':
+      case 'career':
         return 'from-indigo-50 to-indigo-100 border-indigo-300'
       default:
         return 'from-gray-50 to-gray-100 border-gray-300'
@@ -50,17 +50,17 @@ function JourneyStageCard({ activity, index }: { activity: StudentLifeType; inde
 
   const getTimelineColor = (type: string) => {
     switch (type) {
-      case 'transition':
-        return 'bg-emerald-500'
-      case 'orientation':
+      case 'academic':
         return 'bg-blue-500'
-      case 'academic-journey':
+      case 'extracurricular':
+        return 'bg-green-500'
+      case 'research':
         return 'bg-purple-500'
-      case 'personal-growth':
+      case 'leadership':
         return 'bg-orange-500'
-      case 'career-preparation':
+      case 'community':
         return 'bg-red-500'
-      case 'graduation':
+      case 'career':
         return 'bg-indigo-500'
       default:
         return 'bg-gray-500'
@@ -70,20 +70,20 @@ function JourneyStageCard({ activity, index }: { activity: StudentLifeType; inde
   return (
     <Card className={cn(
       "overflow-hidden h-full flex flex-col group rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border-2 bg-gradient-to-br transform hover:scale-105 relative",
-      getJourneyColor(activity.type)
+      getJourneyColor(activity.experienceType)
     )}>
       {/* Journey stage indicator */}
       <div className={cn(
         "absolute top-4 left-4 w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-10",
-        getTimelineColor(activity.type)
+        getTimelineColor(activity.experienceType)
       )}>
-        {getJourneyIcon(activity.type)}
+        {getJourneyIcon(activity.experienceType)}
       </div>
       
       <div className="relative">
-        <Link href={activity.link} className="block">
+        <Link href={`/campus-life/student-life-in-eee/${activity.slug}`} className="block">
           <Image
-            src={activity.images[0] || '/placeholder.jpg'}
+            src={activity.coverImage || activity.gallery?.[0]?.url || '/placeholder.jpg'}
             alt={activity.title}
             width={400}
             height={200}
@@ -91,10 +91,10 @@ function JourneyStageCard({ activity, index }: { activity: StudentLifeType; inde
           />
         </Link>
         <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
-          <span className="text-xs font-bold text-gray-800">{activity.studentYear}</span>
+          <span className="text-xs font-bold text-gray-800">{activity.metadata?.duration || 'Ongoing'}</span>
         </div>
         <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm px-3 py-2 rounded-full">
-          <span className="text-xs font-semibold text-white">{activity.journeyStage}</span>
+          <span className="text-xs font-semibold text-white">{activity.category}</span>
         </div>
       </div>
       
@@ -102,42 +102,52 @@ function JourneyStageCard({ activity, index }: { activity: StudentLifeType; inde
         <div className="flex items-center gap-2 mb-3">
           <span className={cn(
             "px-3 py-1 text-xs font-bold rounded-full text-white",
-            getTimelineColor(activity.type)
+            getTimelineColor(activity.experienceType)
           )}>
-            {activity.type.replace('-', ' ').toUpperCase()}
+            {activity.experienceType.replace('-', ' ').toUpperCase()}
           </span>
         </div>
         
         <h3 className="font-bold text-lg mb-2 line-clamp-2">
-          <Link href={activity.link} className="hover:text-indigo-600 transition-colors duration-300">
+          <Link href={`/campus-life/student-life-in-eee/${activity.slug}`} className="hover:text-indigo-600 transition-colors duration-300">
             {activity.title}
           </Link>
         </h3>
         
-        <p className="text-gray-700 text-sm mb-4 flex-grow line-clamp-3">{activity.shortDescription}</p>
+        {activity.subtitle && (
+          <p className="text-gray-600 text-sm mb-2 font-medium">{activity.subtitle}</p>
+        )}
+        
+        <p className="text-gray-700 text-sm mb-4 flex-grow line-clamp-3">{activity.description}</p>
         
         {/* Journey details */}
         <div className="space-y-1 mb-4">
-          {activity.mentorSupport && (
+          {activity.metadata?.participants && (
             <div className="text-sm text-gray-600 flex items-center gap-1">
-              <User className="w-4 h-4" />
-              <span className="font-medium truncate">{activity.mentorSupport}</span>
+              <Users className="w-4 h-4" />
+              <span className="font-medium truncate">{activity.metadata.participants} participants</span>
             </div>
           )}
-          {activity.location && (
+          {activity.metadata?.location && (
             <div className="text-sm text-gray-600 flex items-center gap-1">
               <MapPin className="w-4 h-4" />
-              <span className="font-medium">{activity.location}</span>
+              <span className="font-medium">{activity.metadata.location}</span>
+            </div>
+          )}
+          {activity.engagement?.difficulty && (
+            <div className="text-sm text-gray-600 flex items-center gap-1">
+              <Star className="w-4 h-4" />
+              <span className="font-medium">{activity.engagement.difficulty} level</span>
             </div>
           )}
         </div>
         
         <Button asChild size="sm" className={cn(
           "mt-auto w-full transition-all duration-300 text-white",
-          getTimelineColor(activity.type)
+          getTimelineColor(activity.experienceType)
         )}>
-          <Link href={activity.link}>
-            Explore Journey Stage
+          <Link href={`/campus-life/student-life-in-eee/${activity.slug}`}>
+            Explore Experience
             <ChevronRight className="w-4 h-4 ml-2" />
           </Link>
         </Button>
@@ -147,10 +157,8 @@ function JourneyStageCard({ activity, index }: { activity: StudentLifeType; inde
 }
 
 export default function StudentLifeHighlights() {
-  // Get the latest 3 student journey stages
-  const latestJourneyStages = studentLifeData
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3)
+  // Get the first 3 student experiences from the data file
+  const latestExperiences = studentLifeData.slice(0, 3)
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 relative overflow-hidden">
@@ -176,9 +184,9 @@ export default function StudentLifeHighlights() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {latestJourneyStages.map((activity, index) => (
+          {latestExperiences.map((activity, index) => (
             <div 
-              key={activity.id} 
+              key={activity.slug} 
               className="transform transition-all duration-500"
               style={{
                 animationDelay: `${index * 200}ms`

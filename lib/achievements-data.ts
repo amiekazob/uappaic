@@ -2,7 +2,8 @@ export interface Achievement {
   id: string
   title: string
   shortDescription: string
-  date: string
+  date?: string
+  order: number
   images: string[]
   contentSections: {
     sectionTitle: string
@@ -20,40 +21,51 @@ export const achievementsData: Achievement[] = [
     id: "department-ieb-accreditation",
     title: "Department IEB Accreditation",
     shortDescription: "Since its commencement the department is producing quality graduates every year. In the 2015, 152 students and in 016, 114 have earned their B.Sc. degree. Since inception in 2004, the Department has produced 891graduates in B.Sc. in Electrical and Electronic Engineering. In 2014, the department has accredited by the Board of Accreditation for Engineering and Technical Education (BAETE), Bangladesh. As a result the graduates from the department of EEE, UAP can become a member of Institution of Engineers, Bangladesh (IEB).",
-    date: "2024-11-15T00:00:00Z",
+    date: "2014-12-01T00:00:00Z",
+    order: 1,
     images: [
       "/images/our-achievements/department-ieb-accreditation/1.jpg"
     ],
     contentSections: [
       {
-        sectionTitle: "Championship Victory",
-        sectionDescription: "Team Supersonic from UAP EEE Department emerged as winners at the prestigious IEEE WIE BD Summit 2024 Project Idea Competition. The competition was held during RAAICON 2024 at BUET, organized by IEEE Bangladesh Section and IEEE Women in Engineering Bangladesh Section. This victory demonstrates the exceptional talent and innovative thinking of our students in the fields of robotics, automation, AI, and IoT."
+        sectionTitle: "Accreditation Achievement",
+        sectionDescription: "In 2014, the Department of Electrical and Electronic Engineering at UAP achieved a significant milestone by receiving accreditation from the Board of Accreditation for Engineering and Technical Education (BAETE), Bangladesh. This accreditation validates the quality of education and ensures that our graduates meet international standards in engineering education."
       },
       {
-        sectionTitle: "Project Innovation",
-        sectionDescription: "The winning project showcased cutting-edge solutions in emerging technologies, reflecting the department's commitment to fostering innovation and research excellence among students. The team's success highlights the quality of education and mentorship provided by the EEE Department."
+        sectionTitle: "Graduate Excellence",
+        sectionDescription: "Since its inception in 2004, the Department has produced 891 graduates in B.Sc. in Electrical and Electronic Engineering. The department consistently produces quality graduates every year, with 152 students graduating in 2015 and 114 in 2016, demonstrating our commitment to academic excellence and professional development."
+      },
+      {
+        sectionTitle: "Professional Recognition",
+        sectionDescription: "As a result of the BAETE accreditation, graduates from the Department of EEE, UAP are eligible to become members of the Institution of Engineers, Bangladesh (IEB). This professional recognition opens doors for our graduates to pursue chartered engineer status and enhances their career prospects in the engineering field."
       }
     ],
     highlights: [
-      "First place in IEEE WIE BD Summit 2024",
-      "Project Idea Competition winners",
-      "Recognition at RAAICON 2024 BUET",
-      "Excellence in robotics and AI innovation"
+      "BAETE accreditation received in 2014",
+      "891 graduates produced since 2004",
+      "Graduates eligible for IEB membership",
+      "Quality education meeting international standards",
+      "Consistent graduate production every year"
     ],
-    category: "Competition",
-    type: "competition",
-    link: "/achievements/ieee-wie-championship-2024"
+    category: "Accreditation",
+    type: "recognition",
+    link: "/our-achievements/department-ieb-accreditation"
   },
+  
 {
   id: "negative-pressure-canopy-covid19",
   title: "First Prototype of Negative Pressure Isolation Canopy for COVID-19",
   shortDescription: "EEE student Sakhawat Hossen Rakib developed the first-ever prototype of a negative pressure isolation canopy for COVID-19 under the supervision of Dr. Khondkar Siddique-e-Rabbani.",
   date: "2020-06-01T00:00:00Z",
-  images: [],
+  order: 3,
+  images: [
+    "/images/our-achievements/negative-pressure-canopy-covid19/1.jpg"
+    
+  ],
   contentSections: [
     {
       sectionTitle: "Innovative Medical Engineering",
-      sectionDescription: "Sakhawat Hossen Rakib, a student of the EEE Department at UAP, developed the first-ever prototype of a Negative Pressure Isolation Canopy for COVID-19 patients. This innovation was aimed at minimizing the risk of virus transmission in hospitals by creating a controlled airflow environment around infected patients."
+      sectionDescription: "Sakhawat Hossen Rakib, an alumnus and lecturer of the EEE Department at UAP, developed the first-ever prototype of a Negative Pressure Isolation Canopy for COVID-19 patients. This innovation was aimed at minimizing the risk of virus transmission in hospitals by creating a controlled airflow environment around infected patients."
     },
     {
       sectionTitle: "Expert Supervision",
@@ -76,7 +88,10 @@ export const achievementsData: Achievement[] = [
   title: "Champion in IDEA Contest – Mujib Borsho IT Carnival 2020",
   shortDescription: "Team UAP_JUVENILE_SQUAD secured the Champion position in the IDEA Contest of Mujib Borsho IT Carnival 2020, showcasing their excellence in innovation and problem-solving.",
   date: "2020-03-01T00:00:00Z",
-  images: [],
+  order: 4,
+  images: [
+    "/images/our-achievements/mujib-borsho-it-carnival-2020/1.jpg"
+  ],
   contentSections: [
     {
       sectionTitle: "National Level Recognition",
@@ -97,38 +112,16 @@ export const achievementsData: Achievement[] = [
   type: "competition",
   link: "/achievements/mujib-borsho-it-carnival-2020"
 },
-{
-  id: "ieee-wie-bd-summit-2024",
-  title: "IEEE WIE BD Summit 2024 Project Competition Winner",
-  shortDescription: "UAP EEE students won the IEEE Women in Engineering Bangladesh Section Summit 2024 Project Idea Competition, demonstrating excellence in robotics, automation, AI, and IoT technologies.",
-  date: "2024-12-01T00:00:00Z",
-  images: [],
-  contentSections: [
-    {
-      sectionTitle: "Outstanding Performance",
-      sectionDescription: "Students from the Department of Electrical and Electronic Engineering at UAP showcased exceptional talent by winning the IEEE WIE BD Summit 2024 Project Idea Competition. The competition focused on innovative solutions in emerging technologies including robotics, automation, artificial intelligence, and Internet of Things (IoT)."
-    },
-    {
-      sectionTitle: "Technical Excellence",
-      sectionDescription: "The winning project demonstrated advanced technical skills and innovative problem-solving approaches. This achievement reflects the high-quality education and research environment fostered by the EEE Department, preparing students to excel in competitive technical challenges."
-    }
-  ],
-  highlights: [
-    "Winner of IEEE WIE BD Summit 2024 Project Competition",
-    "Excellence in robotics and automation",
-    "Innovation in AI and IoT technologies",
-    "Recognition from IEEE Bangladesh Section"
-  ],
-  category: "Competition",
-  type: "competition",
-  link: "/achievements/ieee-wie-bd-summit-2024"
-},
+
 {
   id: "robo-soccer-2019",
   title: "Champion in ROBO SOCCER 2019",
   shortDescription: "Team UAP_EEE_Alient_BOt claimed the Champion title in ROBO SOCCER 2019, demonstrating superior robotics engineering and teamwork.",
   date: "2019-10-01T00:00:00Z",
-  images: [],
+  order: 5,
+ images: [
+    "/images/our-achievements/robo-soccer-2019/1.jpg"
+  ],
   contentSections: [
     {
       sectionTitle: "Robotics Victory",
@@ -153,8 +146,10 @@ export const achievementsData: Achievement[] = [
   id: "smart-ev-charging-award-ahad",
   title: "Top 10 Idea Award – Smart EV Charging Station",
   shortDescription: "Muhammad Ahad Rahman Miah, Assistant Professor of EEE, UAP, was recognized for his innovative idea of a Smart Charging Station for Electric Vehicles using solar power.",
-  date: "2023-05-01T00:00:00Z",
-  images: [],
+  date: "",
+  //date: "2023-05-01T00:00:00Z",
+  order: 6,
+  images: ["/images/our-achievements/smart-ev-charging-award-ahad/1.jpg"],
   contentSections: [
     {
       sectionTitle: "National Recognition",
@@ -180,9 +175,8 @@ export const achievementsData: Achievement[] = [
   title: "Special Session at IEEE Conference – Malaysia 2018",
   shortDescription: "UAP EEE organized a special session on Power Control and Energy Management at the 7th IEEE Conference on Smart Grid and Clean Energy in Malaysia.",
   date: "2018-05-01T00:00:00Z",
-  images: [
-    "/images/achievements/ieee-utar-2018.png" // Update path as per your project
-  ],
+  order: 7,
+  images: ["/images/our-achievements/ieee-special-session-utar-2018/1.jpg"],
   contentSections: [
     {
       sectionTitle: "International Recognition",

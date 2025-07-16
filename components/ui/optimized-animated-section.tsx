@@ -32,7 +32,7 @@ const optimizedVariants = {
 // Optimized transition settings
 const optimizedTransition = {
   duration: 0.4, // Reduced from longer durations
-  ease: [0.25, 0.1, 0.25, 1], // Optimized easing
+  ease: "easeOut", // Use string easing instead of array
 }
 
 export function OptimizedAnimatedSection({
@@ -45,7 +45,7 @@ export function OptimizedAnimatedSection({
 }: OptimizedAnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { 
-    threshold, 
+    amount: threshold, 
     once,
     margin: "0px 0px -100px 0px" // Trigger animation earlier
   })

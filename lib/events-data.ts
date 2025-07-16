@@ -4,6 +4,7 @@ export const NewsEvents = [
     title: "UAP Hosted TechTron 2025",
     shortDescription: "TechTron 2025 celebrated innovation and engineering excellence at UAP.",
     date: "2025-04-25T00:00:00Z",
+    order: 1,
     images: [
       "/images/news-events/tectron-2025/1.jpg"
     ],
@@ -27,6 +28,7 @@ export const NewsEvents = [
     title: "EEE team at KUET Bitfest 2.0",
     shortDescription: "Team EEE Amplifier from UAP took part in the Inter University Programming Contest at KUET BitFest 2025.",
     date: "2025-01-05T00:00:00Z",
+    order: 2,
     images: [
       "/images/news-events/eee-participate-bitfest-2025/1.jpg"
     ],
@@ -50,6 +52,7 @@ export const NewsEvents = [
     title: "UAP EEE Team Became Champion",
     shortDescription: "Team Supersonic emerged as winners at the WIE BD Summit 2024 Project Idea Competition.",
     date: "2024-11-15T00:00:00Z",
+    order: 3,
     images: [
       "https://i.ibb.co/ymTtMzsW/IMG-20250711-WA0005.jpg"
     ],
@@ -70,11 +73,12 @@ export const NewsEvents = [
   },
  {
     id: 4,
-    title: "EEE Student Mehedi Hasan Munna Recognized for Life-Saving ‘LifeBox’ Innovation",
-    shortDescription: `With his innovative project *“LifeBox”*, a solar-powered shelter for flood-affected communities,
+    title: "EEE Student Mehedi Hasan Munna Recognized for Life-Saving 'LifeBox' Innovation",
+    shortDescription: `With his innovative project *"LifeBox"*, a solar-powered shelter for flood-affected communities,
 Md. Mehedi Hasan Munna (UAP EEE) secured 2nd Runner-Up in Poster Presentation at Research Expo 2025.
 `,
     date: "2025-05-13T00:00:00Z",
+    order: 4,
     images: [
       "/images/news-events/research-expo-2025/1.jpg"
     ],
@@ -129,6 +133,7 @@ Mr. Masum Howlader, Assistant Professor, Department of EEE
     title: "Debate Carnival 3.0: A Celebration of Wit, Words, and Wisdom",
     shortDescription: "The EEE Debate Club, UAP, successfully organized Debate Carnival 3.0—an intellectually charged three-day event held in Spring 2025. With intense team debates, a creative Planchette round, and standout performances by students, the event showcased critical thinking, eloquence, and innovation.",
     date: "2025-03-03T00:00:00Z",
+    order: 5,
     images: [
       "/images/news-events/debate-carnival-2025/1.jpg"
     ],
@@ -159,6 +164,7 @@ Both events provided a vibrant platform to enhance students' critical thinking a
     title: "LenScape InterDepartmental Photography Exhibition ",
     shortDescription: "LenScape InterDepartmental Photography Exhibition",
     date: "2025-05-13T00:00:00Z",
+    order: 6,
     images: [
       "/images/news-events/lenscape/1.jpg"
     ],

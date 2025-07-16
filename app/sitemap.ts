@@ -97,7 +97,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // News/Event pages
   const newsPages = events.map((event) => ({
-    url: `${baseUrl}/news/${event.slug}`,
+    url: `${baseUrl}${event.link}`,
     lastModified: new Date(event.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,

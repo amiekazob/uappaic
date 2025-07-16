@@ -12,7 +12,7 @@ import { StaggeredGrid, StaggeredItem } from "@/components/ui/staggered-containe
 import { useLazyEventsData } from '@/components/ui/lazy-data-loader'
 
 type Event = {
-  id: string
+  id: number
   title: string
   date: string
   shortDescription?: string
@@ -20,6 +20,7 @@ type Event = {
   category: string
   type: string
   link: string
+  order: number
 }
 
 // Format date utility
@@ -53,10 +54,10 @@ function EventCard({ event }: { event: Event }) {
           </div>
         </div>
         <CardContent className="p-6 flex-grow flex flex-col">
-          <h3 className="font-bold text-xl mb-2">
+          <h3 className="font-bold text-xl mb-2 line-clamp-2">
             <Link href={event.link} className="hover:text-blue-700 transition-colors duration-300">{event.title}</Link>
           </h3>
-          <p className="text-gray-600 text-sm mb-4 flex-grow">{event.shortDescription}</p>
+          <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-2">{event.shortDescription}</p>
           <div className="text-sm text-gray-500 flex items-center mb-4">
             <Calendar className="w-4 h-4 mr-2" />
             <span>{formattedDate.month} {formattedDate.day}, {formattedDate.year}</span>
@@ -105,7 +106,7 @@ export default function NewsPage() {
         (selectedType === 'Events' && event.type === 'event');
       
       return categoryMatch && yearMatch && typeMatch;
-    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }).sort((a, b) => a.order - b.order);
   }, [allEvents, selectedCategory, selectedYear, selectedType]);
 
   if (loading) {

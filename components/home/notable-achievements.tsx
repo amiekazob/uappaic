@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils'
 import { achievementsData, formatDate } from '@/lib/achievements-data'
 
 function NotableAchievementCard({ achievement }: { achievement: typeof achievementsData[0] }) {
-  const formattedDate = formatDate(achievement.date);
+  const formattedDate = achievement.date ? formatDate(achievement.date) : null;
   
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -32,7 +32,7 @@ function NotableAchievementCard({ achievement }: { achievement: typeof achieveme
   return (
     <Card className="overflow-hidden h-full flex flex-col group rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border-l-4 border-l-yellow-500 hover:border-l-yellow-600">
       <div className="relative">
-        <Link href={achievement.link} className="block">
+        <Link href={`/campus-life/our-achievements/${achievement.id}`} className="block">
           <Image
             src={achievement.images[0] || '/placeholder.jpg'}
             alt={achievement.title}
@@ -41,10 +41,12 @@ function NotableAchievementCard({ achievement }: { achievement: typeof achieveme
             className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
-        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-gray-800 p-2 text-center rounded-lg shadow-md">
-          <div className="font-bold text-lg leading-none">{formattedDate.day}</div>
-          <div className="text-xs uppercase tracking-wider">{formattedDate.month}</div>
-        </div>
+        {formattedDate && (
+          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-gray-800 p-2 text-center rounded-lg shadow-md">
+            <div className="font-bold text-lg leading-none">{formattedDate.day}</div>
+            <div className="text-xs uppercase tracking-wider">{formattedDate.month}</div>
+          </div>
+        )}
         <div className="absolute top-3 left-3 bg-yellow-500/90 backdrop-blur-sm text-white p-2 rounded-full shadow-md">
           {getTypeIcon(achievement.type)}
         </div>
@@ -63,17 +65,19 @@ function NotableAchievementCard({ achievement }: { achievement: typeof achieveme
           </span>
         </div>
         <h3 className="font-bold text-lg mb-2 line-clamp-2">
-          <Link href={achievement.link} className="hover:text-yellow-600 transition-colors duration-300">
+          <Link href={`/campus-life/our-achievements/${achievement.id}`} className="hover:text-yellow-600 transition-colors duration-300">
             {achievement.title}
           </Link>
         </h3>
         <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-3">{achievement.shortDescription}</p>
-        <div className="text-sm text-gray-500 flex items-center mb-4">
-          <Calendar className="w-4 h-4 mr-2" />
-          <span>{formattedDate.month} {formattedDate.day}, {formattedDate.year}</span>
-        </div>
+        {formattedDate && (
+          <div className="text-sm text-gray-500 flex items-center mb-4">
+            <Calendar className="w-4 h-4 mr-2" />
+            <span>{formattedDate.month} {formattedDate.day}, {formattedDate.year}</span>
+          </div>
+        )}
         <Button asChild size="sm" className="bg-yellow-600 hover:bg-yellow-700 mt-auto w-fit">
-          <Link href={achievement.link}>
+          <Link href={`/campus-life/our-achievements/${achievement.id}`}>
             Read More
             <ChevronRight className="w-4 h-4 ml-1" />
           </Link>
@@ -86,7 +90,7 @@ function NotableAchievementCard({ achievement }: { achievement: typeof achieveme
 export function NotableAchievements() {
   // Get the latest 3 achievements
   const latestAchievements = achievementsData
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort((a, b) => a.order - b.order)
     .slice(0, 3)
 
   return (

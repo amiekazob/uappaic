@@ -18,10 +18,11 @@ interface Event {
     sectionTitle: string
     sectionDescription: string
   }[]
-  highlights: string[]
+  highlights?: string[]
   category: string
   type: string
   link: string
+  order: number
 }
 
 interface FormattedDate {

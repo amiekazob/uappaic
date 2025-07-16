@@ -28,12 +28,18 @@ export function LoadingSpinner() {
 
     router.push = (...args) => {
       handleStart()
-      return originalPush.apply(router, args).finally(handleComplete)
+      const result = originalPush.apply(router, args)
+      // Handle completion after a short delay since router methods don't return promises
+      setTimeout(handleComplete, 100)
+      return result
     }
 
     router.replace = (...args) => {
       handleStart()
-      return originalReplace.apply(router, args).finally(handleComplete)
+      const result = originalReplace.apply(router, args)
+      // Handle completion after a short delay since router methods don't return promises
+      setTimeout(handleComplete, 100)
+      return result
     }
 
     router.back = () => {

@@ -22,7 +22,7 @@ const formatAchievementDate = (dateString: string) => {
 }
 
 function AchievementCard({ achievement }: { achievement: AchievementType }) {
-  const formattedDate = formatAchievementDate(achievement.date);
+  const formattedDate = achievement.date ? formatAchievementDate(achievement.date) : null;
   
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -45,7 +45,7 @@ function AchievementCard({ achievement }: { achievement: AchievementType }) {
     <StaggeredItem>
       <Card className="overflow-hidden h-full flex flex-col group rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-l-yellow-500">
         <div className="relative">
-          <Link href={achievement.link} className="block">
+          <Link href={`/campus-life/our-achievements/${achievement.id}`} className="block">
             <Image
               src={achievement.images[0] || '/placeholder.jpg'}
               alt={achievement.title}
@@ -54,10 +54,12 @@ function AchievementCard({ achievement }: { achievement: AchievementType }) {
               className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
-          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-800 p-3 text-center rounded-lg shadow-md">
-            <div className="font-bold text-2xl leading-none">{formattedDate.day}</div>
-            <div className="text-sm uppercase tracking-wider">{formattedDate.month}</div>
-          </div>
+          {formattedDate && (
+            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-800 p-3 text-center rounded-lg shadow-md">
+              <div className="font-bold text-2xl leading-none">{formattedDate.day}</div>
+              <div className="text-sm uppercase tracking-wider">{formattedDate.month}</div>
+            </div>
+          )}
           <div className="absolute top-4 left-4 bg-yellow-500/90 backdrop-blur-sm text-white p-2 rounded-full shadow-md">
             {getTypeIcon(achievement.type)}
           </div>
@@ -78,16 +80,18 @@ function AchievementCard({ achievement }: { achievement: AchievementType }) {
               {achievement.category}
             </span>
           </div>
-          <h3 className="font-bold text-xl mb-2">
-            <Link href={achievement.link} className="hover:text-yellow-600 transition-colors duration-300">{achievement.title}</Link>
+          <h3 className="font-bold text-xl mb-2 line-clamp-2">
+            <Link href={`/campus-life/our-achievements/${achievement.id}`} className="hover:text-yellow-600 transition-colors duration-300">{achievement.title}</Link>
           </h3>
-          <p className="text-gray-600 text-sm mb-4 flex-grow">{achievement.shortDescription}</p>
-          <div className="text-sm text-gray-500 flex items-center mb-4">
-            <Calendar className="w-4 h-4 mr-2" />
-            <span>{formattedDate.month} {formattedDate.day}, {formattedDate.year}</span>
-          </div>
+          <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-2">{achievement.shortDescription}</p>
+          {formattedDate && (
+            <div className="text-sm text-gray-500 flex items-center mb-4">
+              <Calendar className="w-4 h-4 mr-2" />
+              <span>{formattedDate.month} {formattedDate.day}, {formattedDate.year}</span>
+            </div>
+          )}
           <Button asChild className="bg-yellow-600 hover:bg-yellow-700 mt-auto w-fit">
-            <Link href={achievement.link}>
+            <Link href={`/campus-life/our-achievements/${achievement.id}`}>
               Read More
               <ChevronRight className="w-4 h-4 ml-1" />
             </Link>
@@ -112,7 +116,9 @@ export default function OurAchievementsPage() {
   }, [allAchievements]);
 
   const years = useMemo(() => {
-    const uniqueYears = Array.from(new Set(allAchievements.map(achievement => new Date(achievement.date).getFullYear().toString())));
+    const uniqueYears = Array.from(new Set(allAchievements
+      .filter(achievement => achievement.date)
+      .map(achievement => new Date(achievement.date!).getFullYear().toString())));
     return ['- Year -', ...uniqueYears.sort((a, b) => parseInt(b) - parseInt(a))];
   }, [allAchievements]);
 
@@ -121,11 +127,12 @@ export default function OurAchievementsPage() {
   const filteredAchievements = useMemo(() => {
     return allAchievements.filter(achievement => {
       const categoryMatch = selectedCategory === '- Any -' || achievement.category === selectedCategory;
-      const yearMatch = selectedYear === '- Year -' || new Date(achievement.date).getFullYear().toString() === selectedYear;
+      const yearMatch = selectedYear === '- Year -' || 
+        (achievement.date && new Date(achievement.date).getFullYear().toString() === selectedYear);
       const typeMatch = selectedType === 'All' || achievement.type.toLowerCase() === selectedType.toLowerCase();
       
       return categoryMatch && yearMatch && typeMatch;
-    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }).sort((a, b) => a.order - b.order);
   }, [allAchievements, selectedCategory, selectedYear, selectedType]);
 
   const handleSearchArchive = () => {

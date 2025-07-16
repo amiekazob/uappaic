@@ -189,7 +189,7 @@ export default function FacultyPage() {
     m.role === 'Assistant Professor' && m.role !== 'HOD' && !m.role.includes('Head')
   );
   const lecturers = facultyMembers.filter(m => 
-    m.role === 'Lecturer' && m.role !== 'HOD' && !m.role.includes('Head')
+    m.role === 'Lecturer' && !m.role.includes('Head')
   );
   const onLeaveFaculty = facultyMembers.filter(m => m.role === 'On Leave');
 

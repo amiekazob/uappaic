@@ -54,6 +54,21 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  // Redirects for old entrepreneurship routes
+  async redirects() {
+    return [
+      {
+        source: '/our-alumni-and-student-in-entrepreneurship/:path*',
+        destination: '/campus-life/our-alumni-and-student-in-entrepreneurship/:path*',
+        permanent: true,
+      },
+      {
+        source: '/campus-life/entrepreneurship/:id',
+        destination: '/campus-life/our-alumni-and-student-in-entrepreneurship/:id',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

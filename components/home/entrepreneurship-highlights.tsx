@@ -111,7 +111,7 @@ function EntrepreneurshipCard({ venture }: { venture: EntrepreneurshipType }) {
 export function EntrepreneurshipHighlights() {
   // Get the latest 3 entrepreneurship ventures
   const latestVentures = entrepreneurshipData
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort((a, b) => a.order - b.order)
     .slice(0, 3)
 
   return (
