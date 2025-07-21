@@ -31,7 +31,8 @@ export function AlumniPortalNotification({ onClose }: AlumniPortalNotificationPr
     return () => window.removeEventListener('scroll', handleScroll)
   }, [isVisible])
 
-  const handleClose = () => {
+  const handleClose = (e?: React.MouseEvent) => {
+    e?.stopPropagation()
     setIsClosing(true)
     setTimeout(() => {
       setIsVisible(false)
@@ -39,7 +40,12 @@ export function AlumniPortalNotification({ onClose }: AlumniPortalNotificationPr
     }, 300)
   }
 
-  const handleClick = () => {
+  const handlePopupClick = () => {
+    // Scroll to alumni section when popup is clicked
+    const alumniSection = document.getElementById('alumni-portal-section')
+    if (alumniSection) {
+      alumniSection.scrollIntoView({ behavior: 'smooth' })
+    }
     handleClose()
   }
 
@@ -51,11 +57,15 @@ export function AlumniPortalNotification({ onClose }: AlumniPortalNotificationPr
       isClosing ? "translate-y-full opacity-0 scale-95" : "translate-y-0 opacity-100 scale-100"
     )}>
       {/* Speech bubble style popup */}
-      <div className="relative bg-white rounded-3xl shadow-2xl border-4 border-indigo-200 p-6 max-w-md mx-auto">
+      <div 
+        className="relative bg-white rounded-3xl shadow-2xl border-4 border-indigo-200 p-6 max-w-md mx-auto cursor-pointer hover:scale-105 transition-transform duration-200"
+        onClick={handlePopupClick}
+      >
         {/* Close button */}
         <button
-          onClick={handleClose}
-          className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 shadow-lg"
+          onClick={(e) => handleClose(e)}
+          className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-200 shadow-lg z-10"
+          aria-label="Close notification"
         >
           <X className="w-4 h-4" />
         </button>
