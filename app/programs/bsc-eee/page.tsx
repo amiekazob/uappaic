@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -384,7 +385,7 @@ export default function BSCEEEPage() {
             </div>
             <div className="text-center p-6 bg-white rounded-xl shadow-md">
               <BookOpen className="w-8 h-8 text-green-600 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-gray-900 mb-1">162</div>
+              <div className="text-2xl font-bold text-gray-900 mb-1">151</div>
               <div className="text-gray-600">Credit Hours</div>
             </div>
             <div className="text-center p-6 bg-white rounded-xl shadow-md">
@@ -394,8 +395,8 @@ export default function BSCEEEPage() {
             </div>
             <div className="text-center p-6 bg-white rounded-xl shadow-md">
               <Award className="w-8 h-8 text-orange-600 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-gray-900 mb-1">ABET</div>
-              <div className="text-gray-600">Accredited</div>
+              <div className="text-2xl font-bold text-gray-900 mb-1">IEB</div>
+              <div className="text-gray-600">Accredited(Applied for renewal in 2025)</div>
             </div>
           </div>
 
@@ -734,10 +735,12 @@ export default function BSCEEEPage() {
                   <Calendar className="w-5 h-5 mr-2" />
                   Apply for Admission
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900 font-semibold">
-                  <Phone className="w-5 h-5 mr-2" />
-                  Contact Admissions
-                </Button>
+                <Link href="/contact-us">
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900 font-semibold">
+                    <Phone className="w-5 h-5 mr-2" />
+                    Contact Admissions
+                  </Button>
+                </Link>
               </div>
               
               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">

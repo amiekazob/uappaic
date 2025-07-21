@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { LoadingLink } from "@/components/ui/loading-link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
@@ -15,6 +15,12 @@ export function Navbar() {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+
+  // Close dropdowns and mobile menu when navigating to a new page
+  useEffect(() => {
+    setOpenDropdown(null)
+    setIsMobileMenuOpen(false)
+  }, [pathname])
 
 
   const toggleMobileMenu = () => {
@@ -32,31 +38,31 @@ export function Navbar() {
   return (
     <>
       {/* Top Header */}
-      <div className="bg-blue-900 text-white py-2 text-sm">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <span>📧 info@uap-bd.edu</span>
-            <span>📞 +880-2-8157091-4</span>
+      <div className="bg-blue-900 text-white py-2 text-sm" suppressHydrationWarning={true}>
+        <div className="container mx-auto px-4 flex justify-between items-center" suppressHydrationWarning={true}>
+          <div className="flex items-center space-x-4" suppressHydrationWarning={true}>
+            <span>📧 dao.eee@uap-bd.edu</span>
+            <span>📞 +880-2-58157091</span>
           </div>
-          <div className="flex items-center space-x-4">
-            <Link href="#" className="hover:text-blue-200">Student Portal</Link>
-            <Link href="#" className="hover:text-blue-200">Faculty Portal</Link>
+          <div className="flex items-center space-x-4" suppressHydrationWarning={true}>
+            <Link href="https://ucam.uap-bd.edu/Security/LogIn.aspx" className="hover:text-blue-200">Student Portal</Link>
+            <Link href="https://ucam.uap-bd.edu/Security/LogIn.aspx" className="hover:text-blue-200">Faculty Portal</Link>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
       <header className="sticky top-0 z-50 w-full bg-white shadow-md">
-        <div className="container mx-auto px-4">
-          <div className="flex h-20 items-center justify-between">
-            {/* Logo and University Name */}
+        <div className="container mx-auto px-4" suppressHydrationWarning={true}>
+          <div className="flex h-20 items-center justify-between" suppressHydrationWarning={true}>
+            {/* Logo and Department Name */}
             <LoadingLink href="/" className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">UAP</span>
+              <div className="w-16 h-16 flex items-center justify-center" suppressHydrationWarning={true}>
+                <img src="/images/logo.png" alt="University of Asia Pacific Logo" className="w-full h-full object-contain" />
               </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-xl text-blue-900">University of Asia Pacific</span>
-                <span className="text-sm text-gray-600">Department of EEE</span>
+              <div className="flex flex-col" suppressHydrationWarning={true}>
+                <span className="text-lg font-bold text-gray-900">Department of EEE</span>
+                <span className="text-sm text-gray-600">UAP</span>
               </div>
             </LoadingLink>
 
@@ -75,7 +81,7 @@ export function Navbar() {
               </LoadingLink>
 
               {/* About Us */}
-              <div className="relative group">
+              <div className="relative group" suppressHydrationWarning={true}>
                 <button
                   className={cn(
                     "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
@@ -103,7 +109,7 @@ export function Navbar() {
               </div>
 
               {/* Admission */}
-              <div className="relative group">
+              <div className="relative group" suppressHydrationWarning={true}>
                 <button
                   className={cn(
                     "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
@@ -134,11 +140,11 @@ export function Navbar() {
                   pathname === '/faculty' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
               >
-                Faculty
+                Faculties
               </LoadingLink>
 
               {/* Research and Publications */}
-              <div className="relative group">
+              <div className="relative group" suppressHydrationWarning={true}>
                 <button
                   className={cn(
                     "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
@@ -174,7 +180,7 @@ export function Navbar() {
 
               
               {/* Campus Life */}
-<div className="relative group">
+<div className="relative group" suppressHydrationWarning={true}>
   <button
     className={cn(
       "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
@@ -205,9 +211,7 @@ export function Navbar() {
         <LoadingLink href="/campus-life/student-organizations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
           Organizations
         </LoadingLink>
-        <LoadingLink href="/campus-life/conferences" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-          Conferences & Talks
-        </LoadingLink>
+
         <LoadingLink href="/campus-life/trips" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
           Trips & Tours
         </LoadingLink>
@@ -225,20 +229,32 @@ export function Navbar() {
                   pathname === '/lab' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
                 )}
               >
-                Laboratory
+                Laboratories
               </LoadingLink>
 
-              {/* Contact Us */}
-              <LoadingLink
-                href="/contact-us"
-                className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  "hover:bg-orange-50 hover:text-orange-600",
-                  pathname === '/contact-us' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+              {/* More */}
+              <div className="relative group" suppressHydrationWarning={true}>
+                <button
+                  className={cn(
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
+                    "hover:bg-orange-50 hover:text-orange-600",
+                    openDropdown === 'more' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+                  )}
+                  onClick={() => toggleDropdown('more')}
+                >
+                  <span>More</span>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                {openDropdown === 'more' && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
+                    <div className="py-2">
+                      <LoadingLink href="/class-routine" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Class Routine</LoadingLink>
+                      <LoadingLink href="/exam-routine" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Exam Routine</LoadingLink>
+                      <LoadingLink href="/contact-us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Contact Us</LoadingLink>
+                    </div>
+                  </div>
                 )}
-              >
-                Contact Us
-              </LoadingLink>
+              </div>
             </nav>
 
 
@@ -296,7 +312,7 @@ export function Navbar() {
                   )}
                 </div>
 
-                <LoadingLink href="/faculty" className="block py-2 font-medium">Faculty</LoadingLink>
+                <LoadingLink href="/faculty" className="block py-2 font-medium">Faculties</LoadingLink>
                 
                 <div>
                   <button
@@ -331,15 +347,30 @@ export function Navbar() {
                       <LoadingLink href="/campus-life/student-life-in-eee" className="block py-1 text-sm text-gray-600">Student Life in EEE</LoadingLink>
                       <LoadingLink href="/campus-life/clubs" className="block py-1 text-sm text-gray-600">Clubs</LoadingLink>
                       <LoadingLink href="/campus-life/student-organizations" className="block py-1 text-sm text-gray-600">Organizations</LoadingLink>
-                      <LoadingLink href="/campus-life/conferences" className="block py-1 text-sm text-gray-600">Conferences & Talks</LoadingLink>
+
                       <LoadingLink href="/campus-life/trips" className="block py-1 text-sm text-gray-600">Trips & Tours</LoadingLink>
                     </div>
                   )}
                 </div>
 
-                <LoadingLink href="/lab" className="block py-2 font-medium">Laboratory</LoadingLink>
-                <LoadingLink href="/contact-us" className="block py-2 font-medium">Contact Us</LoadingLink>
+                <LoadingLink href="/lab" className="block py-2 font-medium">Laboratories</LoadingLink>
 
+                <div>
+                  <button
+                    className="flex items-center justify-between w-full py-2 text-left font-medium"
+                    onClick={() => toggleDropdown('mobile-more')}
+                  >
+                    <span>More</span>
+                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-more' && 'rotate-180')} />
+                  </button>
+                  {openDropdown === 'mobile-more' && (
+                    <div className="pl-4 mt-2 space-y-2">
+                      <LoadingLink href="/class-routine" className="block py-1 text-sm text-gray-600">Class Routine</LoadingLink>
+                      <LoadingLink href="/exam-routine" className="block py-1 text-sm text-gray-600">Exam Routine</LoadingLink>
+                      <LoadingLink href="/contact-us" className="block py-1 text-sm text-gray-600">Contact Us</LoadingLink>
+                    </div>
+                  )}
+                </div>
 
               </div>
             </div>

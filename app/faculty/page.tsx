@@ -26,11 +26,12 @@ const FacultyCard = ({ member }: { member: FacultyMember }) => (
   <Card className="flex flex-col h-full overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 group">
     <div className="relative">
       <Image
-        src={member.image}
+        src={member.image || "/placeholder-user.jpg"}
         alt={member.name}
         width={400}
         height={400}
         className="w-full h-80 object-cover object-top"
+
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
       <div className="absolute bottom-0 left-0 p-4">
@@ -64,11 +65,12 @@ const HodCard = ({ member }: { member: FacultyMember }) => (
         <div className="lg:col-span-2 relative">
           <div className="relative h-96 lg:h-full min-h-[500px]">
             <Image
-              src={member.image}
+              src={member.image || "/placeholder-user.jpg"}
               alt={member.name}
               width={500}
               height={600}
               className="w-full h-full object-cover object-top"
+              
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             {/* Floating badge */}
@@ -81,14 +83,14 @@ const HodCard = ({ member }: { member: FacultyMember }) => (
         </div>
         
         {/* Content Section */}
-        <div className="lg:col-span-3 p-8 lg:p-12 xl:p-16 flex flex-col justify-center">
+        <div className="lg:col-span-3 p-6 lg:p-8 xl:p-10 flex flex-col justify-center">
           <div className="space-y-6">
             {/* Title Section */}
             <div>
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight">
                 {member.name}
               </h2>
-              <p className="text-xl lg:text-2xl text-indigo-700 font-semibold mt-2">
+              <p className="text-lg lg:text-xl text-indigo-700 font-semibold mt-2">
                 {member.title.replace('Head of the Department & ', '')}
               </p>
               <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-blue-600 mt-4 rounded-full"></div>
@@ -102,7 +104,7 @@ const HodCard = ({ member }: { member: FacultyMember }) => (
             {/* Contact Information */}
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-indigo-100">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex justify-center">
                 <a 
                   href={`mailto:${member.email}`} 
                   className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors group"
@@ -115,15 +117,6 @@ const HodCard = ({ member }: { member: FacultyMember }) => (
                     <p className="font-medium">{member.email}</p>
                   </div>
                 </a>
-                <div className="flex items-center text-gray-600">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                    <Phone className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Phone</p>
-                    <p className="font-medium">{member.phone}</p>
-                  </div>
-                </div>
               </div>
             </div>
             
@@ -177,21 +170,21 @@ export default function FacultyPage() {
   // Find HOD - can be 'HOD' or any role containing 'Head'
   const hod = facultyMembers.find(m => m.role === 'HOD' || m.role.includes('Head'));
   
-  // Filter faculty members by role, excluding HOD from other categories
+  // Filter faculty members by role, excluding HOD and on-leave faculty from other categories
   const professors = facultyMembers.filter(m => 
-    m.role === 'Professor' && m.role !== 'HOD' && !m.role.includes('Head')
+    m.role === 'Professor' && m.role !== 'HOD' && !m.role.includes('Head') && !m.title.includes('(On Leave)')
   );
   const associateProfessors = facultyMembers.filter(m => 
     (m.role === 'Associate Professor' || m.role.includes('Associate Professor')) && 
-    m.role !== 'HOD' && !m.role.includes('Head')
+    m.role !== 'HOD' && !m.role.includes('Head') && !m.title.includes('(On Leave)')
   );
   const assistantProfessors = facultyMembers.filter(m => 
-    m.role === 'Assistant Professor' && m.role !== 'HOD' && !m.role.includes('Head')
+    m.role === 'Assistant Professor' && m.role !== 'HOD' && !m.role.includes('Head') && !m.title.includes('(On Leave)')
   );
   const lecturers = facultyMembers.filter(m => 
-    m.role === 'Lecturer' && !m.role.includes('Head')
+    m.role === 'Lecturer' && !m.role.includes('Head') && !m.title.includes('(On Leave)')
   );
-  const onLeaveFaculty = facultyMembers.filter(m => m.role === 'On Leave');
+  const onLeaveFaculty = facultyMembers.filter(m => m.title.includes('(On Leave)'));
 
   const FacultySection = ({ title, members, bgColor = "bg-gray-50" }: { title: string; members: FacultyMember[]; bgColor?: string }) => {
     if (members.length === 0) return null;

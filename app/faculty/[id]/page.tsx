@@ -2,7 +2,7 @@ import { facultyMembers, FacultyMember } from '@/lib/faculty-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Mail, Phone, Star, ArrowLeft, Award, Users, FileText, Calendar, MapPin, Trophy, GraduationCap, Building } from 'lucide-react';
+import { Mail, Star, ArrowLeft, Award, Users, FileText, Calendar, Trophy, GraduationCap, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { AcademicProfileIcons } from '@/components/ui/academic-profile-icons';
@@ -85,11 +85,11 @@ export default async function FacultyProfilePage({ params }: PageProps) {
             <div className="p-8 md:p-12">
               <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
                 <Image
-                  src={member.image}
+                  src={member.image || "/placeholder-user.jpg"}
                   alt={member.name}
-                  width={180}
-                  height={180}
-                  className="rounded-full border-8 border-gray-100 shadow-md mb-6 md:mb-0 md:mr-8 flex-shrink-0"
+                  width={150}
+                  height={150}
+                  className="rounded-full border-4 border-gray-100 shadow-md mb-6 md:mb-0 md:mr-8 flex-shrink-0 object-cover"
                 />
                 <div className="flex-grow">
                   <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{member.name}</h1>
@@ -105,12 +105,6 @@ export default async function FacultyProfilePage({ params }: PageProps) {
                         <Mail className="w-4 h-4 mr-2 text-indigo-500" /> {member.email}
                       </a>
                       <span className="flex items-center text-gray-600">
-                        <Phone className="w-4 h-4 mr-2 text-indigo-500" /> {member.phone}
-                      </span>
-                      <span className="flex items-center text-gray-600">
-                        <MapPin className="w-4 h-4 mr-2 text-indigo-500" /> Room {member.room}, EEE Building
-                      </span>
-                      <span className="flex items-center text-gray-600">
                         <Building className="w-4 h-4 mr-2 text-indigo-500" /> Department of EEE
                       </span>
                     </div>
@@ -125,7 +119,7 @@ export default async function FacultyProfilePage({ params }: PageProps) {
                   )}
 
                   <div className="mt-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-3">Major Research Areas</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3">Specialization</h3>
                     <div className="flex flex-wrap gap-2">
                       {member.researchInterests.slice(0, 3).map((interest, index) => (
                         <Badge key={index} className="bg-indigo-100 text-indigo-800 hover:bg-indigo-200">
@@ -193,11 +187,10 @@ export default async function FacultyProfilePage({ params }: PageProps) {
                 <div className="mt-10 border-t pt-8">
                   <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                     <FileText className="w-6 h-6 mr-3 text-indigo-500" />
-                    Recent Publications (2020-2024)
+                    Publications
                   </h2>
                   <div className="space-y-6">
                     <div className="bg-gray-50 p-5 rounded-lg">
-                      <h4 className="font-semibold text-gray-800 mb-2">Publications</h4>
                       <div className="space-y-3">
                         {member.recentPublications.map((pub, index) => (
                           <div key={index} className="border-l-4 border-indigo-400 pl-4">

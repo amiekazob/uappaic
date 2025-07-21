@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -69,7 +70,7 @@ const milestones: Milestone[] = [
     type: 'expansion'
   },
   {
-    year: '2018',
+    year: '2014',
     title: 'IEB Accreditation',
     description: 'Received recognition from international engineering bodies, enhancing the global value of our degrees.',
     type: 'recognition'
@@ -93,8 +94,8 @@ const milestones: Milestone[] = [
   type: 'expansion'
 },
   {
-    year: '2023',
-    title: 'Research Excellence Award',
+    year: '2017',
+    title: 'Hackathon Champion Award',
     description: 'Received the National Research Excellence Award for contributions to renewable energy and smart grid technologies.',
     type: 'recognition'
   }
@@ -106,7 +107,7 @@ const achievements: Achievement[] = [
     title: 'Students Graduated',
     description: 'Proud alumni working globally',
     icon: <GraduationCap className="w-8 h-8" />,
-    value: '1,200+'
+    value: '1,600+'
   },
   {
     id: '2',
@@ -134,14 +135,14 @@ const achievements: Achievement[] = [
     title: 'Research Projects',
     description: 'Ongoing and completed projects',
     icon: <Lightbulb className="w-8 h-8" />,
-    value: '50+'
+    value: '20+'
   },
   {
     id: '6',
     title: 'Years of Excellence',
     description: 'Serving the nation since 1996',
     icon: <Award className="w-8 h-8" />,
-    value: '28+'
+    value: '21+'
   }
 ]
 
@@ -177,16 +178,16 @@ export default function AboutUsPage() {
               About Our Department
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              28 years of excellence in electrical and electronic engineering education
+              21 years of excellence in electrical and electronic engineering education
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center space-x-2">
                 <Calendar className="w-5 h-5" />
-                <span>Established 1996</span>
+                <span>Established 2004</span>
               </div>
               <div className="flex items-center space-x-2">
                 <GraduationCap className="w-5 h-5" />
-                <span>1,200+ Graduates</span>
+                <span>1600+ Graduates</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Globe className="w-5 h-5" />
@@ -362,54 +363,6 @@ export default function AboutUsPage() {
         </div>
       </AnimatedSection>
 
-      {/* Vision & Mission */}
-      <AnimatedSection className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white" delay={0.8}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-12">
-              Our Vision & Mission
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-6 h-6" />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-center">
-                    Our Vision
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-blue-100 leading-relaxed">
-                    To be a globally recognized center of excellence in electrical and electronic 
-                    engineering education and research, producing innovative engineers who contribute 
-                    to technological advancement and societal development.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Microscope className="w-6 h-6" />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-center">
-                    Our Mission
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-blue-100 leading-relaxed">
-                    To provide world-class engineering education, conduct cutting-edge research, 
-                    and foster innovation while maintaining strong industry partnerships and 
-                    contributing to Bangladesh's technological progress.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </AnimatedSection>
 
       {/* Call to Action */}
       <AnimatedSection className="py-20 bg-gradient-to-r from-orange-500 to-orange-600 text-white" delay={1.0}>
@@ -422,10 +375,12 @@ export default function AboutUsPage() {
             Discover opportunities to study, research, or collaborate with us.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-orange-600 hover:bg-gray-100">
-              <GraduationCap className="w-5 h-5 mr-2" />
-              Admission Information
-            </Button>
+            <Link href="/programs/bsc-eee">
+              <Button size="lg" variant="secondary" className="bg-white text-orange-600 hover:bg-gray-100">
+                <GraduationCap className="w-5 h-5 mr-2" />
+                Admission Information
+              </Button>
+            </Link>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600">
               <Users className="w-5 h-5 mr-2" />
               Contact Us

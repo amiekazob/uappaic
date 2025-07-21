@@ -49,12 +49,12 @@ export function FacultyPreview() {
                 <div className="relative overflow-hidden rounded-t-2xl">
                   <Link href={`/faculty/${member.id}`} className="block">
                     <Image
-                      src={member.image}
+                      src={member.image || "/placeholder-user.jpg"}
                       alt={member.name}
                       width={400}
                       height={400}
                       className="w-full h-80 object-cover object-top transition-all duration-500 group-hover:scale-110"
-                    />
+                     />
                   </Link>
                   
                   {/* Gradient Overlay */}

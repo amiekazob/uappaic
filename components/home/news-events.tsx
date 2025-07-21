@@ -68,8 +68,8 @@ export function NewsEvents() {
                       <h3 className="font-bold text-xl mb-2">
                         <Link href={event.link} className="hover:text-blue-700 transition-colors duration-300">{event.title}</Link>
                       </h3>
-                      <p className="text-gray-600 text-sm mb-4 flex-grow">{event.shortDescription}</p>
-                      <Button asChild className="bg-indigo-700 hover:bg-indigo-800 mt-auto w-fit">
+                      <p className="text-gray-600 text-sm mb-3">{event.shortDescription}</p>
+                      <Button asChild className="bg-indigo-700 hover:bg-indigo-800 w-fit">
                         <Link href={event.link}>
                           Read More
                           <ChevronRight className="w-4 h-4 ml-1" />

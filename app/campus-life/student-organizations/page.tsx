@@ -25,7 +25,7 @@ const organizations: Organization[] = [
     description: 'Advancing technology for humanity through professional development, networking, and technical excellence.',
     icon: <Zap className="w-5 h-5" />,
     category: 'Professional',
-    image: 'https://i.ibb.co/b5h8T981/image.png'
+    image: '/images/campus%20life/organizations/ieee-uap-student-branch.png'
   },
   {
     id: 'ieee-uap-sb-wie',
@@ -33,7 +33,7 @@ const organizations: Organization[] = [
     description: 'Inspiring and empowering women in engineering through mentorship, leadership development, and community building.',
     icon: <Users className="w-5 h-5" />,
     category: 'Professional',
-    image: 'https://i.ibb.co/b5h8T981/image.png'
+     image: '/images/campus%20life/organizations/ieee-uap-sb-wie.png'
   }
 ]
 

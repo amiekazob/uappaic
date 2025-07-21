@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: 'Leading department in electrical and electronic engineering education and research at University of Asia Pacific.',
     images: [
       {
-        url: '/og-image.svg',
+        url: '/images/logo.png',
         width: 1200,
         height: 630,
         alt: 'UAP EEE Department'
@@ -70,7 +70,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body suppressHydrationWarning={true}>
         <Script
           id="organization-schema"
           type="application/ld+json"

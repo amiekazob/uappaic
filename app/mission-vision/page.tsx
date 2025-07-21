@@ -168,15 +168,16 @@ export default function MissionVisionPage() {
       </div>
 
       <div className="container mx-auto px-4 py-16">
-        {/* Mission Section */}
+        {/* Mission & Vision Section */}
         <AnimatedSection animation="slideUp" className="mb-24">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Mission */}
+            <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 hover:bg-white/80 transition-all duration-300">
               <div className="flex items-center gap-4 mb-8">
                 <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-4 rounded-full">
                   <Target className="w-8 h-8" />
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
                   Our <span className="text-blue-600">Mission</span>
                 </h2>
               </div>
@@ -197,29 +198,14 @@ export default function MissionVisionPage() {
                 </p>
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                <Image
-                  src="/placeholder.jpg"
-                  alt="Mission Illustration"
-                  width={500}
-                  height={400}
-                  className="w-full h-80 object-cover rounded-2xl shadow-xl"
-                />
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
 
-        {/* Vision Section */}
-        <AnimatedSection animation="slideUp" delay={0.2} className="mb-24">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="lg:order-2">
+            {/* Vision */}
+            <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 hover:bg-white/80 transition-all duration-300">
               <div className="flex items-center gap-4 mb-8">
                 <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4 rounded-full">
                   <Eye className="w-8 h-8" />
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
                   Our <span className="text-purple-600">Vision</span>
                 </h2>
               </div>
@@ -239,17 +225,6 @@ export default function MissionVisionPage() {
                   and industry, fostering entrepreneurship and driving economic growth 
                   through technological advancement.
                 </p>
-              </div>
-            </div>
-            <div className="lg:order-1 relative">
-              <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-8 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-                <Image
-                  src="/placeholder.jpg"
-                  alt="Vision Illustration"
-                  width={500}
-                  height={400}
-                  className="w-full h-80 object-cover rounded-2xl shadow-xl"
-                />
               </div>
             </div>
           </div>

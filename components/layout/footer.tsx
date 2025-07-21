@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Mountain, Instagram, Facebook, Twitter, Linkedin } from "lucide-react"
+import { Instagram, Facebook, Twitter, Linkedin } from "lucide-react"
 import { siteConfig } from "@/config/site"
 import { StaggeredGrid, StaggeredItem } from "@/components/ui/staggered-container"
 import { AnimatedSection } from "@/components/ui/animated-section"
@@ -12,11 +12,13 @@ export function Footer() {
   return (
     <footer className="bg-[#222222] border-t border-gray-800 text-gray-300">
       <div className="container mx-auto px-4 py-12">
-        <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8" scrollOptions={{ margin: "-100px" }}>
+        <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6" scrollOptions={{ margin: "-100px" }}>
           {/* Brand Section */}
           <StaggeredItem className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2">
-              <Mountain className="h-6 w-6 text-white" />
+            <Link href="/" className="flex items-center space-x-3">
+              <div className="w-12 h-12 flex items-center justify-center">
+                <img src="/images/logo.png" alt="University of Asia Pacific Logo" className="w-full h-full object-contain" />
+              </div>
               <span className="font-bold text-lg text-white">{siteConfig.name}</span>
             </Link>
             <p className="text-sm max-w-xs">
@@ -46,23 +48,62 @@ export function Footer() {
             </div>
           </StaggeredItem>
     
-          {/* Academic Section */}
+          {/* About Us Section */}
           <StaggeredItem className="space-y-4">
-            <h3 className="font-semibold text-white">Academic</h3>
+            <h3 className="font-semibold text-white">About Us</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="https://eee.uap-bd.edu/bsc-in-eee.html" target="_blank" rel="noopener noreferrer" className="hover:text-white">
-                  BSc in EEE
-                </a>
+                <Link href="/about-us" className="hover:text-white">
+                  About Us
+                </Link>
               </li>
               <li>
-                <a href="https://eee.uap-bd.edu/msc-in-eee.html" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                <Link href="/mission-vision" className="hover:text-white">
+                  Mission & Vision
+                </Link>
+              </li>
+              <li>
+                <Link href="/message-from-head" className="hover:text-white">
+                  Message from Head
+                </Link>
+              </li>
+            </ul>
+          </StaggeredItem>
+
+          {/* Academic Programs Section */}
+          <StaggeredItem className="space-y-4">
+            <h3 className="font-semibold text-white">Academic Programs</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/programs/bsc-eee" className="hover:text-white">
+                  BSc in EEE
+                </Link>
+              </li>
+              <li>
+                <Link href="/programs/msc-eee" className="hover:text-white">
                   MSc in EEE
-                </a>
+                </Link>
               </li>
               <li>
                 <Link href="/faculty" className="hover:text-white">
                   Faculty
+                </Link>
+              </li>
+              <li>
+                <Link href="/lab" className="hover:text-white">
+                  Laboratory
+                </Link>
+              </li>
+            </ul>
+          </StaggeredItem>
+
+          {/* Research & Campus Life Section */}
+          <StaggeredItem className="space-y-4">
+            <h3 className="font-semibold text-white">Research & Campus</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/research" className="hover:text-white">
+                  Research
                 </Link>
               </li>
               <li>
@@ -71,45 +112,41 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/research" className="hover:text-white">
-                  Research
+                <Link href="/news" className="hover:text-white">
+                  News & Events
+                </Link>
+              </li>
+              <li>
+                <Link href="/campus-life/our-achievements" className="hover:text-white">
+                  Our Achievements
+                </Link>
+              </li>
+              <li>
+                <Link href="/campus-life/clubs" className="hover:text-white">
+                  Clubs & Organizations
                 </Link>
               </li>
             </ul>
           </StaggeredItem>
 
-          {/* Campus Section */}
+          {/* Quick Links Section */}
           <StaggeredItem className="space-y-4">
-            <h3 className="font-semibold text-white">Campus</h3>
+            <h3 className="font-semibold text-white">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="hover:text-white">
-                  About
+                <Link href="/class-routine" className="hover:text-white">
+                  Class Routine
                 </Link>
               </li>
               <li>
-                <Link href="/news" className="hover:text-white">
-                  News
+                <Link href="/exam-routine" className="hover:text-white">
+                  Exam Routine
                 </Link>
               </li>
+
               <li>
-                <Link href="/events" className="hover:text-white">
-                  Events
-                </Link>
-              </li>
-              <li>
-                <Link href="/clubs" className="hover:text-white">
-                  Clubs
-                </Link>
-              </li>
-              <li>
-                <Link href="/alumni" className="hover:text-white">
-                  Alumni
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white">
-                  Contact
+                <Link href="/contact-us" className="hover:text-white">
+                  Contact Us
                 </Link>
               </li>
             </ul>

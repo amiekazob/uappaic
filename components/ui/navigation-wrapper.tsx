@@ -41,7 +41,7 @@ export function NavigationWrapper({ children }: NavigationWrapperProps) {
   }
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} suppressHydrationWarning={true}>
       {children}
     </div>
   )

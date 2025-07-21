@@ -9,14 +9,12 @@ import {
   GraduationCap, 
   Clock, 
   Users, 
-  Award, 
   BookOpen, 
   Lightbulb, 
   Target, 
   TrendingUp,
   CheckCircle,
   Star,
-  Calendar,
   MapPin,
   Phone,
   Mail,
@@ -30,10 +28,7 @@ import {
   DollarSign,
   CreditCard,
   PiggyBank,
-  Calculator,
-  AlertTriangle,
-  FileText,
-  Download
+  Calculator
 } from 'lucide-react'
 
 interface CourseCategory {
@@ -74,13 +69,7 @@ interface FeeStructure {
   frequency: string
 }
 
-interface ScholarshipOption {
-  id: string
-  name: string
-  description: string
-  coverage: string
-  eligibility: string
-}
+
 
 const courseCategories: CourseCategory[] = [
   {
@@ -511,36 +500,7 @@ const feeStructure: FeeStructure[] = [
   }
 ]
 
-const scholarshipOptions: ScholarshipOption[] = [
-  {
-    id: '1',
-    name: 'Graduate Merit Scholarship',
-    description: 'Based on undergraduate academic performance',
-    coverage: '30% - 100%',
-    eligibility: 'CGPA 3.5 and above'
-  },
-  {
-    id: '2',
-    name: 'Research Assistantship',
-    description: 'Financial support for research activities',
-    coverage: '50% - 80%',
-    eligibility: 'Research project involvement'
-  },
-  {
-    id: '3',
-    name: 'Teaching Assistantship',
-    description: 'Support for students assisting in teaching',
-    coverage: '40% - 70%',
-    eligibility: 'Teaching capability assessment'
-  },
-  {
-    id: '4',
-    name: 'Industry Sponsorship',
-    description: 'Sponsored by partner companies',
-    coverage: '60% - 100%',
-    eligibility: 'Industry partnership agreement'
-  }
-]
+
 
 const programHighlights = [
   'Advanced Research Opportunities',
@@ -587,44 +547,11 @@ export default function MScEEEPage() {
               ))}
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                Apply Now
-              </Button>
-              <Button size="lg" variant="outline">
-                Download Brochure
-              </Button>
-            </div>
+
           </div>
         </AnimatedSection>
 
-        {/* Exam Routine Notice */}
-        <AnimatedSection animation="slideUp" delay={0.1} className="mb-16">
-          <Card className="p-6 border-l-4 border-orange-500 bg-orange-50">
-            <div className="flex items-start space-x-4">
-              <AlertTriangle className="w-6 h-6 text-orange-600 mt-1 flex-shrink-0" />
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-orange-900 mb-2 flex items-center">
-                  <FileText className="w-5 h-5 mr-2" />
-                  Exam Routine Notice
-                </h3>
-                <p className="text-orange-800 mb-4">
-                  The final examination schedule for MSc in EEE program has been published. Students are advised to check their exam dates and prepare accordingly.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button variant="outline" size="sm" className="border-orange-300 text-orange-700 hover:bg-orange-100">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Exam Routine
-                  </Button>
-                  <Button variant="outline" size="sm" className="border-orange-300 text-orange-700 hover:bg-orange-100">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    View Academic Calendar
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </AnimatedSection>
+
 
         {/* Program Overview */}
         <AnimatedSection animation="slideUp" delay={0.2} className="mb-16">
@@ -770,11 +697,11 @@ export default function MScEEEPage() {
               Tuition <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">Fees</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Competitive graduate program fees with extensive scholarship opportunities and research funding support.
+              Competitive graduate program fees with transparent pricing structure.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <div className="max-w-4xl mx-auto mb-12">
             {/* Fee Structure */}
             <Card className="p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
@@ -794,10 +721,7 @@ export default function MScEEEPage() {
                     </div>
                   </div>
                 ))}
-
               </div>
-               
-                
               
               <div className="mt-6 space-y-4">
                 <div className="p-4 bg-green-50 rounded-lg">
@@ -807,30 +731,6 @@ export default function MScEEEPage() {
                   </div>
                   <p className="text-sm text-gray-600 mt-2">36 Credits × Tk. 4,500/- + Admission Fee</p>
                 </div>
-              </div>
-            </Card>
-
-            {/* Scholarships */}
-            <Card className="p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Award className="w-6 h-6 mr-3 text-yellow-600" />
-                Scholarships & Funding
-              </h3>
-              
-              <div className="space-y-4">
-                {scholarshipOptions.map((scholarship) => (
-                  <div key={scholarship.id} className="p-4 border border-gray-200 rounded-lg">
-                    <div className="flex items-start justify-between mb-2">
-                      <h4 className="font-semibold text-gray-900">{scholarship.name}</h4>
-                      <Badge className="bg-yellow-100 text-yellow-800">{scholarship.coverage}</Badge>
-                    </div>
-                    <p className="text-gray-600 text-sm mb-2">{scholarship.description}</p>
-                    <div className="flex items-center text-xs text-gray-700">
-                      <CheckCircle className="w-3 h-3 text-green-500 mr-1" />
-                      <span><strong>Eligibility:</strong> {scholarship.eligibility}</span>
-                    </div>
-                  </div>
-                ))}
               </div>
             </Card>
           </div>
