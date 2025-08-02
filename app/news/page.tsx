@@ -9,9 +9,11 @@ import { ChevronRight, Calendar, ChevronDown, Search, Loader2 } from 'lucide-rea
 import { cn } from '@/lib/utils'
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { StaggeredGrid, StaggeredItem } from "@/components/ui/staggered-container"
-import { useLazyEventsData } from '@/components/ui/lazy-data-loader'
+import { useLazyData } from '@/components/ui/lazy-data-loader'
+import { SocialShare, useShareableUrl } from '@/components/ui/social-share'
+import { SocialMediaAPI } from '@/lib/social-media-api'
 
-type Event = {
+type NewsItem = {
   id: number
   title: string
   date: string
@@ -33,16 +35,26 @@ const formatDate = (dateString: string) => {
   }
 }
 
-function EventCard({ event }: { event: Event }) {
-  const formattedDate = formatDate(event.date);
+function NewsCard({ newsItem }: { newsItem: NewsItem }) {
+  const formattedDate = formatDate(newsItem.date);
+  const shareableUrl = useShareableUrl(newsItem.link);
+  
+  const shareContent = SocialMediaAPI.createNewsShareContent({
+    id: newsItem.id,
+    title: newsItem.title,
+    shortDescription: newsItem.shortDescription,
+    category: newsItem.category,
+    link: newsItem.link
+  });
+
   return (
     <StaggeredItem>
       <Card className="overflow-hidden h-full flex flex-col group rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
         <div className="relative">
-          <Link href={event.link} className="block">
+          <Link href={newsItem.link} className="block">
             <Image
-              src={event.images[0] || '/placeholder.jpg'}
-              alt={event.title}
+              src={newsItem.images[0] || '/placeholder.jpg'}
+              alt={newsItem.title}
               width={400}
               height={250}
               className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
@@ -55,19 +67,29 @@ function EventCard({ event }: { event: Event }) {
         </div>
         <CardContent className="p-6 flex-grow flex flex-col">
           <h3 className="font-bold text-xl mb-2 line-clamp-2">
-            <Link href={event.link} className="hover:text-blue-700 transition-colors duration-300">{event.title}</Link>
+            <Link href={newsItem.link} className="hover:text-blue-700 transition-colors duration-300">{newsItem.title}</Link>
           </h3>
-          <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-2">{event.shortDescription}</p>
+          <p className="text-gray-600 text-sm mb-4 flex-grow line-clamp-2">{newsItem.shortDescription}</p>
           <div className="text-sm text-gray-500 flex items-center mb-4">
             <Calendar className="w-4 h-4 mr-2" />
             <span>{formattedDate.month} {formattedDate.day}, {formattedDate.year}</span>
           </div>
-          <Button asChild className="bg-indigo-700 hover:bg-indigo-800 mt-auto w-fit">
-            <Link href={event.link}>
-              Read More
-              <ChevronRight className="w-4 h-4 ml-1" />
-            </Link>
-          </Button>
+          <div className="flex items-center justify-between mt-auto">
+            <Button asChild className="bg-indigo-700 hover:bg-indigo-800">
+              <Link href={newsItem.link}>
+                Read More
+                <ChevronRight className="w-4 h-4 ml-1" />
+              </Link>
+            </Button>
+            <SocialShare
+              url={shareableUrl}
+              title={newsItem.title}
+              description={newsItem.shortDescription}
+              hashtags={['EEE', 'UAP', 'News', newsItem.category]}
+              variant="minimal"
+              size="sm"
+            />
+          </div>
         </CardContent>
       </Card>
     </StaggeredItem>
@@ -77,54 +99,49 @@ function EventCard({ event }: { event: Event }) {
 export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('- Any -');
   const [selectedYear, setSelectedYear] = useState<string>('- Year -');
-  const [selectedType, setSelectedType] = useState<string>('All');
-  
-  const { data: allEvents, loading, error } = useLazyEventsData()
 
-  // Get unique categories and years from events - moved before conditional returns
+  
+  const { data: allNews, loading, error } = useLazyData(() => import('@/lib/news-data').then(m => m.NewsData))
+
+  // Get unique categories and years from news - moved before conditional returns
   const categories = useMemo(() => {
-    if (!allEvents) return ['- Any -'];
-    const uniqueCategories = Array.from(new Set(allEvents.map(event => event.category)));
+    if (!allNews) return ['- Any -'];
+    const uniqueCategories = Array.from(new Set(allNews.map(newsItem => newsItem.category)));
     return ['- Any -', ...uniqueCategories];
-  }, [allEvents]);
+  }, [allNews]);
 
   const years = useMemo(() => {
-    if (!allEvents) return ['- Year -'];
-    const uniqueYears = Array.from(new Set(allEvents.map(event => new Date(event.date).getFullYear().toString())));
+    if (!allNews) return ['- Year -'];
+    const uniqueYears = Array.from(new Set(allNews.map(newsItem => new Date(newsItem.date).getFullYear().toString())));
     return ['- Year -', ...uniqueYears.sort((a, b) => parseInt(b) - parseInt(a))];
-  }, [allEvents]);
+  }, [allNews]);
 
-  const types = ['All', 'News', 'Events'];
-
-  const filteredEvents = useMemo(() => {
-    if (!allEvents) return [];
-    return allEvents.filter(event => {
-      const categoryMatch = selectedCategory === '- Any -' || event.category === selectedCategory;
-      const yearMatch = selectedYear === '- Year -' || new Date(event.date).getFullYear().toString() === selectedYear;
-      const typeMatch = selectedType === 'All' || 
-        (selectedType === 'News' && event.type === 'news') ||
-        (selectedType === 'Events' && event.type === 'event');
+  const filteredNews = useMemo(() => {
+    if (!allNews) return [];
+    return allNews.filter(newsItem => {
+      const categoryMatch = selectedCategory === '- Any -' || newsItem.category === selectedCategory;
+      const yearMatch = selectedYear === '- Year -' || new Date(newsItem.date).getFullYear().toString() === selectedYear;
       
-      return categoryMatch && yearMatch && typeMatch;
+      return categoryMatch && yearMatch;
     }).sort((a, b) => a.order - b.order);
-  }, [allEvents, selectedCategory, selectedYear, selectedType]);
+  }, [allNews, selectedCategory, selectedYear]);
 
   if (loading) {
     return (
       <div className="bg-gray-50 min-h-screen flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-indigo-600" />
-          <p className="text-gray-600">Loading news and events...</p>
+          <p className="text-gray-600">Loading news...</p>
         </div>
       </div>
     )
   }
 
-  if (error || !allEvents) {
+  if (error || !allNews) {
     return (
       <div className="bg-gray-50 min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-600 mb-4">Failed to load events data</p>
+          <p className="text-red-600 mb-4">Failed to load news data</p>
           <Button onClick={() => window.location.reload()}>Try Again</Button>
         </div>
       </div>
@@ -135,8 +152,7 @@ export default function NewsPage() {
     // This could trigger additional filtering or search functionality
     console.log('Search archive clicked with filters:', {
       category: selectedCategory,
-      year: selectedYear,
-      type: selectedType
+      year: selectedYear
     });
   };
 
@@ -144,9 +160,9 @@ export default function NewsPage() {
     <div className="bg-gray-50">
       <div className="container mx-auto px-4 py-16">
         <AnimatedSection animation="fadeIn" className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">News and Events</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">News</h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Stay informed about the latest happenings, achievements, and events from the UAP EEE department.
+            Stay informed about the latest news, achievements, and announcements from the UAP EEE department.
           </p>
         </AnimatedSection>
 
@@ -185,22 +201,6 @@ export default function NewsPage() {
                 <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
 
-              {/* Type Filter */}
-              <div className="relative">
-                <select
-                  value={selectedType}
-                  onChange={(e) => setSelectedType(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 min-w-[120px]"
-                >
-                  {types.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-              </div>
-
               {/* Search Archive Button */}
               <Button
                 onClick={handleSearchArchive}
@@ -213,16 +213,16 @@ export default function NewsPage() {
           </div>
         </AnimatedSection>
 
-        {filteredEvents.length > 0 ? (
+        {filteredNews.length > 0 ? (
           <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
+            {filteredNews.map((newsItem) => (
+              <NewsCard key={newsItem.id} newsItem={newsItem} />
             ))}
           </StaggeredGrid>
         ) : (
           <AnimatedSection animation="fadeIn" className="text-center py-16">
-            <h3 className="text-2xl font-semibold text-gray-700 mb-2">No events found</h3>
-            <p className="text-gray-500">Please try adjusting your filters or check back later for new events.</p>
+            <h3 className="text-2xl font-semibold text-gray-700 mb-2">No news found</h3>
+            <p className="text-gray-500">Please try adjusting your filters or check back later for new news.</p>
           </AnimatedSection>
         )}
       </div>

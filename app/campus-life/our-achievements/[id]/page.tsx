@@ -10,6 +10,9 @@ import { ChevronLeft, Calendar, Trophy, Award, Star, ExternalLink } from 'lucide
 import { cn } from '@/lib/utils'
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { achievementsData, formatDate } from '@/lib/achievements-data'
+import { SocialShare } from '@/components/ui/social-share'
+import { useShareableUrl } from '@/components/ui/social-share'
+import { SocialMediaAPI } from '@/lib/social-media-api'
 
 interface AchievementDetailPageProps {
   params: Promise<{
@@ -25,7 +28,7 @@ function getTypeIcon(type: string) {
       return <Award className="w-6 h-6 text-blue-600" />
     case 'recognition':
       return <Star className="w-6 h-6 text-purple-600" />
-    case 'research':
+    case 'academic':
       return <Award className="w-6 h-6 text-green-600" />
     case 'innovation':
       return <Star className="w-6 h-6 text-orange-600" />
@@ -42,7 +45,7 @@ function getTypeColor(type: string) {
       return 'bg-blue-100 text-blue-800 border-blue-200'
     case 'recognition':
       return 'bg-purple-100 text-purple-800 border-purple-200'
-    case 'research':
+    case 'academic':
       return 'bg-green-100 text-green-800 border-green-200'
     case 'innovation':
       return 'bg-orange-100 text-orange-800 border-orange-200'
@@ -60,6 +63,15 @@ export default function AchievementDetailPage({ params }: AchievementDetailPageP
   }
 
   const formattedDate = formatDate(achievement.date)
+  const shareableUrl = useShareableUrl(`/campus-life/our-achievements/${id}`)
+  const shareContent = SocialMediaAPI.createEventShareContent({
+    title: achievement.title,
+    description: achievement.shortDescription,
+    url: shareableUrl,
+    date: achievement.date,
+    location: 'UAP Campus',
+    hashtags: ['#EEEAchievements', '#UAP', '#Excellence']
+  })
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
@@ -105,6 +117,15 @@ export default function AchievementDetailPage({ params }: AchievementDetailPageP
               <div className="px-3 py-1 bg-white/10 rounded-full text-sm">
                 {achievement.category}
               </div>
+            </div>
+            
+            {/* Social Share Bar */}
+            <div className="mt-8">
+              <SocialShare 
+                content={shareContent}
+                variant="default"
+                className="bg-white/10 backdrop-blur-sm rounded-lg p-4"
+              />
             </div>
           </div>
         </div>
@@ -172,6 +193,22 @@ export default function AchievementDetailPage({ params }: AchievementDetailPageP
               </Card>
             </AnimatedSection>
           )}
+
+          {/* Bottom Social Share Bar */}
+          <AnimatedSection className="mb-8">
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6">
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Share this achievement</h3>
+                  <SocialShare 
+                    content={shareContent}
+                    variant="default"
+                    className="justify-center"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </AnimatedSection>
 
           {/* Navigation */}
           <AnimatedSection>

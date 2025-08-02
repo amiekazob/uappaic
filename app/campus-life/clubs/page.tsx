@@ -43,7 +43,7 @@ const clubs: Club[] = [
   {
     id: 'math-club',
     name: 'Math Club',
-    description: 'Celebrating the beauty of mathematics through problem-solving and research.',
+    description: 'Celebrating the beauty of mathematics through problem-solving and learning.',
     icon: <Calculator className="w-5 h-5" />,
     category: 'Academic',
     image: '/images/campus%20life/clubs/math-club.jpg'

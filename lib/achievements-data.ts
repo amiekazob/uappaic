@@ -11,7 +11,7 @@ export interface Achievement {
   }[]
   highlights: string[]
   category: string
-  type: 'award' | 'conference' | 'recognition' | 'competition' | 'research' | 'innovation'
+  type: 'award' | 'conference' | 'recognition' | 'competition' | 'academic' | 'innovation'
   link: string
 }
 
@@ -69,7 +69,7 @@ export const achievementsData: Achievement[] = [
     },
     {
       sectionTitle: "Expert Supervision",
-      sectionDescription: "The project was supervised by Dr. Khondkar Siddique-e-Rabbani, a renowned biomedical physicist, who guided the research and prototype development. The initiative reflects the department's commitment to applying engineering knowledge for impactful healthcare solutions during the pandemic."
+      sectionDescription: "The project was supervised by Dr. Khondkar Siddique-e-Rabbani, a renowned biomedical physicist, who guided the academic work and prototype development. The initiative reflects the department's commitment to applying engineering knowledge for impactful healthcare solutions during the pandemic."
     }
   ],
   highlights: [
@@ -79,7 +79,7 @@ export const achievementsData: Achievement[] = [
     "Supervised by Dr. Khondkar Siddique-e-Rabbani",
     "Contribution to biomedical engineering and public health"
   ],
-  category: "Research & Innovation",
+  category: "Academic & Innovation",
   type: "innovation",
   link: "/achievements/negative-pressure-canopy-covid19"
 },
@@ -184,7 +184,7 @@ export const achievementsData: Achievement[] = [
     },
     {
       sectionTitle: "Academic Contribution",
-      sectionDescription: "Three research papers were presented successfully during this special session. Among them, one paper was honored with the Best Paper Award, showcasing the research excellence of UAP’s EEE department."
+      sectionDescription: "Three academic papers were presented successfully during this special session. Among them, one paper was honored with the Best Paper Award, showcasing the academic excellence of UAP's EEE department."
     },
     {
       sectionTitle: "Organizing Team",

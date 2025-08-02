@@ -55,16 +55,16 @@ export default function NotFound() {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link 
-              href="/faculty" 
+              href="/committee" 
               className="text-blue-900 hover:text-orange-600 hover:underline transition-colors"
             >
               Faculty Members
             </Link>
             <Link 
-              href="/publications" 
+              href="/programs/bsc-eee" 
               className="text-blue-900 hover:text-orange-600 hover:underline transition-colors"
             >
-              Publications
+              BSc in EEE
             </Link>
             <Link 
               href="/news" 

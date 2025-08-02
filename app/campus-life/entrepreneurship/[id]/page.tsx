@@ -11,6 +11,9 @@ import { ChevronLeft, Calendar, Building, Users, TrendingUp, ExternalLink } from
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { entrepreneurshipData, type EntrepreneurshipType, formatDate } from '@/lib/entrepreneurship-data'
 import { cn } from '@/lib/utils'
+import { SocialShare } from '@/components/ui/social-share'
+import { useShareableUrl } from '@/components/ui/social-share'
+import { SocialMediaAPI } from '@/lib/social-media-api'
 
 interface EntrepreneurshipDetailPageProps {
   params: {
@@ -71,6 +74,15 @@ export default function EntrepreneurshipDetailPage({ params }: EntrepreneurshipD
   }
 
   const formattedDate = formatEntrepreneurshipDate(venture.date)
+  const shareableUrl = useShareableUrl(`/campus-life/entrepreneurship/${params.id}`)
+  const shareContent = SocialMediaAPI.createEventShareContent({
+    title: venture.title,
+    description: venture.shortDescription,
+    url: shareableUrl,
+    date: venture.date,
+    location: 'UAP Campus',
+    hashtags: ['#EEEEntrepreneurship', '#UAP', '#Innovation', '#Startup']
+  })
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -116,6 +128,15 @@ export default function EntrepreneurshipDetailPage({ params }: EntrepreneurshipD
                   {venture.shortDescription}
                 </p>
               </div>
+            </div>
+            
+            {/* Social Share Bar */}
+            <div className="p-6 bg-gray-50 border-t">
+              <SocialShare 
+                content={shareContent}
+                variant="default"
+                className="justify-center"
+              />
             </div>
           </div>
         </AnimatedSection>

@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { StaggeredContainer } from "@/components/ui/staggered-container"
 import { 
@@ -15,7 +17,14 @@ import {
   MessageSquare,
   Smartphone,
   Printer,
-  GraduationCap
+  GraduationCap,
+  Send,
+  Facebook,
+  Linkedin,
+  Instagram,
+  Github,
+  UserPlus,
+  Building2
 } from "lucide-react"
 
 interface ContactInfo {
@@ -48,6 +57,23 @@ const universityContact: UniversityContact = {
   email: "admission@uap-bd.edu"
 }
 
+// EEE Club Contact Information
+const clubContact = {
+  officeName: "EEE Club Office",
+  roomNumber: "Room 506, 5th Floor",
+  department: "Department of Electrical & Electronic Engineering",
+  university: "University of Asia Pacific",
+  fullAddress: "Room 506, EEE Department, University of Asia Pacific, 74/A Green Road, Dhaka-1205",
+  email: "paiclubeee@uap-bd.edu",
+  phone: "+8801XXXXXXXXX", // President/Secretary contact
+  socialMedia: {
+    facebook: "https://www.facebook.com/PAICLUBEEE",
+    linkedin: "https://www.linkedin.com/company/108122060",
+    instagram: "https://instagram.com/eeeclub_uap",
+    github: "https://github.com/eee-club-uap"
+  }
+}
+
 const deptContacts: ContactInfo[] = [
   {
     id: "1",
@@ -72,41 +98,315 @@ const deptContacts: ContactInfo[] = [
 
 
 export default function ContactUsPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target
+    setFormData(prev => ({ ...prev, [id]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50" suppressHydrationWarning={true}>
       {/* Hero Section */}
-      <AnimatedSection className="relative py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Contact Us
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center" suppressHydrationWarning={true}>
+          <AnimatedSection>
+            <Badge variant="outline" className="mb-4 text-blue-600 border-blue-200">
+              <MessageSquare className="w-4 h-4 mr-2" />
+              Get in Touch
+            </Badge>
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Contact <span className="text-blue-600">Us</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              Get in touch with our department and university administration
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              Connect with the EEE Club at University of Asia Pacific. 
+              We're here to help you join our community and answer any questions.
             </p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-5 h-5" />
-                <span>Green Road, Dhaka</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="w-5 h-5" />
-                <span>+8802-48114140</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-5 h-5" />
-                <span>admission@uap-bd.edu</span>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto" suppressHydrationWarning={true}>
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Send us a Message</h2>
+              <p className="text-gray-600">Fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Send className="w-5 h-5 text-blue-600" />
+                  Contact Form
+                </CardTitle>
+                <CardDescription>
+                  We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {submitStatus === 'success' && (
+                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-800 font-medium">✓ Message sent successfully!</p>
+                    <p className="text-green-600 text-sm mt-1">We'll get back to you as soon as possible.</p>
+                  </div>
+                )}
+                {submitStatus === 'error' && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800 font-medium">✗ Failed to send message</p>
+                    <p className="text-red-600 text-sm mt-1">Please try again or contact us directly.</p>
+                  </div>
+                )}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        Name *
+                      </label>
+                      <Input
+                        id="name"
+                        type="text"
+                        placeholder="Your full name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Email *
+                      </label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="your.email@example.com"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                      Subject *
+                    </label>
+                    <Input
+                      id="subject"
+                      type="text"
+                      placeholder="What is this about?"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      required
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={6}
+                      className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm resize-none"
+                      placeholder="Tell us more about your inquiry..."
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-blue-600 hover:bg-blue-700" 
+                    disabled={isSubmitting}
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* EEE Club Contact Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-6xl mx-auto" suppressHydrationWarning={true}>
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">EEE Club Office</h2>
+              <p className="text-gray-600">Visit us at our club office or get in touch directly</p>
+            </div>
+            <Card className="shadow-lg">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Building2 className="w-8 h-8 text-blue-600" />
+                </div>
+                <CardTitle className="text-2xl">{clubContact.officeName}</CardTitle>
+                <CardDescription>{clubContact.department}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <MapPin className="w-5 h-5 text-blue-600 mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Location</h4>
+                        <p className="text-gray-600 text-sm">{clubContact.roomNumber}</p>
+                        <p className="text-gray-600 text-sm">{clubContact.department}</p>
+                        <p className="text-gray-600 text-sm">{clubContact.university}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Mail className="w-5 h-5 text-red-600 mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Email</h4>
+                        <a href={`mailto:${clubContact.email}`} className="text-blue-600 hover:text-blue-800 text-sm">
+                          {clubContact.email}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <Phone className="w-5 h-5 text-green-600 mt-1" />
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Phone</h4>
+                        <p className="text-gray-600 text-sm">{clubContact.phone}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-3">Follow Us</h4>
+                      <div className="flex space-x-3">
+                        <a href={clubContact.socialMedia.facebook} className="p-2 bg-blue-100 rounded-lg hover:bg-blue-200 transition-colors">
+                          <Facebook className="w-5 h-5 text-blue-600" />
+                        </a>
+                        <a href={clubContact.socialMedia.linkedin} className="p-2 bg-blue-100 rounded-lg hover:bg-blue-200 transition-colors">
+                          <Linkedin className="w-5 h-5 text-blue-600" />
+                        </a>
+                        <a href={clubContact.socialMedia.instagram} className="p-2 bg-pink-100 rounded-lg hover:bg-pink-200 transition-colors">
+                          <Instagram className="w-5 h-5 text-pink-600" />
+                        </a>
+                        <a href={clubContact.socialMedia.github} className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                          <Github className="w-5 h-5 text-gray-600" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Map Embed Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto" suppressHydrationWarning={true}>
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Find Us</h2>
+              <p className="text-gray-600">Located at the heart of Dhaka, easily accessible by public transport</p>
+            </div>
+            <Card className="shadow-lg overflow-hidden">
+              <CardContent className="p-0">
+                <div className="relative h-96">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9064329508896!2d90.38896831498!3d23.750887984587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b7a55cd36f%3A0xfcc5b021faff43ea!2sUniversity%20of%20Asia%20Pacific!5e0!3m2!1sen!2sbd!4v1635789012345!5m2!1sen!2sbd"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="University of Asia Pacific Location"
+                  />
+                </div>
+                <div className="p-6 bg-gray-50">
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="w-5 h-5 text-blue-600" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Full Address</h4>
+                      <p className="text-gray-600 text-sm">{clubContact.fullAddress}</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-800">
+        <div className="max-w-4xl mx-auto text-center" suppressHydrationWarning={true}>
+          <AnimatedSection>
+            <div className="text-white" suppressHydrationWarning={true}>
+              <UserPlus className="w-16 h-16 mx-auto mb-6 text-blue-200" />
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Want to Join Us?
+              </h2>
+              <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                Become part of the EEE Club community and connect with fellow engineering enthusiasts. 
+                Join us for exciting projects, workshops, and networking opportunities.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
+                  <UserPlus className="w-5 h-5 mr-2" />
+                  Join Now
+                </Button>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+                  <Mail className="w-5 h-5 mr-2" />
+                  Subscribe to Newsletter
+                </Button>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
-      </AnimatedSection>
+      </section>
 
       {/* University Contact Section */}
       <AnimatedSection className="py-20" delay={0.2}>
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-6xl mx-auto" suppressHydrationWarning={true}>
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 University of Asia Pacific
@@ -302,92 +602,7 @@ export default function ContactUsPage() {
 
 
 
-      {/* Contact Form Section */}
-      <AnimatedSection className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white" delay={0.8}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">
-              Send Us a Message
-            </h2>
-            <p className="text-xl mb-8 text-blue-100">
-              Have a specific question? We'd love to hear from you.
-            </p>
-            
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div className="space-y-2">
-                  <MessageSquare className="w-8 h-8 mx-auto text-orange-400" />
-                  <h3 className="font-semibold">General Inquiries</h3>
-                  <p className="text-sm text-blue-100">For general questions about our programs</p>
-                </div>
-                <div className="space-y-2">
-                  <GraduationCap className="w-8 h-8 mx-auto text-orange-400" />
-                  <h3 className="font-semibold">Admissions</h3>
-                  <p className="text-sm text-blue-100">For admission-related queries</p>
-                </div>
-                <div className="space-y-2">
-                  <Users className="w-8 h-8 mx-auto text-orange-400" />
-                  <h3 className="font-semibold">Academic Support</h3>
-                  <p className="text-sm text-blue-100">For current students and academic matters</p>
-                </div>
-              </div>
-              
-              <div className="mt-8">
-                <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
-                  <Mail className="w-5 h-5 mr-2" />
-                  Contact Form (Coming Soon)
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </AnimatedSection>
 
-      {/* Location Section */}
-      <AnimatedSection className="py-20 bg-gray-50" delay={1.0}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Find Us
-              </h2>
-              <p className="text-xl text-gray-600">
-                Located in the heart of Dhaka
-              </p>
-            </div>
-
-            <Card className="overflow-hidden">
-              <div className="relative h-96">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.8947654321!2d90.3892717!3d23.7548558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a38ecdcf27%3A0xd9134fb07452b4f6!2s74%2FA%20Green%20Rd%2C%20Dhaka%201205!5e0!3m2!1sen!2sbd!4v1234567890123!5m2!1sen!2sbd"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="University of Asia Pacific Location"
-                  className="rounded-lg"
-                />
-                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg">
-                  <div className="flex items-center space-x-2 text-sm">
-                    <MapPin className="w-4 h-4 text-blue-600" />
-                    <span className="font-medium text-gray-900">74/A, Green Road, Dhaka - 1205</span>
-                  </div>
-                  <a 
-                    href="https://www.google.com/maps/place/74%2FA+Green+Rd,+Dhaka+1205/@23.754856,90.389272,15z/data=!4m6!3m5!1s0x3755b8a38ecdcf27:0xd9134fb07452b4f6!8m2!3d23.7548558!4d90.3892717!16s%2Fg%2F11nnt8wgb9?hl=en&entry=ttu&g_ep=EgoyMDI1MDcwOC4wIKXMDSoASAFQAw%3D%3D"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-blue-600 hover:text-blue-800 transition-colors mt-1 inline-block"
-                  >
-                    View on Google Maps →
-                  </a>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </AnimatedSection>
     </div>
   )
 }

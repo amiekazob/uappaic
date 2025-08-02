@@ -128,9 +128,9 @@ const courseCategories: CourseCategory[] = [
       {
         id: '8',
         code: 'EEE 6108',
-        name: 'Research Methodology',
+        name: 'Academic Methodology',
         credits: 3,
-        description: 'Research methods and academic writing for engineers'
+        description: 'Academic methods and technical writing for engineers'
       }
     ]
   },
@@ -385,7 +385,7 @@ const courseCategories: CourseCategory[] = [
         code: 'EEE 6000',
         name: 'Thesis (for M.Sc. in EEE)',
         credits: 18,
-        description: 'Independent research project culminating in a thesis'
+        description: 'Independent academic project culminating in a thesis'
       },
       {
         id: '42',
@@ -401,8 +401,8 @@ const courseCategories: CourseCategory[] = [
 const careerPaths: CareerPath[] = [
   {
     id: '1',
-    title: 'Research Scientist',
-    description: 'Lead cutting-edge research in electrical and electronic engineering',
+    title: 'Technology Specialist',
+    description: 'Lead cutting-edge technology development in electrical and electronic engineering',
     averageSalary: '৳8,00,000 - ৳15,00,000',
     growthRate: '12%',
     icon: <Lightbulb className="w-6 h-6" />
@@ -426,7 +426,7 @@ const careerPaths: CareerPath[] = [
   {
     id: '4',
     title: 'University Professor',
-    description: 'Teach and conduct research at universities and institutions',
+    description: 'Teach and conduct academic work at universities and institutions',
     averageSalary: '৳5,00,000 - ৳10,00,000',
     growthRate: '6%',
     icon: <GraduationCap className="w-6 h-6" />
@@ -452,8 +452,8 @@ const careerPaths: CareerPath[] = [
 const facilities: Facility[] = [
   {
     id: '1',
-    name: 'Advanced Research Labs',
-    description: 'State-of-the-art research facilities with latest equipment',
+    name: 'Advanced Learning Facilities',
+    description: 'State-of-the-art learning facilities with latest equipment',
     icon: <Cpu className="w-6 h-6" />
   },
   {
@@ -471,7 +471,7 @@ const facilities: Facility[] = [
   {
     id: '4',
     name: 'Digital Library Access',
-    description: 'Access to international journals and research databases',
+    description: 'Access to international journals and academic databases',
     icon: <BookOpen className="w-6 h-6" />
   }
 ]
@@ -503,10 +503,10 @@ const feeStructure: FeeStructure[] = [
 
 
 const programHighlights = [
-  'Advanced Research Opportunities',
+  'Advanced Learning Opportunities',
   'Industry-Academia Collaboration',
   'International Faculty',
-  'State-of-the-art Laboratories',
+  'State-of-the-art Learning Facilities',
   'Thesis-based Program',
   'Flexible Course Selection'
 ]
@@ -536,7 +536,7 @@ export default function MScEEEPage() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-              Advance your career with cutting-edge research and specialized knowledge in electrical and electronic engineering. Join our graduate program designed for innovation and excellence.
+              Advance your career with cutting-edge technology and specialized knowledge in electrical and electronic engineering. Join our graduate program designed for innovation and excellence.
             </p>
             
             <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -663,7 +663,7 @@ export default function MScEEEPage() {
               Advanced <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600">Curriculum</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our comprehensive curriculum combines theoretical depth with practical research experience, preparing you for leadership roles in academia and industry.
+              Our comprehensive curriculum combines theoretical depth with practical learning experience, preparing you for leadership roles in academia and industry.
             </p>
           </div>
           
@@ -736,14 +736,14 @@ export default function MScEEEPage() {
           </div>
         </AnimatedSection>
 
-        {/* Research Facilities */}
+        {/* Academic Facilities */}
         <AnimatedSection animation="slideUp" delay={0.7} className="mb-16">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Research <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Facilities</span>
+              Academic <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Facilities</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Access world-class research facilities and collaborate with leading faculty on cutting-edge projects.
+              Access world-class academic facilities and collaborate with leading faculty on cutting-edge projects.
             </p>
           </div>
           
@@ -773,7 +773,7 @@ export default function MScEEEPage() {
                 Ready to Advance Your Career?
               </h2>
               <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
-                Join our prestigious MSc in EEE program and become a leader in electrical and electronic engineering research and innovation.
+                Join our prestigious MSc in EEE program and become a leader in electrical and electronic engineering technology and innovation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100">

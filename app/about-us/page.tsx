@@ -17,10 +17,10 @@ import {
   Globe,
   Lightbulb,
   GraduationCap,
-  Zap,
-  Cpu,
-  Radio,
-  Microscope
+  Code,
+  Brain,
+  Trophy,
+  Rocket
 } from "lucide-react"
 
 interface Milestone {
@@ -40,110 +40,92 @@ interface Achievement {
 
 const milestones: Milestone[] = [
   {
-    year: '2004',
-    title: 'Department Establishment',
-    description: 'Founded in 2004, the Department of Electrical and Electronic Engineering at the University of Asia Pacific is committed to delivering high-quality education and fostering research in electrical and electronic technologies.',
+    year: '2024',
+    title: 'Club Establishment',
+    description: 'Founded in 2024, the Programming and AI Club at the Department of EEE, University of Asia Pacific was established to foster innovation in programming, artificial intelligence, and competitive coding.',
     type: 'establishment'
   },
   {
-    year: '2008',
-    title: 'First Graduation Batch',
-    description: 'The first batch of EEE students graduated, marking the beginning of our alumni network that now spans across the globe.',
+    year: '2024',
+    title: 'First Programming Contest',
+    description: 'Organized our inaugural programming contest with participation from students across multiple departments, establishing our commitment to competitive programming.',
     type: 'achievement'
   },
   {
-    year: '2016',
-    title: 'Research Lab Expansion',
-    description: 'Established state-of-the-art laboratories for Power Systems, Electronics, and Communications research.',
+    year: '2024',
+    title: 'AI Workshop Series',
+    description: 'Launched comprehensive AI workshop series covering machine learning, deep learning, and neural networks for club members.',
     type: 'expansion'
-  },
-  {
-    year: '2012',
-    title: 'Industry Partnerships',
-    description: 'Formed strategic partnerships with leading technology companies and power sector organizations in Bangladesh.',
-    type: 'achievement'
-  },
-  {
-    year: '2015',
-    title: 'MSc Program Launch',
-    description: 'Introduced the Master of Science in EEE program to advance higher education and research capabilities.',
-    type: 'expansion'
-  },
-  {
-    year: '2014',
-    title: 'IEB Accreditation',
-    description: 'Received recognition from international engineering bodies, enhancing the global value of our degrees.',
-    type: 'recognition'
   },
   {
     year: '2025',
-    title: 'Research lab',
-    description: 'Established the Research lab, becoming a pioneer in renewable energy research in Bangladesh.',
+    title: 'Industry Mentorship Program',
+    description: 'Established partnerships with leading tech companies to provide mentorship and internship opportunities for club members.',
+    type: 'achievement'
+  },
+  {
+    year: '2024',
+    title: 'Coding Bootcamp Initiative',
+    description: 'Introduced intensive coding bootcamps focusing on competitive programming, algorithm design, and problem-solving techniques.',
     type: 'expansion'
   },
   {
-    year: '2020',
-    title: '1500+ Alumni Milestone',
-    description: 'Celebrated the graduation of our 1000th student, with alumni working in top companies worldwide.',
-    type: 'achievement'
-  },
- {
-  year: '2020',
-  title: 'Switch Gear Lab',
-  description: 'Established to provide hands-on training on power system protection, circuit breakers, relays, and industrial control systems, supporting both academic and practical learning.',
-  type: 'expansion'
-},
-  {
-    year: '2017',
-    title: 'Hackathon Champion Award',
-    description: 'Received the National Research Excellence Award for contributions to renewable energy and smart grid technologies.',
+    year: '2024',
+    title: 'National Contest Participation',
+    description: 'Club members participated in national programming contests including ICPC preliminaries and other prestigious competitions.',
     type: 'recognition'
+  },
+  {
+    year: '2024',
+    title: 'AI Project Showcase',
+    description: 'Organized the first AI project showcase featuring innovative projects in computer vision, NLP, and machine learning applications.',
+    type: 'expansion'
+  },
+  {
+    year: '2024',
+    title: 'Tech Talk Series',
+    description: 'Launched monthly tech talks featuring industry experts, alumni, and faculty members sharing insights on latest programming and AI trends.',
+    type: 'achievement'
   }
 ]
 
 const achievements: Achievement[] = [
   {
     id: '1',
-    title: 'Students Graduated',
-    description: 'Proud alumni working globally',
-    icon: <GraduationCap className="w-8 h-8" />,
-    value: '1,600+'
+    title: 'Active Members',
+    description: 'Passionate programmers and AI enthusiasts',
+    icon: <Users className="w-8 h-8" />,
+    value: '50+'
   },
   {
     id: '2',
-    title: 'Faculty Members',
-    description: 'Experienced and qualified educators',
-    icon: <Users className="w-8 h-8" />,
-    value: '25+'
+    title: 'Programming Contests',
+    description: 'Participated in national contests',
+    icon: <Trophy className="w-8 h-8" />,
+    value: '3+'
   },
   {
     id: '3',
-    title: 'Research Publications',
-    description: 'International journal publications',
-    icon: <BookOpen className="w-8 h-8" />,
-    value: '200+'
+    title: 'AI Projects',
+    description: 'Innovative AI and ML projects completed',
+    icon: <Brain className="w-8 h-8" />,
+    value: '5+'
   },
   {
     id: '4',
-    title: 'Industry Partners',
-    description: 'Collaborations with leading companies',
-    icon: <Building className="w-8 h-8" />,
-    value: '30+'
+    title: 'Workshop Sessions',
+    description: 'Technical workshops and training sessions',
+    icon: <BookOpen className="w-8 h-8" />,
+    value: '2+'
   },
   {
     id: '5',
-    title: 'Research Projects',
-    description: 'Ongoing and completed projects',
-    icon: <Lightbulb className="w-8 h-8" />,
-    value: '20+'
-  },
-  {
-    id: '6',
-    title: 'Years of Excellence',
-    description: 'Serving the nation since 1996',
-    icon: <Award className="w-8 h-8" />,
-    value: '21+'
+    title: 'Industry Mentors',
+    description: 'Professional mentors from tech industry',
+    icon: <Building className="w-8 h-8" />,
+    value: '1+'
   }
+  
 ]
 
 const getMilestoneColor = (type: string) => {
@@ -170,48 +152,65 @@ export default function AboutUsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
       {/* Hero Section */}
-      <AnimatedSection className="relative py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white overflow-hidden">
+      <AnimatedSection className="relative py-20 bg-gradient-to-r from-purple-900 to-blue-700 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About Our Department
+              Programming and AI Club
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              21 years of excellence in electrical and electronic engineering education
+            <p className="text-xl md:text-2xl mb-8 text-purple-100">
+              Department of EEE, University of Asia Pacific
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center space-x-2">
                 <Calendar className="w-5 h-5" />
-                <span>Established 2004</span>
+                <span>Established 2024</span>
               </div>
               <div className="flex items-center space-x-2">
-                <GraduationCap className="w-5 h-5" />
-                <span>1600+ Graduates</span>
+                <Code className="w-5 h-5" />
+                <span>Programming Excellence</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Globe className="w-5 h-5" />
-                <span>Global Recognition</span>
+                <Brain className="w-5 h-5" />
+                <span>AI Innovation</span>
               </div>
             </div>
           </div>
         </div>
       </AnimatedSection>
 
-      {/* Department Overview */}
+      {/* Club Overview */}
       <AnimatedSection className="py-20" delay={0.2}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Our Legacy
+                Our Mission & Vision
               </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <Card className="p-8 bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
+                  <h3 className="text-2xl font-bold text-purple-900 mb-4">Mission</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    To cultivate a community of passionate programmers and AI enthusiasts who excel in competitive programming, 
+                    develop innovative AI solutions, and contribute to technological advancement through continuous learning, 
+                    collaboration, and practical application of cutting-edge technologies.
+                  </p>
+                </Card>
+                <Card className="p-8 bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+                  <h3 className="text-2xl font-bold text-blue-900 mb-4">Vision</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    To become the leading programming and AI club in Bangladesh, producing world-class programmers and AI researchers 
+                    who will shape the future of technology, win international programming contests, and create AI solutions 
+                    that solve real-world problems.
+                  </p>
+                </Card>
+              </div>
               <p className="text-xl text-gray-600 leading-relaxed">
-                The Department of Electrical and Electronic Engineering at University of Asia Pacific 
-                was established in 1996 as one of the pioneering engineering departments in private 
-                higher education in Bangladesh. Over nearly three decades, we have grown from a small 
-                department with ambitious dreams to a leading center of excellence in engineering education 
-                and research.
+                The Programming and AI Club at the Department of EEE, University of Asia Pacific was established in 2024 
+                with the vision of creating a vibrant community where students can explore the fascinating worlds of 
+                competitive programming and artificial intelligence. We are committed to fostering innovation, 
+                excellence, and collaboration among aspiring technologists.
               </p>
             </div>
 
@@ -221,50 +220,49 @@ export default function AboutUsPage() {
                   Our Foundation Story
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Founded with the vision of providing world-class engineering education in Bangladesh, 
-                  our department began its journey with a small but dedicated team of faculty members 
-                  and the first batch of enthusiastic students. The founders envisioned creating 
-                  engineers who would not only excel technically but also contribute meaningfully 
-                  to society.
+                  Founded in 2024 by a group of passionate students and faculty members from the Department of EEE, 
+                  our club emerged from the recognition that programming and AI skills are essential for modern engineers. 
+                  We started with the goal of creating a platform where students could enhance their coding abilities, 
+                  participate in programming contests, and explore the limitless possibilities of artificial intelligence.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  From the beginning, we emphasized practical learning, industry collaboration, 
-                  and research excellence. This foundation has enabled us to produce graduates 
-                  who are now working in leading companies across the globe, from Silicon Valley 
-                  tech giants to major power companies in Bangladesh.
+                  From day one, we have emphasized hands-on learning, competitive programming, and practical AI applications. 
+                  Our regular participation in programming contests, including ICPC and other national competitions, 
+                  has helped our members develop problem-solving skills and algorithmic thinking that extends far beyond 
+                  traditional academic boundaries.
                 </p>
               </div>
               <div className="space-y-4">
-                <Card className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+                <Card className="p-6 bg-gradient-to-br from-green-50 to-green-100 border-green-200">
                   <div className="flex items-center space-x-4">
-                    <div className="p-3 bg-blue-600 rounded-full text-white">
-                      <Zap className="w-6 h-6" />
+                    <div className="p-3 bg-green-600 rounded-full text-white">
+                      <Code className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900">Power Systems</h4>
-                      <p className="text-sm text-gray-600">Leading research in smart grids and renewable energy</p>
+                      <h4 className="font-bold text-gray-900">Competitive Programming</h4>
+                      <p className="text-sm text-gray-600">ICPC, Codeforces, AtCoder, and national contests</p>
                     </div>
                   </div>
                 </Card>
                 <Card className="p-6 bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
                   <div className="flex items-center space-x-4">
                     <div className="p-3 bg-purple-600 rounded-full text-white">
-                      <Cpu className="w-6 h-6" />
+                      <Brain className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900">Electronics</h4>
-                      <p className="text-sm text-gray-600">Advanced VLSI design and embedded systems</p>
+                      <h4 className="font-bold text-gray-900">Artificial Intelligence</h4>
+                      <p className="text-sm text-gray-600">Machine learning, deep learning, and neural networks</p>
                     </div>
                   </div>
                 </Card>
-                <Card className="p-6 bg-gradient-to-br from-green-50 to-green-100 border-green-200">
+                <Card className="p-6 bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200">
                   <div className="flex items-center space-x-4">
-                    <div className="p-3 bg-green-600 rounded-full text-white">
-                      <Radio className="w-6 h-6" />
+                    <div className="p-3 bg-orange-600 rounded-full text-white">
+                      <Rocket className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900">Communications</h4>
-                      <p className="text-sm text-gray-600">5G/6G technologies and signal processing</p>
+                      <h4 className="font-bold text-gray-900">Innovation Projects</h4>
+                      <p className="text-sm text-gray-600">Real-world AI applications and software development</p>
                     </div>
                   </div>
                 </Card>
@@ -365,24 +363,20 @@ export default function AboutUsPage() {
 
 
       {/* Call to Action */}
-      <AnimatedSection className="py-20 bg-gradient-to-r from-orange-500 to-orange-600 text-white" delay={1.0}>
+      <AnimatedSection className="py-20 bg-gradient-to-r from-purple-900 to-blue-900 text-white" delay={0.8}>
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">
-            Join Our Legacy
+            Join Our Programming & AI Community
           </h2>
-          <p className="text-xl mb-8 text-orange-100 max-w-3xl mx-auto">
-            Be part of our continuing story of excellence, innovation, and impact. 
-            Discover opportunities to study, research, or collaborate with us.
+          <p className="text-xl mb-8 text-purple-100 max-w-3xl mx-auto">
+            Be part of a vibrant community that's passionate about competitive programming and artificial intelligence. 
+            Enhance your coding skills, participate in contests, and build innovative AI solutions that shape the future.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/programs/bsc-eee">
-              <Button size="lg" variant="secondary" className="bg-white text-orange-600 hover:bg-gray-100">
-                <GraduationCap className="w-5 h-5 mr-2" />
-                Admission Information
-              </Button>
-            </Link>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600">
-              <Users className="w-5 h-5 mr-2" />
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button size="lg" className="bg-white text-purple-900 hover:bg-purple-50">
+              Join the Club
+            </Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-900">
               Contact Us
             </Button>
           </div>

@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     default: 'Department of Electrical and Electronic Engineering - University of Asia Pacific',
     template: '%s | UAP EEE Department'
   },
-  description: 'Leading department in electrical and electronic engineering education and research at University of Asia Pacific. Offering BSc and MSc programs with cutting-edge facilities and expert faculty.',
-  keywords: 'electrical engineering, electronic engineering, UAP, University of Asia Pacific, engineering education, research, Bangladesh, EEE department',
+  description: 'Leading department in electrical and electronic engineering education at University of Asia Pacific. Offering BSc and MSc programs with cutting-edge facilities and expert faculty.',
+  keywords: 'electrical engineering, electronic engineering, UAP, University of Asia Pacific, engineering education, Bangladesh, EEE department',
   authors: [{ name: 'UAP EEE Department' }],
   creator: 'UAP EEE Department',
   publisher: 'University of Asia Pacific',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     url: 'https://uap-eee.edu.bd',
     siteName: 'UAP EEE Department',
     title: 'Department of Electrical and Electronic Engineering - University of Asia Pacific',
-    description: 'Leading department in electrical and electronic engineering education and research at University of Asia Pacific.',
+    description: 'Leading department in electrical and electronic engineering education at University of Asia Pacific.',
     images: [
       {
         url: '/images/logo.png',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Department of Electrical and Electronic Engineering - University of Asia Pacific',
-    description: 'Leading department in electrical and electronic engineering education and research at University of Asia Pacific.',
+    description: 'Leading department in electrical and electronic engineering education at University of Asia Pacific.',
     images: ['/og-image.svg']
   },
   robots: {

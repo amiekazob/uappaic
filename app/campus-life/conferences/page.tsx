@@ -103,7 +103,7 @@ const conferences: Conference[] = [
     ],
     competitions: [
       'Thesis Paper Competition (Undergraduate & Postgraduate)',
-      'Research Paper Competition',
+      'Academic Paper Competition',
       'Pitching Competition',
       'Debate Competition',
       'Idea Contest',
@@ -128,7 +128,7 @@ const conferences: Conference[] = [
     id: '2',
     title: 'International Conference on Electrical and Electronics Engineering',
     subtitle: 'ICEEE 2023',
-    description: 'Premier conference focusing on cutting-edge research in electrical and electronics engineering with emphasis on sustainable technology.',
+    description: 'Premier conference focusing on cutting-edge technology in electrical and electronics engineering with emphasis on sustainable innovation.',
     date: '2023-12-15',
     endDate: '2023-12-16',
     venue: 'UAP Engineering Complex',
@@ -145,7 +145,7 @@ const conferences: Conference[] = [
       },
       {
         name: 'Dr. Sarah Ahmed',
-        title: 'Senior Research Scientist',
+        title: 'Senior Technology Specialist',
         organization: 'MIT, USA',
         image: 'https://i.ibb.co/b5h8T981/image.png'
       }
@@ -168,7 +168,7 @@ const conferences: Conference[] = [
     highlights: [
       '40+ Technical Papers Presented',
       'Industry-Academia Collaboration',
-      'Research Exhibition',
+      'Technology Exhibition',
       'Networking Sessions',
       'Publication Opportunities'
     ],
@@ -197,8 +197,8 @@ const conferences: Conference[] = [
       },
       {
         name: 'Dr. Fatima Begum',
-        title: 'Research Director',
-        organization: 'Bangladesh Council of Scientific Research',
+        title: 'Technology Director',
+        organization: 'Bangladesh Council of Scientific Innovation',
         image: 'https://i.ibb.co/b5h8T981/image.png'
       }
     ],
@@ -233,10 +233,10 @@ const conferences: Conference[] = [
     id: '4',
     title: 'International Symposium on Sustainable Energy',
     subtitle: 'ISSE 2024',
-    description: 'Addressing global energy challenges through innovative research in renewable energy and sustainable technology solutions.',
+    description: 'Addressing global energy challenges through innovative technology in renewable energy and sustainable technology solutions.',
     date: '2024-05-15',
     endDate: '2024-05-16',
-    venue: 'UAP Green Energy Research Center',
+    venue: 'UAP Green Energy Technology Center',
     location: 'Dhaka, Bangladesh',
     category: 'International',
     status: 'Upcoming',
@@ -244,7 +244,7 @@ const conferences: Conference[] = [
     speakers: [
       {
         name: 'Prof. Dr. Aminul Islam',
-        title: 'Director of Renewable Energy Research',
+        title: 'Director of Renewable Energy Technology',
         organization: 'University of Asia Pacific',
         image: 'https://i.ibb.co/b5h8T981/image.png'
       },
@@ -264,12 +264,12 @@ const conferences: Conference[] = [
     ],
     competitions: [
       'Sustainable Energy Project Competition',
-      'Research Paper Presentation',
+      'Academic Paper Presentation',
       'Innovation in Green Technology',
       'Best Poster Award'
     ],
     attendees: 400,
-    organizers: ['UAP Green Energy Research Center', 'International Energy Forum'],
+    organizers: ['UAP Green Energy Technology Center', 'International Energy Forum'],
     highlights: [
       'International Expert Speakers',
       'Technology Exhibition',
@@ -278,7 +278,7 @@ const conferences: Conference[] = [
       'Publication in Special Issue'
     ],
     participants: [
-      'International Universities', 'Research Institutions', 'Energy Companies',
+      'International Universities', 'Academic Institutions', 'Energy Companies',
       'Government Officials', 'Environmental Organizations'
     ]
   }
@@ -611,23 +611,23 @@ export default function ConferencesPage() {
               </h2>
               <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
                 The Department of EEE at University of Asia Pacific continues to host world-class conferences, 
-                fostering research collaboration and knowledge exchange in electrical and electronics engineering.
+                fostering academic collaboration and knowledge exchange in electrical and electronics engineering.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
                   <Network className="w-8 h-8 mx-auto mb-3" />
-                  <h3 className="font-semibold mb-2">Research Collaboration</h3>
+                  <h3 className="font-semibold mb-2">Academic Collaboration</h3>
                   <p className="text-sm opacity-90">Connecting researchers from leading institutions worldwide</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
                   <Lightbulb className="w-8 h-8 mx-auto mb-3" />
                   <h3 className="font-semibold mb-2">Innovation Showcase</h3>
-                  <p className="text-sm opacity-90">Presenting cutting-edge research and technological advances</p>
+                  <p className="text-sm opacity-90">Presenting cutting-edge academic work and technological advances</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
                   <Award className="w-8 h-8 mx-auto mb-3" />
                   <h3 className="font-semibold mb-2">Academic Recognition</h3>
-                  <p className="text-sm opacity-90">Recognizing outstanding contributions to engineering research</p>
+                  <p className="text-sm opacity-90">Recognizing outstanding contributions to engineering innovation</p>
                 </div>
               </div>
             </div>

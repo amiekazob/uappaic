@@ -1,5 +1,5 @@
 export interface AcademicProfile {
-  platform: 'Google Scholar' | 'ResearchGate' | 'ORCID' | 'Academia.edu' | 'LinkedIn' | 'IEEE Xplore';
+  platform: 'Google Scholar' | 'AcademicGate' | 'ORCID' | 'Academia.edu' | 'LinkedIn' | 'IEEE Xplore';
   url: string;
   profileId?: string;
 }
@@ -25,7 +25,7 @@ export type FacultyMember = {
     institution: string;
     year?: string;
   }[];
-  researchInterests: string[];
+  academicInterests: string[];
 
   academicExperience?: {
     position: string;
@@ -67,7 +67,7 @@ export const facultyMembers: FacultyMember[] = [
     image: "/images/faculties/mr-a-h-m-zadidul-karim.jpg",
     bio: `Mr. A.H.M. Zadidul Karim is an accomplished academic currently serving as the Associate Professor and Head of the Department of Electrical and Electronic Engineering. He holds an M.Sc. in EEE from Bangladesh University of Engineering and Technology (BUET), earned in 2010, and a B.Sc. in EEE from Ahsanullah University of Science and Technology (AUST), completed in 2004. He is currently pursuing his Ph.D. in Electrical and Electronic Engineering at BUET.
 
-With a specialization in Biomedical Signal and Image Processing, Mr. Karim is actively engaged in research and academic development in this emerging field. His leadership and extensive experience make him a key figure in shaping the academic and research direction of the department.`,
+With a specialization in Biomedical Signal and Image Processing, Mr. Karim is actively engaged in academic work and academic development in this emerging field. His leadership and extensive experience make him a key figure in shaping the academic and innovation direction of the department.`,
     email: "headeee@uap-bd.edu",
     phone: "",
     room: 601,
@@ -88,7 +88,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
         year: "2004"
       }
     ],
-    researchInterests: [
+    academicInterests: [
       "Biomedical signal and image processing"
 
     ],
@@ -97,13 +97,13 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
         position: "Head of Department & Professor",
         institute: "University of Asia Pacific",
         period: "[Year] - Present",
-        description: "Leading the EEE department with focus on academic excellence and research innovation"
+        description: "Leading the EEE department with focus on academic excellence and technological innovation"
       },
       {
         position: "Professor",
         institute: "University of Asia Pacific",
         period: "[Year] - [Year]",
-        description: "Teaching and research in electrical engineering"
+        description: "Teaching and academic work in electrical engineering"
       }
     ],
     professionalMemberships: [
@@ -223,7 +223,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
          type: "Journal",
          title: "A security system for kindergarten school using RFID technology",
          authors: "Salma Nazia Rahman, Shikder Shafiul Bashar, Md Abdullah Al Mahmud, Md Sazal Miah, AHM Zadidul Karim, Maliha Marium",
-         venue: "Journal of Computer and Communications, Scientific Research Publishing, Vol: 7(4) pp. 21",
+         venue: "Journal of Computer and Communications, Scientific Innovation Publishing, Vol: 7(4) pp. 21",
          year: 2019
        },
        {
@@ -300,14 +300,14 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
          type: "Journal",
          title: "Spine Tumor Detection Using MRI",
          authors: "Md. Abdullah- Al Mahmud, A.H.M. Zadidul Karim, Farhana Aktern Mou, Shaikh Rashedur Rahman",
-         venue: "International Journal of Biomedical Materials Research, Vol:4, Issue:3, PP: 35-42, USA",
+         venue: "International Journal of Biomedical Materials Innovation, Vol:4, Issue:3, PP: 35-42, USA",
          year: 2016
        },
        {
          type: "Journal",
          title: "Brain Tumor Detection by Using Bounding Box methodology Based on Bhattacharyya Coefficient",
          authors: "A.H.M. Zadidul Karim, Md. Abdullah- Al Mahmud, M. Abdullah Al Amin, Mr. Muhammed Towhidur Rahman",
-         venue: "American journal of engineering research Research, Vol:5, Issue:12, PP: 218-223, USA",
+         venue: "American journal of engineering innovation, Vol:5, Issue:12, PP: 218-223, USA",
          year: 2016
        },
        {
@@ -349,14 +349,14 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
          type: "Journal",
          title: "Industrial Application of PLCs in Bangladesh",
          authors: "Ahmed Ullah Abu Saeed, Md. Al-Mamun and A.H.M. Zadidul Karim",
-         venue: "International Journal of Scientific & Engineering Research(IJSER), Volume 3, Issue 6, June-2012 , ISSN 2229-5518, France",
+         venue: "International Journal of Scientific & Engineering Innovation(IJSEI), Volume 3, Issue 6, June-2012 , ISSN 2229-5518, France",
          year: 2012
        },
        {
          type: "Journal",
          title: "Low Cost Digital Basic Mathematics Rules Learner Kit",
          authors: "MD.Mizanur Rahman, A.H.M. Zadidul Karim, Asraful Haque Ronee, Khandakar Mohammad Ishtiak",
-         venue: "International Journal of Scientific & Engineering Research Volume 3, Issue 7, July-2012, ISSN 2229-5518, France",
+         venue: "International Journal of Scientific & Engineering Innovation Volume 3, Issue 7, July-2012, ISSN 2229-5518, France",
          year: 2012
        },
        {
@@ -405,7 +405,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
          type: "Journal",
          title: "Design Implementation of a smart load timer to prevent insensible use of electricity",
          authors: "Munzur-ul-Mamun, A.H.M. Zadidul Karim, Md. Sharif Ulah",
-         venue: "International Journal of Scientific and Engineering Research - IJSER, France",
+         venue: "International Journal of Scientific and Engineering Innovation - IJSEI, France",
          year: 2011
        },
        {
@@ -445,7 +445,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Professor",
   role: "Professor",
   image: "/images/faculties/dr-g-r-ahmed-jamal.jpg",
-  bio: "Dr. G. R. Ahmed Jamal is a Professor in the Department of Electrical and Electronic Engineering at UAP. His academic focus includes nano materials and nano electronics. He has a strong background in both teaching and research in these fields.",
+  bio: "Dr. G. R. Ahmed Jamal is a Professor in the Department of Electrical and Electronic Engineering at UAP. His academic focus includes nano materials and nano electronics. He has a strong background in both teaching and academic work in these fields.",
   email: "ahmed.eee@uap-bd.edu",
   phone: "+880-17****-***",
   room: "",
@@ -466,7 +466,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
       year: "2003"
     }
   ],
-  researchInterests: [
+  academicInterests: [
     "Nano materials",
     "Nano electronics"
   ],
@@ -746,7 +746,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Professor",
   role: "Professor",
   image: "/images/faculties/dr-md-shofiqul-islam.jpg",
-  bio: "Dr. Md. Shofiqul Islam is a Professor in the Department of Electrical and Electronic Engineering at UAP. His research interests include organic solar cell devices, PCF-based plasmonic and terahertz sensors, and vertical devices such as silicon microneedles.",
+  bio: "Dr. Md. Shofiqul Islam is a Professor in the Department of Electrical and Electronic Engineering at UAP. His academic interests include organic solar cell devices, PCF-based plasmonic and terahertz sensors, and vertical devices such as silicon microneedles.",
   email: "dmsi@uap-bd.edu",
   phone: "+880-17****-***",
   room: "",
@@ -767,7 +767,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
       year: "1999"
     }
   ],
-  researchInterests: [
+  academicInterests: [
     "Organic solar cell devices",
     "PCF-based plasmonic sensors",
     "Tera-Hertz sensors",
@@ -791,7 +791,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Professor",
   role: "Professor",
   image: "/images/faculties/dr-tapan-kumar-chakraborty.jpg",
-  bio: "Dr. Tapan Kumar Chakraborty is a Professor in the Department of Electrical and Electronic Engineering at UAP. His areas of specialization include phase change memory, electronic devices and circuits, and power electronics. He has extensive experience in both research and higher education.",
+  bio: "Dr. Tapan Kumar Chakraborty is a Professor in the Department of Electrical and Electronic Engineering at UAP. His areas of specialization include phase change memory, electronic devices and circuits, and power electronics. He has extensive experience in both academic work and higher education.",
   email: "tkc@uap-bd.edu",
   phone: "+880-17****-***",
   room: "",
@@ -812,7 +812,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
       year: "1984"
     }
   ],
-  researchInterests: [
+  academicInterests: [
     "Phase Change Memory",
     "Electronic devices and circuits",
     "Power Electronics"
@@ -835,7 +835,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
     title: "Professor (Part-time)",
     role: "Professor",
   image: "/images/faculties/dr-quazi-deen-mohd-khosru.jpg",
-  bio: "Dr. Quazi Deen Mohd Khosru is a Professor and the Dean of the Faculty of Electrical and Electronic Engineering at BUET. His area of expertise lies in solid-state electronic devices, and he has a long-standing academic and research career in semiconductor and device technology.",
+  bio: "Dr. Quazi Deen Mohd Khosru is a Professor and the Dean of the Faculty of Electrical and Electronic Engineering at BUET. His area of expertise lies in solid-state electronic devices, and he has a long-standing academic career in semiconductor and device technology.",
   email: "qdmkhosru@eee.buet.ac.bd",
   phone: "+880-17****-***",
   room: "",
@@ -910,7 +910,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
     title: "Professor (Part-time)",
     role: "Professor",
   image: "/images/faculties/dr-md-abdus-salam-akanda.jpg",
-  bio: "Dr. Md. Abdus Salam Akanda is a Professor at BUET. He has conducted postdoctoral research at Tohoku University in Japan under the JSPS Fellowship. His research interests span applied mechanics, nondestructive testing and evaluation (NDT&E), and micro/nano mechanics.",
+  bio: "Dr. Md. Abdus Salam Akanda is a Professor at BUET. He has conducted postdoctoral academic work at Tohoku University in Japan under the JSPS Fellowship. His academic interests span applied mechanics, nondestructive testing and evaluation (NDT&E), and micro/nano mechanics.",
   email: "masalamakanda@me.buet.ac.bd",
   phone: "+880-17****-***",
   room: "",
@@ -962,7 +962,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Associate Professor (Part-time)",
   role: "Associate Professor",
   image: "/images/faculties/dr-tahsina-farah-sanam.jpg",
-  bio: "Dr. Tahsina Farah Sanam is an Associate Professor at BUET. Her research interests span artificial intelligence, machine learning, Internet of Things (IoT), smart healthcare, assistive living technologies, and smart city connectivity. She earned her Ph.D. in Electrical and Computer Engineering from Rutgers University, USA.",
+  bio: "Dr. Tahsina Farah Sanam is an Associate Professor at BUET. Her academic interests span artificial intelligence, machine learning, Internet of Things (IoT), smart healthcare, assistive living technologies, and smart city connectivity. She earned her Ph.D. in Electrical and Computer Engineering from Rutgers University, USA.",
   email: "tahsina@iat.buet.ac.bd",
   phone: "+880-17****-***",
   room: "",
@@ -1008,7 +1008,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Associate Professor (Part-time)",
   role: "Associate Professor",
   image: "/images/faculties/dr-shuva-ghosh.jpg",
-  bio: "Dr. Shuva Ghosh is an Associate Professor at BUET in the Department of Industrial and Production Engineering. He completed his Ph.D. in Engineering Management from Missouri University of Science & Technology, USA. His academic focus lies in operations management, supported by extensive experience in IPE education and research.",
+  bio: "Dr. Shuva Ghosh is an Associate Professor at BUET in the Department of Industrial and Production Engineering. He completed his Ph.D. in Engineering Management from Missouri University of Science & Technology, USA. His academic focus lies in operations management, supported by extensive experience in IPE education and academic work.",
   email: "shuvaghosh@ipe.buet.ac.bd",
   phone: "+880-17****-***",
   room: "",
@@ -1053,7 +1053,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Assistant Professor",
   role: "Assistant Professor",
   image: "/images/faculties/dr-tasnia-hossain.jpg",
-  bio: "Dr. Tasnia Hossain is an Assistant Professor at the University of Asia Pacific. She completed her Ph.D. from CNRS-CHREA, University of Nice Sophia Antipolis, France, with a focus on photovoltaic and semiconductor materials. Her academic and research interests include thin film photovoltaic materials, plasmonic solar cells, and Group-III nitride semiconductors.",
+  bio: "Dr. Tasnia Hossain is an Assistant Professor at the University of Asia Pacific. She completed her Ph.D. from CNRS-CHREA, University of Nice Sophia Antipolis, France, with a focus on photovoltaic and semiconductor materials. Her academic interests include thin film photovoltaic materials, plasmonic solar cells, and Group-III nitride semiconductors.",
   email: "tasnia@uap-bd.edu",
   phone: "+880-17****-***",
   room: "",
@@ -1133,7 +1133,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Assistant Professor",
   role: "Assistant Professor",
   image: "/images/faculties/dr-md-sultan-mahmud.jpg",
-  bio: "Dr. Md Sultan Mahmud is an Assistant Professor at the University of Asia Pacific. He completed his Ph.D. in Micro-Nano Engineering from Nagoya University, Japan. His academic and research interests span a wide range of energy-related fields, including semiconductor materials, solar PV, energy storage systems, fuel cells, and thermoelectric devices.",
+  bio: "Dr. Md Sultan Mahmud is an Assistant Professor at the University of Asia Pacific. He completed his Ph.D. in Micro-Nano Engineering from Nagoya University, Japan. His academic interests span a wide range of energy-related fields, including semiconductor materials, solar PV, energy storage systems, fuel cells, and thermoelectric devices.",
   email: "sultan_mahmud@uap-bd.edu",
   phone: "+880-17****-***",
   room: "",
@@ -1214,7 +1214,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Assistant Professor",
   role: "Assistant Professor",
   image: "/images/faculties/mr-muhammad-towhidur-rahman.jpg",
-  bio: "Mr. Muhammad Towhidur Rahman is an Assistant Professor in the Department of Electrical and Electronic Engineering at the University of Asia Pacific. He holds a Master's degree in Biomedical Physics and Technology from the University of Dhaka and a Bachelor's degree in Electrical and Electronic Engineering from AUST. His research interests include biomedical signal analysis and data analysis.",
+  bio: "Mr. Muhammad Towhidur Rahman is an Assistant Professor in the Department of Electrical and Electronic Engineering at the University of Asia Pacific. He holds a Master's degree in Biomedical Physics and Technology from the University of Dhaka and a Bachelor's degree in Electrical and Electronic Engineering from AUST. His academic interests include biomedical signal analysis and data analysis.",
   email: "towhid@uap-bd.edu",
   phone: "+880-17****-***",
   room: "",
@@ -1251,7 +1251,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Assistant Professor",
   role: "Assistant Professor",
   image: "/images/faculties/mr-m-abdullah-al-amin.jpg",
-  bio: "Mr. M. Abdullah Al Amin is an Assistant Professor in the Department of Electrical and Electronic Engineering at the University of Asia Pacific. He obtained his M.Sc. in Electrical and Electronic Engineering from IUT and his B.Sc. from AUST. His research specialization focuses on Renewable Energy.",
+  bio: "Mr. M. Abdullah Al Amin is an Assistant Professor in the Department of Electrical and Electronic Engineering at the University of Asia Pacific. He obtained his M.Sc. in Electrical and Electronic Engineering from IUT and his B.Sc. from AUST. His academic specialization focuses on Renewable Energy.",
   email: "masumeee@uap-bd.edu",
   phone: "+880-17****-***",
   room: "",
@@ -1267,7 +1267,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
       year: "2008"
     }
   ],
-  researchInterests: [
+  academicInterests: [
     "Renewable Energy"
   ],
   academicExperience: [],
@@ -1308,7 +1308,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
       year: "2009"
     }
   ],
-  researchInterests: [
+  academicInterests: [
     "Power System Stability",
     "HVDC"
   ],
@@ -1329,7 +1329,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Assistant Professor",
   role: "Assistant Professor",
   image: "/images/faculties/mr-muhammad-ahad-rahman-miah.jpg",
-  bio: "Mr. Muhammad Ahad Rahman Miah is an Assistant Professor in the Department of Electrical and Electronic Engineering at the University of Asia Pacific. He completed his M.Engg. from the Asian Institute of Technology (AIT), Thailand, and his B.Sc. from UAP. His research interests lie in Power Systems and Renewable Energy.",
+  bio: "Mr. Muhammad Ahad Rahman Miah is an Assistant Professor in the Department of Electrical and Electronic Engineering at the University of Asia Pacific. He completed his M.Engg. from the Asian Institute of Technology (AIT), Thailand, and his B.Sc. from UAP. His academic interests lie in Power Systems and Renewable Energy.",
   email: "ahad@uap-bd.edu",
   phone: "+880-17****-***",
   room: "",
@@ -1345,7 +1345,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
       year: "2010"
     }
   ],
-  researchInterests: [
+  academicInterests: [
     "Power System",
     "Renewable Energy"
   ],
@@ -1382,7 +1382,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
       year: "2012"
     }
   ],
-  researchInterests: [
+  academicInterests: [
     "Power System",
     "Renewable Energy"
   ],
@@ -1514,7 +1514,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
       year: "2013"
     }
   ],
-  researchInterests: [
+  academicInterests: [
     "Optical Fiber Designing",
     "Biomedical Image Processing"
   ],
@@ -1588,7 +1588,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Assistant Professor (Part-time)",
   role: "Assistant Professor",
   image: "/images/faculties/dr-mohammad-jane-alam-khan.jpg", // Update if you have the image
-  bio: "Dr. Mohammad Jane Alam Khan is an Assistant Professor at BUET. He earned his Ph.D. from Rensselaer Polytechnic Institute, USA in 2020, his M.Sc. Engg. from BUET in 2015, and his B.Sc. Engg. from BUET in 2012. His research specializes in Dislocations and Plasticity, Mechanics of Materials, Energetic Materials, and Molecular Dynamics.",
+  bio: "Dr. Mohammad Jane Alam Khan is an Assistant Professor at BUET. He earned his Ph.D. from Rensselaer Polytechnic Institute, USA in 2020, his M.Sc. Engg. from BUET in 2015, and his B.Sc. Engg. from BUET in 2012. His academic work specializes in Dislocations and Plasticity, Mechanics of Materials, Energetic Materials, and Molecular Dynamics.",
   email: "ronin@me.buet.ac.bd",
   phone: "",  // Add if available
   room: "",   // Add if available
@@ -1710,7 +1710,7 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
       year: "2019"
     }
   ],
-  researchInterests: [], // Will be provided soon
+  academicInterests: [], // Will be provided soon
   academicExperience: [], // Add if available
   professionalMemberships: [], // Add if available
   recentPublications: [], // Add if available
@@ -1835,14 +1835,14 @@ With a specialization in Biomedical Signal and Image Processing, Mr. Karim is ac
   title: "Associate Professor (On Leave)",
   role: "Associate Professor",
   image: "/images/faculties/dr-md-shafiul-alam.jpg",
-  bio: "Dr. Md. Shafiul Alam is currently on leave from his position as Associate Professor in the Department of Electrical and Electronic Engineering at UAP. He completed a prestigious Postdoctoral Fellowship at the K.A.CARE Energy Research and Innovation Center, King Fahd University of Petroleum & Minerals (KFUPM), Saudi Arabia, in 2022. He earned his Ph.D. in Electrical Engineering from KFUPM in 2018, following an M.Sc. in EEE from BUET in 2012 and a B.Sc. in EEE from DUET in 2007. Dr. Alam is recognized among the world's top 2% scientists. His research focuses on renewable energy integration, smart grids, energy management, and advanced power systems.",
+  bio: "Dr. Md. Shafiul Alam is currently on leave from his position as Associate Professor in the Department of Electrical and Electronic Engineering at UAP. He completed a prestigious Postdoctoral Fellowship at the K.A.CARE Energy Technology and Innovation Center, King Fahd University of Petroleum & Minerals (KFUPM), Saudi Arabia, in 2022. He earned his Ph.D. in Electrical Engineering from KFUPM in 2018, following an M.Sc. in EEE from BUET in 2012 and a B.Sc. in EEE from DUET in 2007. Dr. Alam is recognized among the world's top 2% scientists. His academic work focuses on renewable energy integration, smart grids, energy management, and advanced power systems.",
   email: "shafiul@uap-bd.edu",
   phone: "",
   room: "",
   education: [
     {
       degree: "Postdoctoral Fellowship",
-      institution: "K.A.CARE Energy Research and Innovation Center, KFUPM, Saudi Arabia",
+      institution: "K.A.CARE Energy Technology and Innovation Center, KFUPM, Saudi Arabia",
       year: "2022"
     },
     {

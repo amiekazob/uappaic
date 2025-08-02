@@ -30,12 +30,12 @@ const completedTours: Tour[] = [
   },
   {
     id: '2',
-    title: 'Cox\'s Bazar Research Trip',
+    title: 'Cox\'s Bazar Educational Trip',
     destination: 'Cox\'s Bazar Beach',
     date: '2023-10-20',
     participants: 30,
     image: '/placeholder.jpg',
-    description: 'Marine engineering research expedition studying coastal systems and wave energy.'
+    description: 'Marine engineering educational expedition studying coastal systems and wave energy.'
   },
   {
     id: '3',

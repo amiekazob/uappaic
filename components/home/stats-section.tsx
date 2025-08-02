@@ -16,8 +16,8 @@ const stats = [
     suffix: "+",
   },
   {
-    value: 19,
-    label: "Modern Labs",
+    value: 8,
+    label: "Programs",
     suffix: "",
   },
 ]
@@ -46,23 +46,23 @@ function AnimatedCounter({ to }: { to: number }) {
 
 export function StatsSection() {
   return (
-    <div className="bg-gray-50/70">
+    <section className="py-16 bg-gradient-to-r from-primary-600 to-secondary-500 text-white">
       <StaggeredContainer
         className="container mx-auto grid grid-cols-3 gap-8 py-12 text-center"
         staggerDelay={0.2}
       >
         {stats.map((stat, index) => (
           <StaggeredItem key={index}>
-            <div className="flex flex-col items-center">
-              <p className="text-4xl md:text-5xl font-bold text-blue-900">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/20 transition-all duration-300 border border-white/20 flex flex-col items-center">
+              <p className="text-4xl md:text-5xl font-bold text-white">
                 <AnimatedCounter to={stat.value} />
                 {stat.suffix}
               </p>
-              <p className="text-sm text-gray-700 mt-2 tracking-wide uppercase">{stat.label}</p>
+              <p className="text-sm text-white/80 mt-2 tracking-wide uppercase">{stat.label}</p>
             </div>
           </StaggeredItem>
         ))}
       </StaggeredContainer>
-    </div>
+    </section>
   )
-} 
+}

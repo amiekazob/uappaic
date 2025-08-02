@@ -53,5 +53,11 @@ export function useLazyFacultyData() {
 // Publications data loader removed - publications page now uses static content
 
 export function useLazyEventsData() {
-  return useLazyData(() => import('@/lib/events-data').then(m => m.events))
+  return useLazyData(async () => {
+    const [currentEvents, pastEvents] = await Promise.all([
+      import('@/lib/events-data').then(m => m.events),
+      import('@/lib/past-events-data').then(m => m.PastEventsData)
+    ]);
+    return [...currentEvents, ...pastEvents];
+  });
 }

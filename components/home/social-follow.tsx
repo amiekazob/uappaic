@@ -33,7 +33,7 @@ const socialLinks = [
 export function SocialFollow() {
   return (
     <AnimatedSection animation="fadeIn" delay={0.2}>
-      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-20">
+      <section className="bg-gradient-to-r from-primary-50 to-accent-50 py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Follow Us on Social Media
@@ -51,7 +51,7 @@ export function SocialFollow() {
                 aria-label={`Follow us on ${social.name}`}
                 className="group w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300"
               >
-                <social.icon className="w-7 h-7 text-gray-600 group-hover:text-indigo-700 transition-colors" />
+                <social.icon className="w-7 h-7 text-gray-600 group-hover:text-primary-700 transition-colors" />
               </Link>
             ))}
           </div>
@@ -59,4 +59,4 @@ export function SocialFollow() {
       </section>
     </AnimatedSection>
   );
-} 
+}

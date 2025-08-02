@@ -21,7 +21,7 @@ export function FacultyPreview() {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%237E1891' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232d8f5d' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           backgroundSize: '100px 100px',
           backgroundRepeat: 'repeat'
         }} />
@@ -29,17 +29,17 @@ export function FacultyPreview() {
 
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection animation="slideUp" className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6">
-            <Users className="w-8 h-8 text-purple-600" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-6">
+            <Users className="w-8 h-8 text-primary-600" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
             Meet Our
-            <span className="block text-purple-700">Distinguished Faculty</span>
+            <span className="block text-primary-700">Distinguished Faculty</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Our department is proud to have a team of highly qualified and dedicated educators, researchers, and innovators shaping the future of engineering.
+            Our department is proud to have a team of highly qualified and dedicated educators and innovators shaping the future of engineering.
           </p>
-          <div className="w-24 h-1 bg-purple-600 mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-primary-600 mx-auto rounded-full" />
         </AnimatedSection>
 
         <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
@@ -47,7 +47,7 @@ export function FacultyPreview() {
             <StaggeredItem key={member.id}>
               <Card className="overflow-hidden h-full flex flex-col group bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-2xl">
                 <div className="relative overflow-hidden rounded-t-2xl">
-                  <Link href={`/faculty/${member.id}`} className="block">
+                  <Link href={`/committee/${member.id}`} className="block">
                     <Image
                       src={member.image || "/placeholder-user.jpg"}
                       alt={member.name}
@@ -62,7 +62,7 @@ export function FacultyPreview() {
                   
                   {/* Role Badge */}
                   <div className="absolute top-4 left-4">
-                    <Badge className="bg-purple-500 text-white border-0 shadow-lg">
+                    <Badge className="bg-primary-500 text-white border-0 shadow-lg">
                       <Award className="w-3 h-3 mr-1" />
                       Professor
                     </Badge>
@@ -70,23 +70,27 @@ export function FacultyPreview() {
                   
                   {/* Faculty Info Overlay */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-xl font-bold text-white leading-tight mb-2 group-hover:text-purple-200 transition-colors">
+                    <h3 className="text-xl font-bold text-white leading-tight mb-2 group-hover:text-primary-200 transition-colors">
                       {member.name}
                     </h3>
-                    <p className="text-sm text-purple-300 font-semibold mb-3">
+                    <p className="text-sm text-primary-300 font-semibold mb-3">
                       {member.title.replace('Head of the Department & ', '')}
                     </p>
                     
-                    {/* Research Interests Preview */}
+                    {/* Specialization Preview */}
                     <div className="flex flex-wrap gap-1 mb-4">
-                      {member.researchInterests.slice(0, 2).map((interest, idx) => (
+                      {member.specialization?.slice(0, 2).map((spec, idx) => (
+                        <Badge key={idx} variant="secondary" className="text-xs bg-white/20 text-white border-white/30 hover:bg-white/30">
+                          {spec}
+                        </Badge>
+                      )) || member.academicInterests?.slice(0, 2).map((interest, idx) => (
                         <Badge key={idx} variant="secondary" className="text-xs bg-white/20 text-white border-white/30 hover:bg-white/30">
                           {interest}
                         </Badge>
                       ))}
-                      {member.researchInterests.length > 2 && (
+                      {(member.specialization?.length > 2 || member.academicInterests?.length > 2) && (
                         <Badge variant="secondary" className="text-xs bg-white/20 text-white border-white/30">
-                          +{member.researchInterests.length - 2} more
+                          +{(member.specialization?.length || member.academicInterests?.length) - 2} more
                         </Badge>
                       )}
                     </div>
@@ -105,7 +109,7 @@ export function FacultyPreview() {
                   </div>
                   
                   {/* Hover Effect Border */}
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-purple-400/50 rounded-t-2xl transition-all duration-300 pointer-events-none"></div>
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary-400/50 rounded-t-2xl transition-all duration-300 pointer-events-none"></div>
                 </div>
                 
                 {/* Card Content */}
@@ -114,8 +118,8 @@ export function FacultyPreview() {
                     {member.bio}
                   </p>
                   
-                  <Button asChild className="w-full bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl group/btn">
-                    <Link href={`/faculty/${member.id}`}>
+                  <Button asChild className="w-full bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl group/btn">
+                    <Link href={`/committee/${member.id}`}>
                       <span className="flex items-center justify-center">
                         View Full Profile
                         <ChevronRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
@@ -135,12 +139,12 @@ export function FacultyPreview() {
               Discover Our Complete Faculty Team
             </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Explore detailed profiles, research interests, publications, and contact information for all our distinguished faculty members.
+              Explore detailed profiles, specializations, and contact information for all our distinguished faculty members.
             </p>
-            <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl px-8 py-3">
-              <Link href="/faculty">
+            <Button asChild size="lg" className="bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl px-8 py-3">
+              <Link href="/committee">
                 <Users className="w-5 h-5 mr-2" />
-                View All Faculty Members
+                View All Committee Members
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>
@@ -148,9 +152,9 @@ export function FacultyPreview() {
         </AnimatedSection>
         
         {/* Decorative Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-purple-200 rounded-full opacity-20 blur-xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-violet-200 rounded-full opacity-20 blur-xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 right-5 w-16 h-16 bg-indigo-200 rounded-full opacity-10 animate-bounce" />
+        <div className="absolute top-20 left-10 w-20 h-20 bg-primary-200 rounded-full opacity-20 blur-xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-secondary-200 rounded-full opacity-20 blur-xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 right-5 w-16 h-16 bg-accent-200 rounded-full opacity-10 animate-bounce" />
       </div>
     </section>
   )

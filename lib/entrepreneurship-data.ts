@@ -106,7 +106,7 @@ export const entrepreneurshipData: EntrepreneurshipType[] = [
     },
     {
       title: "Meet the Team",
-      content: "AgriBridge was founded and developed by a passionate team of three EEE students from UAP:\n🔹 Md. Mehedi Hasan Munna (ID: 24108054) – Founder and Team Leader, with 4+ years of experience managing e-commerce ventures and a keen focus on real-world problem-solving.\n🔹 Mohibul Hossaine Akanda (ID: 24108143) – Tech Developer and System Architect, responsible for platform design and backend development.\n🔹 R. Rafi Khan Siam (ID: 24108147) – Research & Strategy Lead, specializing in sustainable agriculture and economic modeling. \nThe team brings together a blend of technical knowledge, entrepreneurial spirit, and a deep understanding of socio-economic challenges faced by rural communities."
+      content: "AgriBridge was founded and developed by a passionate team of three EEE students from UAP:\n🔹 Md. Mehedi Hasan Munna (ID: 24108054) – Founder and Team Leader, with 4+ years of experience managing e-commerce ventures and a keen focus on real-world problem-solving.\n🔹 Mohibul Hossaine Akanda (ID: 24108143) – Tech Developer and System Architect, responsible for platform design and backend development.\n🔹 R. Rafi Khan Siam (ID: 24108147) – Academic & Strategy Lead, specializing in sustainable agriculture and economic modeling. \nThe team brings together a blend of technical knowledge, entrepreneurial spirit, and a deep understanding of socio-economic challenges faced by rural communities."
     },
     {
       title: "Vision and Future Plans",

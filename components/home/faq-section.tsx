@@ -15,39 +15,51 @@ interface FAQItem {
 const faqData: FAQItem[] = [
   {
     id: 1,
-    question: "What programs does the EEE department offer?",
-    answer: "We offer Bachelor of Science in Electrical and Electronic Engineering (BSc EEE) and Master of Science in Electrical and Electronic Engineering (MSc EEE). Our programs are designed to provide comprehensive knowledge in electrical systems, electronics, telecommunications, and power engineering.",
-    category: "Programs"
+    question: "What is the Programming and AI Club?",
+    answer: "The Programming and AI Club is a student-led organization within the Department of EEE at University of Asia Pacific. We focus on developing programming skills, exploring artificial intelligence technologies, and fostering innovation through hands-on projects, workshops, and collaborative learning experiences.",
+    category: "About Club"
   },
   {
     id: 2,
-    question: "What are the admission requirements for EEE programs?",
-    answer: "For BSc EEE, students need to have completed HSC or equivalent with strong background in Mathematics and Physics. For MSc EEE, a bachelor's degree in EEE or related field is required. Specific GPA requirements and entrance exam details are available on our admissions page.",
-    category: "Admissions"
+    question: "Who can join the Programming and AI Club?",
+    answer: "The club is open to all students from the Department of EEE, regardless of their programming experience level. Whether you're a complete beginner or an experienced coder, we welcome everyone who has an interest in programming, AI, and technology innovation.",
+    category: "Membership"
   },
   {
     id: 3,
-    question: "What career opportunities are available after graduation?",
-    answer: "Our graduates work in diverse fields including power generation and distribution, telecommunications, electronics manufacturing, automation and control systems, renewable energy, research and development, and many pursue entrepreneurship in tech startups.",
-    category: "Career"
+    question: "What programming languages and technologies do you focus on?",
+    answer: "We cover a wide range of programming languages including Python, C++, Java, JavaScript, and specialized AI/ML frameworks like TensorFlow, PyTorch, and scikit-learn. We also explore web development, mobile app development, embedded systems programming, and emerging technologies in AI and machine learning.",
+    category: "Technical"
   },
   {
     id: 4,
-    question: "Does the department have research facilities and labs?",
-    answer: "Yes, we have state-of-the-art laboratories including Power Systems Lab, Electronics Lab, Telecommunications Lab, Control Systems Lab, and Renewable Energy Lab. Students get hands-on experience with modern equipment and software.",
-    category: "Facilities"
+    question: "What activities and events does the club organize?",
+    answer: "We organize regular coding workshops, AI/ML seminars, hackathons, programming competitions, project showcases, guest lectures from industry experts, study groups, and collaborative coding sessions. We also participate in inter-university programming contests and tech conferences.",
+    category: "Activities"
   },
   {
     id: 5,
-    question: "Are there opportunities for internships and industry collaboration?",
-    answer: "Absolutely! We have partnerships with leading companies in Bangladesh and internationally. Students can participate in internships, industrial training, and collaborative research projects that provide real-world experience.",
-    category: "Industry"
+    question: "Do I need prior programming experience to join?",
+    answer: "Not at all! We welcome beginners and provide comprehensive support through mentorship programs, beginner-friendly workshops, and peer learning sessions. Our experienced members are always ready to help newcomers get started with programming and AI concepts.",
+    category: "Membership"
   },
   {
     id: 6,
-    question: "What student organizations and activities are available?",
-    answer: "Students can join the EEE Student Association, IEEE Student Branch, robotics clubs, and participate in various technical competitions, seminars, workshops, and cultural events that enhance both technical and soft skills.",
-    category: "Student Life"
+    question: "How can joining the club benefit my career in EEE?",
+    answer: "Programming and AI skills are increasingly essential in modern electrical and electronic engineering. Club membership enhances your technical portfolio, provides networking opportunities, offers hands-on project experience, and prepares you for careers in automation, IoT, smart systems, robotics, and emerging tech industries.",
+    category: "Career"
+  },
+  {
+    id: 7,
+    question: "How do I become a member and what are the requirements?",
+    answer: "Simply attend one of our regular meetings or contact us through our social media channels. There are no strict requirements - just bring your enthusiasm to learn! We have a simple registration process and welcome new members throughout the academic year.",
+    category: "Membership"
+  },
+  {
+    id: 8,
+    question: "Does the club work on real-world projects?",
+    answer: "Yes! We regularly work on practical projects including IoT applications, automation systems, AI-powered solutions for engineering problems, mobile apps, web platforms, and research projects. Many of our projects are showcased at university events and some have won competitions.",
+    category: "Projects"
   }
 ]
 
@@ -124,7 +136,7 @@ export function FAQSection() {
             <MessageCircle className="w-10 h-10 text-purple-600 animate-pulse" />
           </div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Get answers to common questions about our EEE programs, admissions, facilities, and student life. 
+            Get answers to common questions about the Programming and AI Club, membership, activities, and opportunities. 
             Can't find what you're looking for? Feel free to contact us directly.
           </p>
         </div>
@@ -146,7 +158,7 @@ export function FAQSection() {
               Still have questions?
             </h3>
             <p className="text-gray-600 mb-4">
-              Our admissions team is here to help you with any additional questions about our programs.
+              Our club coordinators are here to help you with any additional questions about joining or participating in club activities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 

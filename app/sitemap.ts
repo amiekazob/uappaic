@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { facultyMembers } from '@/lib/faculty-data'
 import { events } from '@/lib/events-data'
+import { PastEventsData } from '@/lib/past-events-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://uap-eee.edu.bd'
@@ -20,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/faculty`,
+      url: `${baseUrl}/committee`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.9,
@@ -29,6 +30,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/news`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/upcoming-events`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/gallery`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/past-events`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
@@ -43,32 +62,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/research`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/publications`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/lab`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
+
     {
       url: `${baseUrl}/contact-us`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/mission-vision`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
@@ -87,16 +83,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Faculty pages
+  // Committee pages
   const facultyPages = facultyMembers.map((member) => ({
-    url: `${baseUrl}/faculty/${member.id}`,
+    url: `${baseUrl}/committee/${member.id}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  // News/Event pages
-  const newsPages = events.map((event) => ({
+  // News/Event pages (combine current events and past events)
+  const allEvents = [...events, ...PastEventsData];
+  const newsPages = allEvents.map((event) => ({
     url: `${baseUrl}${event.link}`,
     lastModified: new Date(event.date),
     changeFrequency: 'monthly' as const,

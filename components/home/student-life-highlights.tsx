@@ -16,7 +16,7 @@ function JourneyStageCard({ activity, index }: { activity: StudentLifeType; inde
         return <BookOpen className="w-6 h-6 text-blue-600" />
       case 'extracurricular':
         return <Users className="w-6 h-6 text-green-600" />
-      case 'research':
+      case 'academic':
         return <Star className="w-6 h-6 text-purple-600" />
       case 'leadership':
         return <Trophy className="w-6 h-6 text-orange-600" />
@@ -35,7 +35,7 @@ function JourneyStageCard({ activity, index }: { activity: StudentLifeType; inde
         return 'from-blue-50 to-blue-100 border-blue-300'
       case 'extracurricular':
         return 'from-green-50 to-green-100 border-green-300'
-      case 'research':
+      case 'academic':
         return 'from-purple-50 to-purple-100 border-purple-300'
       case 'leadership':
         return 'from-orange-50 to-orange-100 border-orange-300'
@@ -54,7 +54,7 @@ function JourneyStageCard({ activity, index }: { activity: StudentLifeType; inde
         return 'bg-blue-500'
       case 'extracurricular':
         return 'bg-green-500'
-      case 'research':
+      case 'academic':
         return 'bg-purple-500'
       case 'leadership':
         return 'bg-orange-500'

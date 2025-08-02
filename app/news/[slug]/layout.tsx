@@ -1,19 +1,20 @@
 import { Metadata } from 'next'
-import { NewsEvents } from '@/lib/events-data'
+import { NewsData } from '@/lib/news-data'
 import { generateMetadata as generateSEOMetadata, generateBreadcrumbSchema } from '@/lib/seo'
 
 interface NewsLayoutProps {
   children: React.ReactNode
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { slug } = params
-  const event = NewsEvents.find(e => e.link === `/news/${slug}`)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params
+  const { slug } = resolvedParams
+  const newsItem = NewsData.find(item => item.slug === slug)
 
-  if (!event) {
+  if (!newsItem) {
     return {
       title: 'News Not Found | UAP EEE Department',
       description: 'The requested news article could not be found.'
@@ -21,23 +22,24 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return generateSEOMetadata({
-    title: `${event.title} | UAP EEE Department`,
-    description: event.shortDescription,
-    keywords: `UAP, University of Asia Pacific, EEE, Electrical Engineering, ${event.category}, ${event.type}, ${event.title}`,
-    url: `https://uap-eee.edu.bd${event.link}`,
-    image: event.images[0] || '' // First image as thumbnail
+    title: `${newsItem.title} | UAP EEE Department`,
+    description: newsItem.shortDescription,
+    keywords: `UAP, University of Asia Pacific, EEE, Electrical Engineering, ${newsItem.category}, ${newsItem.type}, ${newsItem.title}`,
+    url: `https://uap-eee.edu.bd${newsItem.link}`,
+    image: newsItem.images[0] || '' // First image as thumbnail
   })
 }
 
-export default function NewsLayout({ children, params }: NewsLayoutProps) {
-  const { slug } = params
-  const event = NewsEvents.find(e => e.link === `/news/${slug}`)
+export default async function NewsLayout({ children, params }: NewsLayoutProps) {
+  const resolvedParams = await params
+  const { slug } = resolvedParams
+  const newsItem = NewsData.find(item => item.slug === slug)
 
-  if (event) {
+  if (newsItem) {
     const breadcrumbSchema = generateBreadcrumbSchema([
       { name: 'Home', url: 'https://uap-eee.edu.bd' },
-      { name: 'News & Events', url: 'https://uap-eee.edu.bd/news' },
-      { name: event.title, url: `https://uap-eee.edu.bd${event.link}` }
+      { name: 'News', url: 'https://uap-eee.edu.bd/news' },
+      { name: newsItem.title, url: `https://uap-eee.edu.bd${newsItem.link}` }
     ])
 
     return (

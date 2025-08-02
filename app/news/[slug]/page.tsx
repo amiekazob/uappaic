@@ -1,30 +1,80 @@
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { NewsEvents, formatDate } from '@/lib/events-data'
+import { NewsData, formatDate } from '@/lib/news-data'
 import NewsClientPage from './client-page'
 
 interface NewsPageProps {
-  params: {
+  params: Promise<{
     slug: string
+  }>
+}
+
+export async function generateStaticParams() {
+  return NewsData.map((newsItem) => ({
+    slug: newsItem.slug,
+  }))
+}
+
+export async function generateMetadata({ params }: NewsPageProps): Promise<Metadata> {
+  const resolvedParams = await params
+  const newsItem = NewsData.find(item => item.slug === resolvedParams.slug)
+  
+  if (!newsItem) {
+    return {
+      title: 'News Not Found',
+      description: 'The requested news item could not be found.'
+    }
+  }
+
+  return {
+    title: `${newsItem.title} | UAP EEE Department`,
+    description: newsItem.shortDescription,
+    keywords: [
+      'UAP',
+      'University of Asia Pacific',
+      'EEE',
+      'Electrical and Electronic Engineering',
+      'News',
+      newsItem.category,
+      ...newsItem.title.split(' ').filter(word => word.length > 3)
+    ],
+    openGraph: {
+      title: newsItem.title,
+      description: newsItem.shortDescription,
+      type: 'article',
+      publishedTime: newsItem.date,
+      images: newsItem.images.map(image => ({
+        url: image,
+        alt: newsItem.title
+      }))
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: newsItem.title,
+      description: newsItem.shortDescription,
+      images: newsItem.images
+    }
   }
 }
 
-export default function NewsPage({ params }: NewsPageProps) {
-  const { slug } = params
+export default async function NewsPage({ params }: NewsPageProps) {
+  const resolvedParams = await params
+  const { slug } = resolvedParams
 
-  const event = NewsEvents.find(e => e.link === `/news/${slug}`)
+  const newsItem = NewsData.find(item => item.slug === slug)
 
-  if (!event) {
+  if (!newsItem) {
     notFound()
   }
 
-  const formattedDate = formatDate(new Date(event.date))
+  const formattedDate = formatDate(new Date(newsItem.date))
 
   return (
     <NewsClientPage
-      event={event}
+      event={newsItem}
       formattedDate={formattedDate}
-      images={event.images || []}
-      content={{ highlights: event.highlights || [] }}
+      images={newsItem.images || []}
+      content={{ highlights: newsItem.highlights || [] }}
     />
   )
 }

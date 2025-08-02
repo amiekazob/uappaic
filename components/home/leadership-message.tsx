@@ -16,7 +16,7 @@ export function LeadershipMessage() {
     fluid: true,
     sources: [
       {
-        src: "https://youtu.be/x3W_aZg8tsA",
+        src: "",
         type: "video/youtube",
       },
     ],
@@ -40,14 +40,14 @@ export function LeadershipMessage() {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
             Message from the
-            <span className="block text-indigo-700">Head of Department</span>
+            <span className="block text-indigo-700">Convener of the Club</span>
           </h2>
           <div className="w-24 h-1 bg-indigo-600 mx-auto rounded-full" />
         </AnimatedSection>
 
         <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-            <div className="grid lg:grid-cols-2 gap-0 lg:h-[359px]">
+            <div className="grid lg:grid-cols-2 gap-0 lg:min-h-[359px]">
               {/* Video Section */}
               <AnimatedSection animation="slideLeft" delay={0.2} className="relative h-full">
                 <div className="h-full bg-gray-900 relative overflow-hidden lg:rounded-l-3xl">
@@ -57,13 +57,13 @@ export function LeadershipMessage() {
               </AnimatedSection>
 
               {/* Content Section */}
-              <AnimatedSection animation="slideRight" delay={0.4} className="p-8 lg:p-12 flex flex-col justify-center h-full">
+              <AnimatedSection animation="slideRight" delay={0.4} className="p-8 lg:p-12 flex flex-col justify-center">
                 {/* HOD Profile */}
                 <div className="flex items-center mb-5">
                   <div className="relative mt-[-10px]">
                     <Image
                       src="/placeholder-user.jpg"
-                      alt="Associate Professor A.H.M. Zadidul Karim"
+                      alt="Ms. Munmun Akter"
                       width={80}
                       height={80}
                       className="rounded-full border-4 border-indigo-100 shadow-lg"
@@ -72,10 +72,10 @@ export function LeadershipMessage() {
                   </div>
                   <div className="ml-6 mt-[-10px] mb-2">
                     <h3 className="text-2xl font-bold text-gray-900">
-                      A.H.M. Zadidul Karim
+                      Ms. Munmun Akter
                     </h3>
                     <p className="text-indigo-600 font-semibold text-lg">
-                      Associate Professor & Head
+                      Lecturer & Convener, Programming and AI Club
                     </p>
                     <p className="text-gray-500 text-sm">
                       Department of Electrical & Electronic Engineering
@@ -87,13 +87,13 @@ export function LeadershipMessage() {
                 <div className="relative mb-8">
                   <Quote className="absolute -top-2 -left-2 w-8 h-8 text-indigo-200" />
                   <blockquote className="text-gray-700 text-md leading-relaxed italic pl-6 border-l-4 border-indigo-200">
-                    "Our Department of Electrical and Electronic Engineering is dedicated to fostering top-tier engineers through our dynamic undergraduate and Master's programs. We are proud of our graduates and committed to advancing innovation in the field."
+                    "It gives me immense pleasure to welcome you to the Programming and AI Club of the Department of Electrical and Electronic Engineering (EEE), University of Asia Pacific. This club was founded with a clear vision—to create a collaborative and forward-thinking space where students can explore, innovate, and lead in the ever-evolving fields of programming, artificial intelligence, and technology-driven problem solving..."
                   </blockquote>
                 </div>
 
                 {/* CTA Button */}
                 <Button asChild className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl py-6 px-8 text-lg font-semibold">
-                  <Link href="/message-from-head">
+                  <Link href="/message-from-convener">
                     Read Full Message
                     <ChevronRight className="w-5 h-5 ml-2" />
                   </Link>

@@ -177,8 +177,8 @@ const careerPaths: CareerPath[] = [
   },
   {
     id: '5',
-    title: 'Research & Development',
-    description: 'Conduct research in emerging technologies and develop innovative solutions.',
+    title: 'Technology Development',
+    description: 'Work on emerging technologies and develop innovative solutions.',
     icon: <Lightbulb className="w-8 h-8" />,
     growth: '22% annually'
   },
@@ -194,25 +194,25 @@ const careerPaths: CareerPath[] = [
 const facilities: Facility[] = [
   {
     id: '1',
-    name: 'Advanced Electronics Lab',
+    name: 'Advanced Electronics Facility',
     description: 'State-of-the-art equipment for circuit design and testing',
     icon: <Cpu className="w-6 h-6" />
   },
   {
     id: '2',
-    name: 'Power Systems Laboratory',
+    name: 'Power Systems Facility',
     description: 'High-voltage equipment and power system simulation tools',
     icon: <Zap className="w-6 h-6" />
   },
   {
     id: '3',
-    name: 'Communication Systems Lab',
+    name: 'Communication Systems Facility',
     description: 'RF equipment, antennas, and wireless communication setups',
     icon: <Radio className="w-6 h-6" />
   },
   {
     id: '4',
-    name: 'Computer Programming Lab',
+    name: 'Computer Programming Facility',
     description: 'Modern computers with latest software and development tools',
     icon: <Settings className="w-6 h-6" />
   }
@@ -235,9 +235,9 @@ const feeStructure: FeeStructure[] = [
   },
   {
     id: '3',
-    category: 'Laboratory Fee',
+    category: 'Facility Fee',
     amount: 'FREE',
-    description: 'Laboratory equipment and maintenance fee',
+    description: 'Learning facility equipment and maintenance fee',
     frequency: 'Included'
   },
   {
@@ -312,10 +312,10 @@ const programHighlights = [
   '4-Year Bachelor\'s Degree Program',
   '162 Credit Hours Total',
   'Industry-Focused Curriculum',
-  'State-of-the-art Laboratory Facilities',
+  'State-of-the-art Learning Facilities',
   'Experienced Faculty Members',
   'Internship & Co-op Opportunities',
-  'Final Year Project & Research',
+  'Final Year Capstone Project',
   'Strong Industry Partnerships',
   'Modern Campus in Dhaka',
   'Active Student Organizations'
@@ -563,7 +563,7 @@ export default function BSCEEEPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-green-700">
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                    <span>Laboratory Equipment & Maintenance</span>
+                    <span>Learning Facility Equipment & Maintenance</span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
@@ -698,7 +698,7 @@ export default function BSCEEEPage() {
               First-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Facilities</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our state-of-the-art laboratories and facilities provide hands-on learning experiences that prepare you for real-world engineering challenges.
+              Our state-of-the-art learning facilities provide hands-on learning experiences that prepare you for real-world engineering challenges.
             </p>
           </div>
           

@@ -15,6 +15,18 @@ export function Navbar() {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [mobileDropdowns, setMobileDropdowns] = useState({
+    about: false,
+    activities: false,
+    events: false
+  })
+
+  const toggleMobileDropdown = (dropdown: 'about' | 'activities' | 'events') => {
+    setMobileDropdowns(prev => ({
+      ...prev,
+      [dropdown]: !prev[dropdown]
+    }))
+  }
 
   // Close dropdowns and mobile menu when navigating to a new page
   useEffect(() => {
@@ -37,32 +49,18 @@ export function Navbar() {
 
   return (
     <>
-      {/* Top Header */}
-      <div className="bg-blue-900 text-white py-2 text-sm" suppressHydrationWarning={true}>
-        <div className="container mx-auto px-4 flex justify-between items-center" suppressHydrationWarning={true}>
-          <div className="flex items-center space-x-4" suppressHydrationWarning={true}>
-            <span>📧 dao.eee@uap-bd.edu</span>
-            <span>📞 +880-2-58157091</span>
-          </div>
-          <div className="flex items-center space-x-4" suppressHydrationWarning={true}>
-            <Link href="https://ucam.uap-bd.edu/Security/LogIn.aspx" className="hover:text-blue-200">Student Portal</Link>
-            <Link href="https://ucam.uap-bd.edu/Security/LogIn.aspx" className="hover:text-blue-200">Faculty Portal</Link>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navigation */}
-      <header className="sticky top-0 z-50 w-full bg-white shadow-md">
+      <header className="sticky top-0 z-50 w-full bg-white shadow-md border-b border-primary-100">
         <div className="container mx-auto px-4" suppressHydrationWarning={true}>
           <div className="flex h-20 items-center justify-between" suppressHydrationWarning={true}>
-            {/* Logo and Department Name */}
+            {/* Logo and Club Name */}
             <LoadingLink href="/" className="flex items-center space-x-3">
               <div className="w-16 h-16 flex items-center justify-center" suppressHydrationWarning={true}>
-                <img src="/images/logo.png" alt="University of Asia Pacific Logo" className="w-full h-full object-contain" />
+                <img src="/images/campus%20life/clubs/programming-ai-club.jpg" alt="Programming and AI Club Logo" className="w-full h-full object-cover rounded-full" />
               </div>
               <div className="flex flex-col" suppressHydrationWarning={true}>
-                <span className="text-lg font-bold text-gray-900">Department of EEE</span>
-                <span className="text-sm text-gray-600">UAP</span>
+                <span className="text-lg font-bold text-gray-900">Programming and AI Club</span>
+                <span className="text-sm text-gray-600">Dept. of EEE - University of Asia Pacific</span>
               </div>
             </LoadingLink>
 
@@ -73,164 +71,136 @@ export function Navbar() {
                 href="/"
                 className={cn(
                   "px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  "hover:bg-orange-50 hover:text-orange-600",
-                  pathname === '/' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+                  "hover:bg-primary-50 hover:text-primary-600",
+                   pathname === '/' ? 'bg-primary-50 text-primary-600' : 'text-gray-700'
                 )}
               >
                 Home
               </LoadingLink>
 
               {/* About Us */}
+              <LoadingLink
+                href="/about-us"
+                className={cn(
+                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                  "hover:bg-primary-50 hover:text-primary-600",
+                   pathname === '/about-us' ? 'bg-primary-50 text-primary-600' : 'text-gray-700'
+                )}
+              >
+                About Us
+              </LoadingLink>
+
+
+
+
+
+              {/* Committee */}
               <div className="relative group" suppressHydrationWarning={true}>
                 <button
                   className={cn(
                     "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
-                    "hover:bg-orange-50 hover:text-orange-600",
-                    openDropdown === 'about-us' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+                    "hover:bg-primary-50 hover:text-primary-600",
+                    openDropdown === 'committee' ? 'bg-primary-50 text-primary-600' : 'text-gray-700'
                   )}
-                  onClick={() => toggleDropdown('about-us')}
+                  onClick={() => toggleDropdown('committee')}
                 >
-                  <span>About Us</span>
+                  <span>Committee</span>
                   <ChevronDown className="w-4 h-4" />
                 </button>
 
-                {openDropdown === 'about-us' && (
+                {openDropdown === 'committee' && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
                     <div className="py-2">
-                      <LoadingLink href="/about-us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                        About Us
+                      <LoadingLink href="/committee" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                        Executive Committee
                       </LoadingLink>
-                      <LoadingLink href="/mission-vision" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                        Mission & Vision
+                      <LoadingLink href="/committee/general-members" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                        General Members
                       </LoadingLink>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Admission */}
+
+
+              {/* Press Release */}
+              <LoadingLink
+                  href="/press-release"
+                  className={cn(
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                    "hover:bg-primary-50 hover:text-primary-600",
+                    pathname === '/press-release' ? 'bg-primary-50 text-primary-600' : 'text-gray-700'
+                  )}
+              >
+                Press Release
+              </LoadingLink>
+
+              {/* News */}
+              <LoadingLink
+                  href="/news"
+                  className={cn(
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                    "hover:bg-primary-50 hover:text-primary-600",
+                    pathname === '/news' ? 'bg-primary-50 text-primary-600' : 'text-gray-700'
+                  )}
+              >
+                News
+              </LoadingLink>
+
+              {/* Events */}
               <div className="relative group" suppressHydrationWarning={true}>
                 <button
                   className={cn(
-                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
-                    "hover:bg-orange-50 hover:text-orange-600",
-                    openDropdown === 'admission' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
-                  )}
-                  onClick={() => toggleDropdown('admission')}
+                      "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
+                      "hover:bg-primary-50 hover:text-primary-600",
+                      openDropdown === 'events' ? 'bg-primary-50 text-primary-600' : 'text-gray-700'
+                    )}
+                  onClick={() => toggleDropdown('events')}
                 >
-                  <span>Admission</span>
+                  <span>Events</span>
                   <ChevronDown className="w-4 h-4" />
                 </button>
-                {openDropdown === 'admission' && (
+
+                {openDropdown === 'events' && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
                     <div className="py-2">
-                      <LoadingLink href="/programs/bsc-eee" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">BSc in EEE</LoadingLink>
-                      <LoadingLink href="/programs/msc-eee" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">MSc in EEE</LoadingLink>
+                      <LoadingLink href="/upcoming-events" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                        Upcoming Events
+                      </LoadingLink>
+                      <LoadingLink href="/past-events" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                        Past Events
+                      </LoadingLink>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Faculty */}
-              <LoadingLink
-                href="/faculty"
-                className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  "hover:bg-orange-50 hover:text-orange-600",
-                  pathname === '/faculty' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
-                )}
-              >
-                Faculties
-              </LoadingLink>
+              {/* Gallery */}
+               <LoadingLink
+                 href="/gallery"
+                 className={cn(
+                     "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                     "hover:bg-primary-50 hover:text-primary-600",
+                     pathname === '/gallery' ? 'bg-primary-50 text-primary-600' : 'text-gray-700'
+                   )}
+               >
+                 Gallery
+               </LoadingLink>
 
-              {/* Research and Publications */}
-              <div className="relative group" suppressHydrationWarning={true}>
-                <button
-                  className={cn(
-                    "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
-                    "hover:bg-orange-50 hover:text-orange-600",
-                    openDropdown === 'research-publications' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
+               {/* Club Life in EEE */}
+               <LoadingLink
+                 href="/club-life"
+                 className={cn(
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                    "hover:bg-primary-50 hover:text-primary-600",
+                    pathname === '/club-life' ? 'bg-primary-50 text-primary-600' : 'text-gray-700'
                   )}
-                  onClick={() => toggleDropdown('research-publications')}
-                >
-                  <span>Research and Publications</span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-                {openDropdown === 'research-publications' && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
-                    <div className="py-2">
-                      <LoadingLink href="/research" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Research</LoadingLink>
-                      <LoadingLink href="/publications" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Publications</LoadingLink>
-                    </div>
-                  </div>
-                )}
-              </div>
+               >
+                 Club Life in EEE
+               </LoadingLink>
 
-              {/* News and Events */}
-              <LoadingLink
-                href="/news"
-                className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  "hover:bg-orange-50 hover:text-orange-600",
-                  pathname === '/news' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
-                )}
-              >
-                News and events
-              </LoadingLink>
 
-              
-              {/* Campus Life */}
-<div className="relative group" suppressHydrationWarning={true}>
-  <button
-    className={cn(
-      "px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center space-x-1",
-      "hover:bg-orange-50 hover:text-orange-600",
-      openDropdown === 'campus-life' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
-    )}
-    onClick={() => toggleDropdown('campus-life')}
-  >
-    <span>Campus Life</span>
-    <ChevronDown className="w-4 h-4" />
-  </button>
-
-  {openDropdown === 'campus-life' && (
-    <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border z-50">
-      <div className="py-2">
-        <LoadingLink href="/campus-life/our-achievements" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-          Our Achievements
-        </LoadingLink>
-        <LoadingLink href="/campus-life/our-alumni-and-student-in-entrepreneurship" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-          Our Alumni & Students in Entrepreneurship
-        </LoadingLink>
-        <LoadingLink href="/campus-life/student-life-in-eee" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-          Student Life in EEE
-        </LoadingLink>
-        <LoadingLink href="/campus-life/clubs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-          Clubs
-        </LoadingLink>
-        <LoadingLink href="/campus-life/student-organizations" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-          Organizations
-        </LoadingLink>
-
-        <LoadingLink href="/campus-life/trips" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-          Trips & Tours
-        </LoadingLink>
-      </div>
-    </div>
-  )}
-</div>
-
-              {/* laboratory */}
-              <LoadingLink
-                href="/lab"
-                className={cn(
-                  "px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  "hover:bg-orange-50 hover:text-orange-600",
-                  pathname === '/lab' ? 'bg-orange-50 text-orange-600' : 'text-gray-700'
-                )}
-              >
-                Laboratories
-              </LoadingLink>
 
               {/* More */}
               <div className="relative group" suppressHydrationWarning={true}>
@@ -248,8 +218,7 @@ export function Navbar() {
                 {openDropdown === 'more' && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border z-50">
                     <div className="py-2">
-                      <LoadingLink href="/class-routine" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Class Routine</LoadingLink>
-                      <LoadingLink href="/exam-routine" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Exam Routine</LoadingLink>
+                      <LoadingLink href="/join-our-club" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Join Our Club</LoadingLink>
                       <LoadingLink href="/contact-us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Contact Us</LoadingLink>
                     </div>
                   </div>
@@ -263,7 +232,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className="lg:hidden hover:text-primary-600 hover:bg-primary-50"
               onClick={toggleMobileMenu}
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -278,82 +247,57 @@ export function Navbar() {
               <div className="space-y-4">
 
 
-                <LoadingLink href="/" className="block py-2 font-medium">Home</LoadingLink>
+                <LoadingLink href="/" className="block py-2 font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md px-3 transition-colors">Home</LoadingLink>
                 
-                <div>
-                  <button
-                    className="flex items-center justify-between w-full py-2 text-left font-medium"
-                    onClick={() => toggleDropdown('mobile-about-us')}
-                  >
-                    <span>About Us</span>
-                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-about-us' && 'rotate-180')} />
-                  </button>
-                  {openDropdown === 'mobile-about-us' && (
-                    <div className="pl-4 mt-2 space-y-2">
-                      <LoadingLink href="/about-us" className="block py-1 text-sm text-gray-600">About Us</LoadingLink>
-                      <LoadingLink href="/mission-vision" className="block py-1 text-sm text-gray-600">Mission & Vision</LoadingLink>
-                    </div>
-                  )}
-                </div>
+                <LoadingLink href="/about-us" className="block py-2 font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md px-3 transition-colors">About Us</LoadingLink>
+                
+
+
+
 
                 <div>
                   <button
                     className="flex items-center justify-between w-full py-2 text-left font-medium"
-                    onClick={() => toggleDropdown('mobile-admission')}
+                    onClick={() => toggleDropdown('mobile-committee')}
                   >
-                    <span>Admission</span>
-                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-admission' && 'rotate-180')} />
+                    <span>Committee</span>
+                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-committee' && 'rotate-180')} />
                   </button>
-                  {openDropdown === 'mobile-admission' && (
+                  {openDropdown === 'mobile-committee' && (
                     <div className="pl-4 mt-2 space-y-2">
-                      <LoadingLink href="/programs/bsc-eee" className="block py-1 text-sm text-gray-600">BSc in EEE</LoadingLink>
-                      <LoadingLink href="/programs/msc-eee" className="block py-1 text-sm text-gray-600">MSc in EEE</LoadingLink>
-                    </div>
-                  )}
-                </div>
-
-                <LoadingLink href="/faculty" className="block py-2 font-medium">Faculties</LoadingLink>
-                
-                <div>
-                  <button
-                    className="flex items-center justify-between w-full py-2 text-left font-medium"
-                    onClick={() => toggleDropdown('mobile-research-publications')}
-                  >
-                    <span>Research and Publications</span>
-                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-research-publications' && 'rotate-180')} />
-                  </button>
-                  {openDropdown === 'mobile-research-publications' && (
-                    <div className="pl-4 mt-2 space-y-2">
-                      <LoadingLink href="/research" className="block py-1 text-sm text-gray-600">Research</LoadingLink>
-                      <LoadingLink href="/publications" className="block py-1 text-sm text-gray-600">Publications</LoadingLink>
+                      <LoadingLink href="/committee" className="block py-1 text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 rounded px-2 transition-colors">Executive Committee</LoadingLink>
+                      <LoadingLink href="/committee/general-members" className="block py-1 text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 rounded px-2 transition-colors">General Members</LoadingLink>
                     </div>
                   )}
                 </div>
                 
-                <LoadingLink href="/news" className="block py-2 font-medium">News and Events</LoadingLink>
 
+                
+                <LoadingLink href="/press-release" className="block py-2 font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md px-3 transition-colors">Press Release</LoadingLink>
+                
+                <LoadingLink href="/news" className="block py-2 font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md px-3 transition-colors">News</LoadingLink>
+                
                 <div>
                   <button
                     className="flex items-center justify-between w-full py-2 text-left font-medium"
-                    onClick={() => toggleDropdown('mobile-campus-life')}
+                    onClick={() => toggleDropdown('mobile-events')}
                   >
-                    <span>Campus Life</span>
-                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-campus-life' && 'rotate-180')} />
+                    <span>Events</span>
+                    <ChevronDown className={cn("w-4 h-4 transition-transform", openDropdown === 'mobile-events' && 'rotate-180')} />
                   </button>
-                  {openDropdown === 'mobile-campus-life' && (
+                  {openDropdown === 'mobile-events' && (
                     <div className="pl-4 mt-2 space-y-2">
-                      <LoadingLink href="/campus-life/our-achievements" className="block py-1 text-sm text-gray-600">Our Achievements</LoadingLink>
-                      <LoadingLink href="/campus-life/our-alumni-and-student-in-entrepreneurship" className="block py-1 text-sm text-gray-600">Our Alumni & Students in Entrepreneurship</LoadingLink>
-                      <LoadingLink href="/campus-life/student-life-in-eee" className="block py-1 text-sm text-gray-600">Student Life in EEE</LoadingLink>
-                      <LoadingLink href="/campus-life/clubs" className="block py-1 text-sm text-gray-600">Clubs</LoadingLink>
-                      <LoadingLink href="/campus-life/student-organizations" className="block py-1 text-sm text-gray-600">Organizations</LoadingLink>
-
-                      <LoadingLink href="/campus-life/trips" className="block py-1 text-sm text-gray-600">Trips & Tours</LoadingLink>
+                      <LoadingLink href="/upcoming-events" className="block py-1 text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 rounded px-2 transition-colors">Upcoming Events</LoadingLink>
+                      <LoadingLink href="/past-events" className="block py-1 text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 rounded px-2 transition-colors">Past Events</LoadingLink>
                     </div>
                   )}
                 </div>
+                
+                <LoadingLink href="/gallery" className="block py-2 font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md px-3 transition-colors">Gallery</LoadingLink>
 
-                <LoadingLink href="/lab" className="block py-2 font-medium">Laboratories</LoadingLink>
+                <LoadingLink href="/club-life" className="block py-2 font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md px-3 transition-colors">Club Life in EEE</LoadingLink>
+
+
 
                 <div>
                   <button
@@ -365,9 +309,8 @@ export function Navbar() {
                   </button>
                   {openDropdown === 'mobile-more' && (
                     <div className="pl-4 mt-2 space-y-2">
-                      <LoadingLink href="/class-routine" className="block py-1 text-sm text-gray-600">Class Routine</LoadingLink>
-                      <LoadingLink href="/exam-routine" className="block py-1 text-sm text-gray-600">Exam Routine</LoadingLink>
-                      <LoadingLink href="/contact-us" className="block py-1 text-sm text-gray-600">Contact Us</LoadingLink>
+                      <LoadingLink href="/join-our-club" className="block py-1 text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 rounded px-2 transition-colors">Join Our Club</LoadingLink>
+                      <LoadingLink href="/contact-us" className="block py-1 text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 rounded px-2 transition-colors">Contact Us</LoadingLink>
                     </div>
                   )}
                 </div>

@@ -20,7 +20,7 @@ function NotableAchievementCard({ achievement }: { achievement: typeof achieveme
         return <Award className="w-4 h-4 text-blue-600" />
       case 'recognition':
         return <Star className="w-4 h-4 text-purple-600" />
-      case 'research':
+      case 'academic':
         return <Award className="w-4 h-4 text-green-600" />
       case 'innovation':
         return <Star className="w-4 h-4 text-orange-600" />
@@ -58,7 +58,7 @@ function NotableAchievementCard({ achievement }: { achievement: typeof achieveme
             achievement.type === 'competition' && "bg-yellow-100 text-yellow-800",
             achievement.type === 'award' && "bg-blue-100 text-blue-800",
             achievement.type === 'recognition' && "bg-purple-100 text-purple-800",
-            achievement.type === 'research' && "bg-green-100 text-green-800",
+            achievement.type === 'academic' && "bg-green-100 text-green-800",
             achievement.type === 'innovation' && "bg-orange-100 text-orange-800"
           )}>
             {achievement.type.charAt(0).toUpperCase() + achievement.type.slice(1)}

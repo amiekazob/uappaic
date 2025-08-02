@@ -23,7 +23,7 @@ function getTypeIcon(type: string) {
       return <BookOpen className="w-6 h-6 text-blue-600" />
     case 'extracurricular':
       return <Users className="w-6 h-6 text-green-600" />
-    case 'research':
+    case 'academic':
       return <Star className="w-6 h-6 text-purple-600" />
     case 'leadership':
       return <Trophy className="w-6 h-6 text-orange-600" />
@@ -42,7 +42,7 @@ function getTypeColor(type: string) {
       return 'bg-blue-100 text-blue-800 border-blue-200'
     case 'extracurricular':
       return 'bg-green-100 text-green-800 border-green-200'
-    case 'research':
+    case 'academic':
       return 'bg-purple-100 text-purple-800 border-purple-200'
     case 'leadership':
       return 'bg-orange-100 text-orange-800 border-orange-200'
@@ -61,7 +61,7 @@ function getGradientColor(type: string) {
       return 'from-blue-900 to-blue-700'
     case 'extracurricular':
       return 'from-green-900 to-green-700'
-    case 'research':
+    case 'academic':
       return 'from-purple-900 to-purple-700'
     case 'leadership':
       return 'from-orange-900 to-orange-700'

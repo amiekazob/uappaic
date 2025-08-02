@@ -65,7 +65,7 @@ export function generateOrganizationSchema() {
     alternateName: 'UAP EEE Department',
     url: 'https://uap-eee.edu.bd',
     logo: 'https://uap-eee.edu.bd/logo.png',
-    description: 'Leading department in electrical and electronic engineering education and research at University of Asia Pacific',
+    description: 'Leading department in electrical and electronic engineering education and academics at University of Asia Pacific',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'House # 73, Road # 5A',
@@ -216,7 +216,7 @@ export function generateWebsiteSchema() {
     '@type': 'WebSite',
     name: 'UAP EEE Department',
     url: 'https://uap-eee.edu.bd',
-    description: 'Department of Electrical and Electronic Engineering at University of Asia Pacific',
+    description: 'Department of Electrical and Electronic Engineering at University of Asia Pacific - Excellence in education and academics',
     publisher: {
       '@type': 'Organization',
       name: 'University of Asia Pacific'

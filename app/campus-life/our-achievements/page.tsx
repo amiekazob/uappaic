@@ -32,7 +32,7 @@ function AchievementCard({ achievement }: { achievement: AchievementType }) {
         return <Award className="w-5 h-5 text-blue-600" />
       case 'recognition':
         return <Star className="w-5 h-5 text-purple-600" />
-      case 'research':
+      case 'academic':
         return <Award className="w-5 h-5 text-green-600" />
       case 'innovation':
         return <Star className="w-5 h-5 text-orange-600" />
@@ -71,7 +71,7 @@ function AchievementCard({ achievement }: { achievement: AchievementType }) {
               achievement.type === 'competition' && "bg-yellow-100 text-yellow-800",
               achievement.type === 'award' && "bg-blue-100 text-blue-800",
               achievement.type === 'recognition' && "bg-purple-100 text-purple-800",
-              achievement.type === 'research' && "bg-green-100 text-green-800",
+              achievement.type === 'academic' && "bg-green-100 text-green-800",
               achievement.type === 'innovation' && "bg-orange-100 text-orange-800"
             )}>
               {achievement.type.charAt(0).toUpperCase() + achievement.type.slice(1)}
@@ -122,7 +122,7 @@ export default function OurAchievementsPage() {
     return ['- Year -', ...uniqueYears.sort((a, b) => parseInt(b) - parseInt(a))];
   }, [allAchievements]);
 
-  const types = ['All', 'Competition', 'Award', 'Recognition', 'Research', 'Innovation'];
+  const types = ['All', 'Competition', 'Award', 'Recognition', 'Academic', 'Innovation'];
 
   const filteredAchievements = useMemo(() => {
     return allAchievements.filter(achievement => {

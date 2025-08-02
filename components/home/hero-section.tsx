@@ -17,31 +17,24 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    image: "/images/hero/5.jpg",
-    title: "Excellence in Higher Education",
-    description: "Empowering minds, shaping futures, and building tomorrow's leaders through innovative education and research",
-    ctaText: "Apply Now"
+    image: "/images/hero/1.jpg",
+    title: "Programming & AI Club",
+    description: "Master the art of coding and artificial intelligence through hands-on projects, workshops, and collaborative learning experiences",
+    ctaText: "Join Club"
   },
   {
     id: 2,
-    image: "/images/hero/2.jpeg",
-    title: "World-Class Research Facilities",
-    description: "Discover cutting-edge laboratories and research opportunities that drive innovation and scientific breakthroughs",
-    ctaText: "Explore Research"
+    image: "/images/lab/computer-programming-lab.jpg",
+    title: "Code. Learn. Innovate.",
+    description: "Dive deep into programming languages, machine learning algorithms, and cutting-edge AI technologies with fellow enthusiasts",
+    ctaText: "Start Coding"
   },
   {
     id: 3,
-    image: "/images/hero/3.jpeg",
-    title: "Vibrant Campus Community",
-    description: "Join a diverse community of scholars, innovators, and leaders from around the world in our beautiful campus",
-    ctaText: "Campus Life"
-  },
-  {
-    id: 4,
-    image: "/images/hero/4.jpeg",
-    title: "Shape Your Future",
-    description: "Transform your passion into expertise with our comprehensive programs and dedicated faculty mentorship",
-    ctaText: "View Programs"
+    image: "/images/lab/matlab-lab.jpg",
+    title: "AI Projects & Competitions",
+    description: "Participate in hackathons, coding contests, and AI challenges while building real-world applications that make a difference",
+    ctaText: "View Projects"
   }
 ]
 
@@ -125,13 +118,13 @@ export function HeroSection() {
             className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-500 delay-200 transform ${isTransitioning ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'
               }`}
           >
-            <Button size="lg" className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3">
+            <Button size="lg" className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-3">
               {slides[currentSlide].ctaText}
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-black hover:bg-white hover:text-blue-900 px-8 py-3"
+              className="border-white text-white hover:bg-accent-400 hover:text-primary-900 px-8 py-3"
             >
               Learn More
             </Button>

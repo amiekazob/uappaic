@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronRight } from "lucide-react"
 import { events, formatDate } from "@/lib/events-data"
+import { PastEventsData } from "@/lib/past-events-data"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { StaggeredContainer, StaggeredItem } from "@/components/ui/staggered-container"
 
@@ -18,7 +19,11 @@ export function NewsEvents() {
     dragFree: true,
   });
 
-  const recentEvents = events.slice(0, 4);
+  // Combine current events and past events, then sort by date (newest first)
+  const allEvents = [...events, ...PastEventsData].sort((a, b) => 
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+  const recentEvents = allEvents.slice(0, 4);
 
   return (
     <section className="py-16 bg-gray-50">
@@ -33,7 +38,7 @@ export function NewsEvents() {
               </p>
             </div>
             <Link href="/news" passHref>
-              <Button className="mt-4 md:mt-0 md:ml-4 whitespace-nowrap bg-indigo-700 hover:bg-indigo-800">
+              <Button className="mt-4 md:mt-0 md:ml-4 whitespace-nowrap bg-primary-600 hover:bg-primary-700">
                 Show All
                 <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
@@ -58,7 +63,7 @@ export function NewsEvents() {
                           className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                       </Link>
-                      <div className="absolute bottom-0 left-0 bg-blue-900 text-white p-3 text-center rounded-tr-xl">
+                      <div className="absolute bottom-0 left-0 bg-primary-800 text-white p-3 text-center rounded-tr-xl">
                         <div className="font-bold text-2xl leading-none">{formattedDate.day}</div>
                         <div className="text-sm uppercase tracking-wider">{formattedDate.month}</div>
                         <div className="text-xs">{formattedDate.year}</div>
@@ -69,7 +74,7 @@ export function NewsEvents() {
                         <Link href={event.link} className="hover:text-blue-700 transition-colors duration-300">{event.title}</Link>
                       </h3>
                       <p className="text-gray-600 text-sm mb-3">{event.shortDescription}</p>
-                      <Button asChild className="bg-indigo-700 hover:bg-indigo-800 w-fit">
+                      <Button asChild className="bg-primary-600 hover:bg-primary-700 w-fit">
                         <Link href={event.link}>
                           Read More
                           <ChevronRight className="w-4 h-4 ml-1" />
