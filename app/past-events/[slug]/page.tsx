@@ -20,18 +20,43 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
+  const baseUrl = 'https://uappaic.netlify.app'
+  const canonicalUrl = `${baseUrl}/past-events/${event.slug}`
+  const absoluteImages = event.images.map(image => 
+    image.startsWith('http') ? image : `${baseUrl}${image}`
+  )
+
   return {
     title: `${event.title} | EEE UAP`,
     description: event.description,
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: canonicalUrl
+    },
     openGraph: {
       title: event.title,
       description: event.description,
-      images: event.images.length > 0 ? [{
-        url: event.images[0],
+      type: 'article',
+      url: canonicalUrl,
+      siteName: 'UAP EEE Department',
+      images: absoluteImages.length > 0 ? [{
+        url: absoluteImages[0],
         width: 1200,
         height: 630,
         alt: event.title
-      }] : []
+      }] : [{
+        url: `${baseUrl}/og-image.svg`,
+        width: 1200,
+        height: 630,
+        alt: event.title
+      }]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: event.title,
+      description: event.description,
+      images: absoluteImages.length > 0 ? [absoluteImages[0]] : [`${baseUrl}/og-image.svg`],
+      site: '@uap_eee'
     }
   }
 }

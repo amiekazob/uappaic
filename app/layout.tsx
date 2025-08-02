@@ -18,20 +18,20 @@ export const metadata: Metadata = {
   authors: [{ name: 'UAP EEE Department' }],
   creator: 'UAP EEE Department',
   publisher: 'University of Asia Pacific',
-  metadataBase: new URL('https://uap-eee.edu.bd'),
+  metadataBase: new URL('https://uappaic.netlify.app'),
   alternates: {
     canonical: '/'
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://uap-eee.edu.bd',
+    url: 'https://uappaic.netlify.app',
     siteName: 'UAP EEE Department',
     title: 'Department of Electrical and Electronic Engineering - University of Asia Pacific',
     description: 'Leading department in electrical and electronic engineering education at University of Asia Pacific.',
     images: [
       {
-        url: '/images/logo.png',
+        url: 'https://uappaic.netlify.app/images/logo.png',
         width: 1200,
         height: 630,
         alt: 'UAP EEE Department'
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Department of Electrical and Electronic Engineering - University of Asia Pacific',
     description: 'Leading department in electrical and electronic engineering education at University of Asia Pacific.',
-    images: ['/og-image.svg']
+    images: ['https://uappaic.netlify.app/og-image.svg']
   },
   robots: {
     index: true,

@@ -26,6 +26,13 @@ export async function generateMetadata({ params }: NewsPageProps): Promise<Metad
     }
   }
 
+  // Convert relative URLs to absolute URLs for social media sharing
+  const baseUrl = 'https://uappaic.netlify.app'
+  const absoluteImages = newsItem.images.map(image => 
+    image.startsWith('http') ? image : `${baseUrl}${image}`
+  )
+  const canonicalUrl = `${baseUrl}/news/${newsItem.slug}`
+
   return {
     title: `${newsItem.title} | UAP EEE Department`,
     description: newsItem.shortDescription,
@@ -38,13 +45,21 @@ export async function generateMetadata({ params }: NewsPageProps): Promise<Metad
       newsItem.category,
       ...newsItem.title.split(' ').filter(word => word.length > 3)
     ],
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: canonicalUrl
+    },
     openGraph: {
       title: newsItem.title,
       description: newsItem.shortDescription,
       type: 'article',
       publishedTime: newsItem.date,
-      images: newsItem.images.map(image => ({
+      url: canonicalUrl,
+      siteName: 'UAP EEE Department',
+      images: absoluteImages.map(image => ({
         url: image,
+        width: 1200,
+        height: 630,
         alt: newsItem.title
       }))
     },
@@ -52,7 +67,8 @@ export async function generateMetadata({ params }: NewsPageProps): Promise<Metad
       card: 'summary_large_image',
       title: newsItem.title,
       description: newsItem.shortDescription,
-      images: newsItem.images
+      images: absoluteImages,
+      site: '@uap_eee'
     }
   }
 }
